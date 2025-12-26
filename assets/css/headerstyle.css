@@ -1,0 +1,178 @@
+
+.site-header {
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    background: transparent;
+    border-radius: 25px;
+    background-color: brown;
+}
+
+
+/* logo */
+.site-logo { width: 36px; height: 36px; object-fit: contain; display: block; border-radius: 8px; }
+
+/* Docked banner at the very top with a larger logo */
+/*
+.site-header { position: relative;
+}
+*/
+
+/*
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0px;
+    background: transparent;
+    border-radius: 25px;
+    
+}
+*/
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.main-nav a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: var(--primary);
+    background: transparent;
+} 
+
+.nav-spacer{ flex: 1 1 auto; }
+
+
+.site-header {  
+
+    background-image: 
+        linear-gradient(90deg, rgba(255,250,244,0.9) 0%, rgba(239,231,219,0.8) 30%, rgba(239,231,219,0.2) 40%, rgba(239,231,219,0.9) 60%, rgba(239,231,219,0.9) 100%),
+        url('../images/hdrvback.webp');
+}
+
+
+
+.logo-banner {
+    position: absolute;
+    top: 0; /* docked to the very top */
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 0px 0px 136px 14px;
+    background:linear-gradient(263deg, rgba(253, 187, 45, 0.41) 0%, rgba(253, 187, 45, 0.7) 20%, rgba(110, 191, 143, 0.1) 60%,rgba(34, 193, 195, 0.2) 70%) ;   
+    
+    box-shadow: 0 22px 60px rgba(16,24,24,0.14), 0 8px 22px rgba(46,34,22,0.06);
+    border: 1px solid var(--border);
+    transform: translateY(-40px); /* overlap slightly to reduce header gap */
+    z-index: 80;
+    transition: transform 240ms ease, box-shadow 240ms ease;
+    
+} 
+
+@media (max-width: 768px) {
+    /* scale down on tablets */
+    .logo-banner { left: 14px; padding: 12px 14px; transform: translateY(-8px); }
+    .site-header { padding-top: 8px; }
+} 
+
+@media (max-width: 480px) {
+    /* mobile: inline banner so it doesn't consume too much vertical space */
+    .logo-banner { position: relative; transform: translateY(0); left: 0; display: inline-flex; margin-bottom: 6px; padding: 8px 10px; }
+    .site-header { padding-top: 12px; }
+}
+
+/* Double logo size and ensure spacing to avoid overlap */
+.site-logo { width: 160px; height: 160px; }
+
+@media (max-width: 768px) {
+    .site-logo { width: 128px; height: 128px; }
+}
+
+@media (max-width: 480px) {
+    .site-logo { width: 80px; height: 80px; }
+}
+
+
+@media (max-width: 480px) {
+    .site-logo { width: 64px; height: 64px; }
+    .logo-banner { transform: translateY(-8px); padding: 6px 8px; }
+    
+}
+
+
+/* Responsive - small screens */
+@media (max-width: 768px) {
+    .site-header {
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+    }
+
+    .nav-toggle { display: inline-block; }
+
+    /* Mobile nav becomes a full-width vertical panel under the header */
+    .main-nav {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: none;
+        background: var(--surface);
+        padding: 8px 0;
+        border-radius: 0;
+        box-shadow: 0 12px 30px rgba(46,34,22,0.08);
+        z-index: 50;
+        
+    }
+
+    .main-nav.open {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-nav li + li { border-top: 1px solid rgba(46,34,22,0.03); } 
+
+    .main-nav a { display: block; padding: 12px 16px; border-radius: 0; }
+
+    .main-nav a:hover, .main-nav a:active {
+        background: rgba(51,128,0,0.04);
+        color: var(--primary);
+    } 
+
+    .main-nav a:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    
+
+    /* Prevent body scroll when nav is open */
+    body.nav-open { overflow: hidden; }
+
+    main { gap: 24px; }
+}

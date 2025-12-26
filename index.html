@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getaway Holidays</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/headerstyle.css" />
+    <!-- The 'defer' attribute makes the script run after the page is parsed -->
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <img
+          src="./assets/images/logo.png"
+          alt="getaway holidays logo"
+          class="site-logo"
+        />
+
+        <div style="flex: 1"></div>
+
+        <button
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+        <div style="flex: 1"></div>
+        <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html#Offers">Holiday Offers</a></li>
+            <li><a href="index.html#Hotels">Hotels</a></li>
+            <li><a href="contact.html">Visit Us</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+  </body>
+</html>
