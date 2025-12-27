@@ -1,0 +1,16 @@
+{
+  "lectures": [
+    {
+      "id": 1,
+      "descrp": "First lecture"
+    },
+    {
+      "id": 2,
+      "descrp": "Second lecture"
+    },
+    {
+      "id": 3,
+      "descrp": "Third lecture"
+    }
+  ]
+}
