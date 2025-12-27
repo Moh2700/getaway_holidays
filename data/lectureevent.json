@@ -2,15 +2,23 @@
   "lectures": [
     {
       "id": 1,
-      "descrp": "First lecture"
+      "date": "12/03/2026",
+      "description": "First lecture"
     },
     {
       "id": 2,
-      "descrp": "Second lecture"
+      "date": "13/03/2026",
+      "description": "Second lecture"
     },
     {
       "id": 3,
-      "descrp": "Third lecture"
+      "date": "15/03/2026",
+      "description": "Third lecture"
+    },
+    {
+      "id": 4,
+      "date": "18/03/2026",
+      "description": "Fourth lecture"
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+   "lectures": [ 
+   {"id": "lec0001"},
+   { "Title": "Science & Philosophy in Al-Ándalus"},
+   { "Language": "English"},
+   { "Venue": "La Plaza de Torros"},
+   {"Speaker": "Alfonso Swarres"},
+   {"Email": "getawaytravels@gmail.com"},
+   { "address": [
+        {"streetAdd": "123 Carmen St"},
+        {"city": "Toledo"},
+        {"state": "Al Andalus"},
+        {"postalCode": "12345"}
+   ]},
+    { "phone": [
+        {
+            "type": "office",
+            "number": "555-555-5554"
+        },
+        {
+            "type": "mobile",
+            "number": "555-555-5555"
+        }
+    ]
+    }
+   ]
+}
