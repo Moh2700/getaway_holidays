@@ -83,5 +83,10 @@ body::before {
 
 .event-card-content p { margin: 0 0 6px 0; font-size: 0.95rem; color: var(--muted); }
 
+/*Tours Section */
+
+#tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+
 
 

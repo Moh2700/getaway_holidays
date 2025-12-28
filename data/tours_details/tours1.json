@@ -1,0 +1,33 @@
+
+{
+   "id": "trs0004",
+   "duration" :"2 hours",
+   "price": "£15",
+   "language":["French","English", "Spanish", "Arabic"],
+   "schedule": "Monday to Friday from 10AM to 14:00PM",
+   "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
+   "src":"https://images.pexels.com/photos/19797972/pexels-photo-19797972.jpeg",
+   
+   "start":"Grand Mezquita main entrance",
+   "email": "getawaytravels@gmail.com",
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Granada",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+    }
+   
+

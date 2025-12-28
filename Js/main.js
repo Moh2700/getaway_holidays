@@ -59,8 +59,12 @@
     }
   }
 
-// ------------------- Events Grid -------------------
+// ------------------- Events Grid for Lectures-------------------
 async function loadLectureEvents() {
+
+    const section = document.getElementById('events');
+    section.style.display = 'block';
+
     const grid = document.getElementById('events-grid');
     try {
         const response = await fetch('data/lectureevent.json');
@@ -82,7 +86,7 @@ async function loadLectureEvents() {
 
        
         for (const event of eventIndex.lectures) {
-             alert ("" +`data/lecture_details/lecture${event.id}.json`);
+            // alert ("" +`data/lecture_details/lecture${event.id}.json`);
             
             const detailResp = await fetch(`data/lecture_details/lecture${event.id}.json`);
             const details = detailResp.ok ? await detailResp.json() : { id: event.id, date: event.date, description: event.description };
@@ -93,7 +97,8 @@ async function loadLectureEvents() {
             card.innerHTML = `
                
                 <div class="event-card-content">
-                    <h4>${event.description}</h4>
+                    <h4>Title:${details.title}</h4>
+                    <h2>Description: ${event.description}</h2>
                     <p><strong>Date:</strong> ${event.date}</p>
                     <p><strong>Speaker:</strong> ${details.speaker}</p>
                     <p><strong>Venue:</strong>${details.venue}</p>
@@ -111,12 +116,72 @@ async function loadLectureEvents() {
         grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
     }
 }
+//==================== End events Grid for Lectures================================
+
+ // ------------------- Events Grid for Lectures-------------------
+async function loadTourEvents() {
+
+    const section = document.getElementById('tours');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('tours-grid');
+    try {
+        const response = await fetch('data/toursevent.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const eventIndex = await response.json();
+
+       // alert(eventIndex.lecture);
+
+        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+        const noEventsMessage = isRTL ? 'لا توجد فعاليات قادمة في الوقت الحالي.' : 'No upcoming events at this time.';
+
+
+        if (!eventIndex.tours || eventIndex.tours.length === 0) {
+            grid.innerHTML = `<p>${noEventsMessage}</p>`;
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        for (const event of eventIndex.tours) {
+            // alert ("" +`data/lecture_details/lecture${event.id}.json`);
+            
+            const detailResp = await fetch(`data/tours_details/tours${event.id}.json`);
+            const details = detailResp.ok ? await detailResp.json() : { id: event.id, date: event.date, description: event.description };
+            
+            
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+              
+                <img src="${details.src}" alt="${details.title}">
+                <div class="event-card-content">
+                    <h4>Title:${details.title}</h4>
+                    <h2>Description: ${event.description}</h2>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Price:</strong> ${details.price}</p>
+                    <p><strong>Duration:</strong>${details.duration}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+            
+            
+        }
+  
+    } catch (error) {
+        console.error("Could not load events:", error);
+        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+        const msg = isRTL ? 'عذرًا، لا نستطيع تحميل الفعاليات الآن. الرجاء المحاولة لاحقًا.' : "Sorry, we couldn't load the events. Please try again later.";
+        grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
+    }
+}
+//==================== End events Grid for Lectures================================
+
 
 
   navtoggle ();
 
-  loadLectureEvents();
-
+  
 
 var sitePersonel = {};
 var employees = []
