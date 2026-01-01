@@ -1,20 +1,19 @@
 {
-   "id": "trs0004",
-  
+   "id": "trs0003",
    "price": "£15",
    "language":["French","English", "Spanish", "Arabic"],
    "schedule": "Monday to Friday from 10AM to 14:00PM",
    "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
    "src":"https://images.pexels.com/photos/18348736/pexels-photo-18348736.jpeg",
    "title": "Real Alcazar of Seville + Cathedral and Giralda: Guided Tour",
-   
+   "duration":"3 hours",
    "email": "getawaytravels@gmail.com",
    "address":[ 
     {
-        "streetAdd": "123 Carmen St",
-        "city": "Granada",
-        "state": "Al Andalus",
-        "postalCode": "12345"
+      "streetAdd": "123 Carmen St",
+      "city": "Granada",
+      "state": "Al Andalus",
+      "postalCode": "12345"
     }
         ],
     "phone":[

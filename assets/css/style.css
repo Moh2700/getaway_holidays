@@ -11,6 +11,7 @@
     --border: rgba(46,34,22,0.06); /* subtle brown border */
     --tile-beige: #efe7db; /* beige tile base */
     --tile-white: #ffffff; /* tile white */
+    --emerald: #065f46;
 }  
 
 
@@ -53,8 +54,6 @@ body::before {
     z-index: 1; /* ensure content sits above the background overlay */
 }
 
-
-
 .content-section {
     background: var(--surface);
     padding: 18px;
@@ -68,6 +67,141 @@ body::before {
     font-size: 1.1rem;
     color: var(--text);
     margin: 0 0 12px 0;
+}
+
+
+
+
+      #element2 {display:inline-block; width:200px; background-color:red;} 
+
+      .confirmation1 {
+        margin-top: 1rem;
+        color:white;
+        font-weight: 600;
+        display:inline-block; width:100px;
+        
+      }
+
+      .confirmation2 {
+        margin-top: 1rem;
+        color:white;
+        font-weight: 600;
+        display:inline-block; width:100px;
+        
+      }
+
+
+
+        /* MODAL */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 420px;
+      }
+      .modal-content h2 {
+        color: var(--emerald);
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.3rem;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+      }
+
+      .cancel {
+        margin-left: 0.5rem;
+        background: #9ca3af;
+      }
+      /*========Modal popup=======================*/
+
+
+      /* CARD */
+      .card {
+        background: white;
+        padding: 1.7rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      .card span {
+        font-size: 0.75rem;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .card h3 {
+        color: var(--emerald);
+        margin-top: 0.4rem;
+      }
+      .card p {
+        margin-top: 0.6rem;
+        color: var(--muted);
+      }
+      .card .location {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+
+      
+#element1 {
+    display:inline-block;
+    width:100px; 
+    background-color: var(--emerald);
+    border-radius: 10px;
+    cursor: pointer;
+    height:30px;
+    left: 5px; 
+
+} 
+
+#element2 {
+  display:inline-block; 
+  width:100px; 
+  background-color:var(--emerald);
+  border-radius: 10px;
+  cursor: pointer;
+  height:30px;
+  right: 5px;   
+} 
+
+.book-btn {
+        margin-top: 1rem;
+        background: var(--emerald);
+        color: white;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .book-btn:hover {
+        background: #064e3b;
+      }
+
+#divbutton {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Events Section */
@@ -86,6 +220,9 @@ body::before {
 /*Tours Section */
 
 #tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+/*delete this */
+#Booking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
 
 

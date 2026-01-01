@@ -43,7 +43,7 @@
             </li>
             <li><a href="index.html#Hotels">Study Circle</a></li>
             <li>
-              <a onclick="loadTourEvents();" style="cursor: pointer">Tours</a>
+              <a onclick="loadTourEvent();" style="cursor: pointer">Tours</a>
             </li>
             <li><a href="contact.html">Visit Us</a></li>
           </ul>
@@ -65,17 +65,61 @@
         <br />
 
         <section id="tours" class="content-section" style="display: none">
-          <h2 id="idtest">Upcoming Tours Events</h2>
+          <!--div id="testbooking" style="visibility: hidden"></div-->
+          <h2>Upcoming Tours Events</h2>
           <div id="tours-grid">
             <!-- Event cards will be loaded here by JavaScript -->
             <p>Loading events...</p>
           </div>
         </section>
+
+        <!--section id="Booking" class="content-section" style="display: none">
+          
+          <h2>Upcoming Tours Events</h2>
+          <div id="Booking-grid">
+           
+            <p>Loading events...</p>
+          </div>
+        </section-->
       </main>
 
       <footer>
         <p>&copy; 2025 Getaway Travels | getawaytravels.co.uk</p>
       </footer>
+    </div>
+
+    <div id="bookingModal" class="modal">
+      <div class="modal-content">
+        <h2>Event Registration</h2>
+
+        <form id="bookingForm">
+          <input type="hidden" id="eventName" />
+
+          <label>
+            Event
+            <input type="text" id="eventDisplay" disabled />
+          </label>
+
+          <label>
+            Full Name
+            <input type="text" id="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" id="email" required />
+          </label>
+          <button class="book-btn" onclick="openBooking(this)">
+            Book / Register
+          </button>
+          <button type="submit">Confirm Registration</button>
+          <button type="button" class="cancel" onclick="closeBooking()">
+            Cancel
+          </button>
+        </form>
+
+        <p id="confirmation" class="confirmation">nnnnnnn</p>
+      </div>
     </div>
   </body>
 </html>

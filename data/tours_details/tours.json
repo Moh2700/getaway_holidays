@@ -1,0 +1,149 @@
+
+{
+  "tours" :[ 
+  {
+      "id": "trs0001",
+      "duration" :"2 hours",
+      "price": "£15",
+      "language":["French","English", "Spanish", "Arabic"],
+      "schedule": "Monday to Friday from 10AM to 14:00PM",
+      "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
+      "src":"https://images.pexels.com/photos/19797972/pexels-photo-19797972.jpeg",
+      "title":"Cathedral-Mezquita of Córdoba, a symbol of history and coexistence between cultures",
+      "start":"Grand Mezquita main entrance",
+      "email": "getawaytravels@gmail.com",
+      "description": "First lecture",
+      "date": "12/03/2026",
+      "maxbooking":20,
+      "address":[ 
+      {
+        "streetAdd": "123 Carmen St",
+        "city": "Granada",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+      }
+      ],
+        "phone":[
+      {
+        "type": "office",
+        "number": "555-555-5554"
+      },
+      {
+        "type": "mobile",
+        "number": "555-555-5555"
+      }
+    ]
+  },
+
+  {
+"id": "trs0002",
+   "duration" :"2 hours",
+   "price": "£15",
+   "language":["French","English", "Spanish", "Arabic"],
+   "schedule": "Monday to Friday from 10AM to 14:00PM",
+   "program":["Official guide","Entrance to The Real Alcazar of Seville", "Cathedral of Santa Maria de la Sede", "Entrance to the Giralda."],
+   "src":"https://images.pexels.com/photos/34136117/pexels-photo-34136117.jpeg",
+   "title": "Real Alcazar of Seville + Cathedral and Giralda: Guided Tour",
+   "start":"El Cathedral main entrance",
+   "email": "getawaytravels@gmail.com",
+   "description": "First lecture",
+   "date": "13/03/2026",
+   "maxbooking":20,
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Seville",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+
+  },
+
+  {
+ "id": "trs0003",
+   "price": "£15",
+   "language":["French","English", "Spanish", "Arabic"],
+   "schedule": "Monday to Friday from 10AM to 14:00PM",
+   "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
+   "src":"https://images.pexels.com/photos/18348736/pexels-photo-18348736.jpeg",
+   "title": "Real Alcazar of Seville + Cathedral and Giralda: Guided Tour",
+   "duration":"3 hours",
+   "email": "getawaytravels@gmail.com",
+   "description": "First lecture",
+   "date": "14/03/2026",
+   "maxbooking":20,
+   "address":[ 
+    {
+      "streetAdd": "123 Carmen St",
+      "city": "Granada",
+      "state": "Al Andalus",
+      "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+
+  },
+
+  {
+   "id": "trs0004",
+   "duration" :"2 hours",
+   "price": "£15",
+   "language":["French","English", "Spanish", "Arabic"],
+   "schedule": "Monday to Friday from 10AM to 14:00PM",
+   "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
+   "src":"https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg",
+   "title":"Grand Mezquita",
+   "start":"Grand Mezquita main entrance",
+   "description": "First lecture",
+   "email": "getawaytravels@gmail.com",
+   "date": "18/03/2026",
+   "maxbooking":20,
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Granada",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+
+
+  }
+
+
+
+  ]
+    
+}
+   
+

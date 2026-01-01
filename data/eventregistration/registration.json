@@ -1,0 +1,29 @@
+{
+  "lectures": [
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "First lecture",
+      "fullname": "First lecture"
+
+    },
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "First lecture",
+      "fullname": "First lecture"
+    },
+    {
+    "id": 1,
+      "date": "12/03/2026",
+      "email": "First lecture",
+      "fullname": "First lecture"
+    },
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "First lecture",
+      "fullname": "First lecture"
+    }
+  ]
+}
