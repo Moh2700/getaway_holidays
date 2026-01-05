@@ -35,16 +35,17 @@
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="index.html#Offers">Holiday Offers</a></li>
-            <li><a href="index.html#Hotels">Visits</a></li>
+
             <li>
-              <a onclick="loadLectureEvents();" style="cursor: pointer"
-                >Lectures</a
+              <a onclick="loadLectureEvents();" style="cursor: pointer">
+                Lectures</a
               >
             </li>
-            <li><a href="index.html#Hotels">Study Circle</a></li>
+
             <li>
               <a onclick="loadTourEvent();" style="cursor: pointer">Tours</a>
             </li>
+            <li><a href="reservation.html">Event Reservation</a></li>
             <li><a href="contact.html">Visit Us</a></li>
           </ul>
         </nav>
@@ -52,74 +53,248 @@
 
       <main>
         <br />
-        <!-- Section for Events -->
-        <section id="events" class="content-section" style="display: none">
-          <h2>Upcoming Lecture Events</h2>
+        <!-- Section for searching tours and events  -->
+        <section id="commands" class="content-section" style="display: visible">
+          <h2>Searching lectures</h2>
 
           <div id="events-grid">
             <!-- Event cards will be loaded here by JavaScript -->
-            <p>Loading events...</p>
+            <p>Loading lectures...</p>
           </div>
         </section>
 
         <br />
 
         <section id="tours" class="content-section" style="display: none">
-          <!--div id="testbooking" style="visibility: hidden"></div-->
           <h2>Upcoming Tours Events</h2>
           <div id="tours-grid">
             <!-- Event cards will be loaded here by JavaScript -->
             <p>Loading events...</p>
           </div>
+          <div
+            class="tourbookings"
+            id="bookingModal"
+            style="display: none"
+          ></div>
         </section>
 
-        <!--section id="Booking" class="content-section" style="display: none">
-          
-          <h2>Upcoming Tours Events</h2>
-          <div id="Booking-grid">
-           
-            <p>Loading events...</p>
+        <br />
+
+        <section
+          id="tours-reservation"
+          class="content-section"
+          style="display: none"
+        >
+          <h2>Upcoming Tours Reservation Events</h2>
+          <div id="tours-reservation-grid">
+            <!-- Event cards will be loaded here by JavaScript -->
+            <p>Loading Tours reservation...</p>
+            <h3>✅ Your Tours Bookings</h3>
+            <ul id="tourbookinglist"></ul>
           </div>
-        </section-->
+        </section>
       </main>
 
       <footer>
         <p>&copy; 2025 Getaway Travels | getawaytravels.co.uk</p>
       </footer>
     </div>
-
-    <div id="bookingModal" class="modal">
-      <div class="modal-content">
-        <h2>Event Registration</h2>
-
-        <form id="bookingForm">
-          <input type="hidden" id="eventName" />
-
-          <label>
-            Event
-            <input type="text" id="eventDisplay" disabled />
-          </label>
-
-          <label>
-            Full Name
-            <input type="text" id="name" required />
-          </label>
-
-          <label>
-            Email
-            <input type="email" id="email" required />
-          </label>
-          <button class="book-btn" onclick="openBooking(this)">
-            Book / Register
-          </button>
-          <button type="submit">Confirm Registration</button>
-          <button type="button" class="cancel" onclick="closeBooking()">
-            Cancel
-          </button>
-        </form>
-
-        <p id="confirmation" class="confirmation">nnnnnnn</p>
-      </div>
-    </div>
   </body>
 </html>
+
+<!--style>
+          .parent {
+            background: gray;
+            height: 300px;
+            width: 300px;
+            position: relative;
+          }
+
+          .child:hover {
+            /*transform: translateY(-6px);*/
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25);
+          }
+
+          .child {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+            /*transition: transform 0.3s, box-shadow 0.3s;*/
+          }
+        </style-->
+
+<!--style>
+          h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+          }
+          .name-input {
+            max-width: 400px;
+            margin: 0 auto 40px;
+          }
+          .name-input input {
+            width: 20%;
+            padding: 14px;
+            border-radius: 14px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+          }
+          .gridEvents {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          }
+
+          .card {
+            background: white;
+            color: #1f2937;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+          }
+          .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25);
+          }
+          .date {
+            font-size: 0.85rem;
+            color: #6b7280;
+          }
+          .seats {
+            margin: 10px 0 16px;
+            font-size: 0.9rem;
+          }
+          .cmdbutton {
+            width: 30%;
+            padding: 12px;
+            border-radius: 14px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+          }
+          .book {
+            background: #4f46e5;
+            color: white;
+          }
+          .book:hover {
+            background: #4338ca;
+          }
+          .sold {
+            background: #d1d5db;
+            cursor: not-allowed;
+          }
+
+          .bookings {
+            max-width: 700px;
+            margin: 60px auto 0;
+            background: white;
+            color: #1f2937;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+          }
+          .bookings h3 {
+            margin-top: 0;
+          }
+          .bookings li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            list-style: none;
+          }
+        </style-->
+
+<!--div id="Reservationold">
+          <h1>🎟️ Event Booking</h1>
+
+          <div class="name-input">
+            <input id="username" placeholder="Your name" />
+          </div>
+
+          <div class="gridEvents" id="eventBookings"></div>
+
+          <div class="bookings" id="bookings" style="display: visible">
+            <h3>✅ Your Bookings</h3>
+            <ul id="bookinglist"></ul>
+          </div>
+        </div-->
+
+<!--script>
+        const events = [
+          { id: 1, name: "Tech Conference", date: "2025-02-15", seats: 50 },
+          { id: 2, name: "Music Festival", date: "2025-03-10", seats: 120 },
+          { id: 3, name: "Business Workshop", date: "2025-04-05", seats: 30 },
+        ];
+
+        const booked = [];
+        const eventsContainer = document.getElementById("eventBookings");
+        const bookingsBox = document.getElementById("bookings");
+        const bookingList = document.getElementById("bookingList");
+
+        function renderEvents() {
+          eventsContainer.innerHTML = "";
+          events.forEach((event) => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const btnClass = event.seats === 0 ? "sold" : "book";
+            const btnText = event.seats === 0 ? "Sold Out" : "Book Now";
+
+            card.innerHTML = `
+          <h2>${event.name}</h2>
+          <div class="date">📅 ${event.date} </div>
+          <div class="seats">Seats left: ${event.seats}</div>
+          <button  class="cmdbutton   ${btnClass}">${btnText}</button>
+        `;
+            /*
+            const button = card.querySelector("button");
+            if (event.seats > 0) {
+              button.addEventListener("click", () => bookEvent(event.id));
+            }
+
+            
+          const button = card.querySelector("button");
+          if (event.seats > 0) {
+            button.addEventListener("click", () => bookEvent(event.id));
+          }
+
+          */
+
+            eventsContainer.appendChild(card);
+          });
+        }
+
+        function bookEvent(id) {
+          const name = document.getElementById("username").value.trim();
+          if (!name) {
+            alert("Please enter your name");
+            return;
+          }
+
+          const event = events.find((e) => e.id === id);
+          if (!event || event.seats === 0) return;
+
+          event.seats--;
+          booked.push({ user: name, name: event.name, date: event.date });
+
+          renderEvents();
+          renderBookings();
+        }
+
+        function renderBookings() {
+          bookingsBox.style.display = "block";
+          bookingList.innerHTML = "";
+          booked.forEach((b) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${b.user}</strong> booked <strong>${b.name}</strong> (${b.date})`;
+            bookingList.appendChild(li);
+          });
+        }
+
+        renderEvents();
+      </script-->

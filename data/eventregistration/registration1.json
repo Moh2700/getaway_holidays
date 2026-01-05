@@ -1,0 +1,12 @@
+[ 
+  { 
+      "name": "John", 
+      "age": 23, 
+      "language": ["JavaScript", "PHP", "Python"] 
+  }, 
+  { 
+      "name": "Smith", 
+      "age": 27, 
+      "language": ["PHP", "Go", "JavaScript"] 
+  } 
+] 

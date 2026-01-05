@@ -14,7 +14,9 @@
       "email": "getawaytravels@gmail.com",
       "description": "First lecture",
       "date": "12/03/2026",
-      "maxbooking":20,
+      "seats":20,
+      "country":"Spain",
+      "city":"Granada",
       "address":[ 
       {
         "streetAdd": "123 Carmen St",
@@ -36,7 +38,7 @@
   },
 
   {
-"id": "trs0002",
+  "id": "trs0002",
    "duration" :"2 hours",
    "price": "£15",
    "language":["French","English", "Spanish", "Arabic"],
@@ -48,7 +50,9 @@
    "email": "getawaytravels@gmail.com",
    "description": "First lecture",
    "date": "13/03/2026",
-   "maxbooking":20,
+   "seats":20,
+   "country":"Spain",
+   "city":"Seville",
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
@@ -71,7 +75,7 @@
   },
 
   {
- "id": "trs0003",
+   "id": "trs0003",
    "price": "£15",
    "language":["French","English", "Spanish", "Arabic"],
    "schedule": "Monday to Friday from 10AM to 14:00PM",
@@ -82,7 +86,9 @@
    "email": "getawaytravels@gmail.com",
    "description": "First lecture",
    "date": "14/03/2026",
-   "maxbooking":20,
+   "seats":5,
+   "country":"Spain",
+   "city":"Seville",
    "address":[ 
     {
       "streetAdd": "123 Carmen St",
@@ -117,7 +123,9 @@
    "description": "First lecture",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
-   "maxbooking":20,
+   "seats":20,
+   "country":"spain",
+   "city":"Granada",
    "address":[ 
     {
         "streetAdd": "123 Carmen St",

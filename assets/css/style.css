@@ -71,7 +71,7 @@ body::before {
 
 
 
-
+/*
       #element2 {display:inline-block; width:200px; background-color:red;} 
 
       .confirmation1 {
@@ -89,30 +89,37 @@ body::before {
         display:inline-block; width:100px;
         
       }
-
+*/
 
 
         /* MODAL */
+        /*
       .modal {
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.6);
-        display: none;
+        
         justify-content: center;
         align-items: center;
+         top: 50%;
+            left: 50%;
+           
         z-index: 1000;
       }
-      .modal-content {
-        background: white;
-        padding: 2rem;
-        border-radius: 20px;
-        width: 90%;
-        max-width: 420px;
-      }
+      
       .modal-content h2 {
         color: var(--emerald);
         margin-bottom: 1rem;
       }
+      
+       .cancel {
+        margin-left: 0.5rem;
+        background: #9ca3af;
+      }
+      
+      */
+
+      
       label {
         display: block;
         margin-bottom: 0.8rem;
@@ -127,14 +134,21 @@ body::before {
         border: 1px solid #d1d5db;
       }
 
-      .cancel {
-        margin-left: 0.5rem;
-        background: #9ca3af;
+     
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 420px;
       }
+
       /*========Modal popup=======================*/
 
+      
 
       /* CARD */
+     /* 
       .card {
         background: white;
         padding: 1.7rem;
@@ -161,9 +175,9 @@ body::before {
         font-weight: 600;
         color: var(--text);
       }
+    */
 
-
-      
+  /*    
 #element1 {
     display:inline-block;
     width:100px; 
@@ -184,6 +198,7 @@ body::before {
   height:30px;
   right: 5px;   
 } 
+*/
 
 .book-btn {
         margin-top: 1rem;
@@ -194,6 +209,7 @@ body::before {
         border-radius: 10px;
         cursor: pointer;
         font-weight: 600;
+       
       }
       .book-btn:hover {
         background: #064e3b;
@@ -204,6 +220,44 @@ body::before {
   justify-content: space-between;
 }
 
+  /*
+   .tourbookings {
+            max-width: 700px;
+            margin: 60px auto 0;
+            background: white;
+            color: #1f2937;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            transform: translate(-50%, -50%);
+          }
+          .tourbookings h3 {
+            margin-top: 0;
+          }
+          .tourbookings li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            list-style: none;
+          }
+
+  */
+
+  .tourbookings:hover {
+            /*transform: translateY(-6px);*/
+     box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .tourbookings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*box-shadow: 0, 20px, 30px  #FEF8EF;*/
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15); 
+    /*transition: transform 0.3s, box-shadow 0.3s;*/
+ }        
+
+ 
 /* Events Section */
 #events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
@@ -221,8 +275,6 @@ body::before {
 
 #tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
-/*delete this */
-#Booking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
 
 
