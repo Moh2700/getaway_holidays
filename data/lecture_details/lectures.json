@@ -1,0 +1,126 @@
+{
+  "lectures" :[ 
+  {
+   "id": "lec0001",
+   "title": "Science & Philosophy in Al-Ándalus",
+   "language": "English",
+   "venue": "La Universidad de Toledo",
+   "speaker": "Juan Rodolpho",
+   "country":"Spain",
+   "city":"Seville",
+   "email": "getawaytravels@gmail.com",
+   "date": "18/03/2026",
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Toledo",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+},
+
+{
+   "id": "lec0002",
+   "title": "Study of Islamic influence on Mudejar architecture and urban design.",
+   "language": "English",
+   "venue": "La Plaza de Torros",
+   "speaker": "Alfonso Swarres",
+   "country":"Spain",
+   "city":"Seville",
+   "email": "getawaytravels@gmail.com",
+   "date": "14/03/2026",
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Cordoba",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+},
+
+{
+   "id": "lec0003",
+   "title": "Vikings and Muslims in Spain (al-Andalus) between the 9th and 11th centuries",
+   "language": "English",
+   "venue": "La Plaza de Navidad",
+   "speaker": "Max Gabriel",
+   "country":"Spain",
+   "city":"Seville",
+   "email": "getawaytravels@gmail.com",
+   "date": "12/03/2026",
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Malaga",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+},
+
+{
+   "id": "lec0004",
+   "title": "Battle of Guadalete and its influence on iberian peninsula",
+   "language": "English",
+   "venue": "La Plaza de Mozarabes",
+   "speaker": "Mohammed khan Sidiq",
+   "country":"Italy",
+   "city":"Seville",
+   "email": "getawaytravels@gmail.com",
+   "date": "18/03/2026",
+   "address":[ 
+    {
+        "streetAdd": "123 Carmen St",
+        "city": "Granada",
+        "state": "Al Andalus",
+        "postalCode": "12345"
+    }
+        ],
+    "phone":[
+        {
+          "type": "office",
+          "number": "555-555-5554"
+        },
+        {
+          "type": "mobile",
+          "number": "555-555-5555"
+        }
+    ]
+  }
+
+ ]
+}
+
+   

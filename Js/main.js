@@ -1,4 +1,4 @@
- var eventtype= "";
+// var eventtype= "";
  var eventid = "";  
  
  
@@ -64,6 +64,7 @@
   }
 
 // ------------------- Events Grid for Lectures-------------------
+/*
 async function loadLectureEvents() {
 
     const divsection = document.getElementById('tours');
@@ -120,10 +121,87 @@ async function loadLectureEvents() {
         grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
     }
 }
+ */   
+
+async function loadLectureEvent() {
+
+  eventtype= "lectures";
+   
+     const lecturesection = document.getElementById('tours');
+     lecturesection.style.display = 'none';
+
+    const section = document.getElementById('lectures');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('lectures-grid');
+   
+   
+    try {
+       
+        grid.innerHTML = '';
+
+        const detailResp = await fetch(`data/lecture_details/lectures.json`);
+         if (!detailResp.ok) throw new Error(`HTTP error! status: ${detailResp.status}`);
+        const details = await detailResp.json() ;
+
+        //const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+      //  const noEventsMessage = isRTL ? 'لا توجد فعاليات قادمة في الوقت الحالي.' : 'No upcoming events at this time.';
+
+       // const isRTL = document.body.classList.contains('rtl') ;
+        const noEventsMessage =  'No upcoming events at this time.';
+
+
+        if (!details.lectures || details.lectures.length === 0) {
+            grid.innerHTML = `<p>${noEventsMessage}</p>`;
+            return;
+        }
+
+
+        for (const event of details.lectures) {
+
+            const card = document.createElement('div');
+            card.className = 'event-card';
+
+            card.innerHTML = `
+             
+              <div id="${event.id}" class="event-card-content">
+                    <h4>Title:${event.title}</h4>
+                    <h2>Description: ${event.description}</h2>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Speaker:</strong> ${event.speaker}</p>
+                    <p><strong>Venue:</strong>${event.venue}</p>
+                    <p><strong>City:</strong>${event.city}</p>
+                    <p><strong>Country:</strong>${event.country}</p>                   
+                </div>
+
+            `;
+            grid.appendChild(card);
+
+        }
+
+        
+
+   // RegisterEvent (eventid);
+
+    } catch (error) {
+        console.error("Could not load events:", error);
+       // const isRTL = document.body.classList.contains('rtl') ;
+        const msg = "Sorry, we couldn't load the events. Please try again later.";
+        grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
+    }
+
+
+    
+
+}
+//==================== End events Grid for tours event================================
+
 
 async function loadTourEvent() {
 
-     const lecturesection = document.getElementById('events');
+  eventtype= "tours";
+   
+     const lecturesection = document.getElementById('lectures');
      lecturesection.style.display = 'none';
 
     const section = document.getElementById('tours');
@@ -140,8 +218,8 @@ async function loadTourEvent() {
          if (!detailResp.ok) throw new Error(`HTTP error! status: ${detailResp.status}`);
         const details = await detailResp.json() ;
 
-        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
-        const noEventsMessage = isRTL ? 'لا توجد فعاليات قادمة في الوقت الحالي.' : 'No upcoming events at this time.';
+        //const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+        const noEventsMessage =  'No upcoming events at this time.';
 
 
         if (!details.tours || details.tours.length === 0) {
@@ -166,6 +244,8 @@ async function loadTourEvent() {
                 <p><strong>Date:</strong> ${event.date}</p>
                 <p><strong>Price:</strong> ${event.price}</p>
                 <p><strong>Duration:</strong>${event.duration}</p>
+                <p><strong>City:</strong>${event.city}</p>
+                <p><strong>Country:</strong>${event.country}</p>
                     
             </div>
 
@@ -188,6 +268,9 @@ async function loadTourEvent() {
         const msg = isRTL ? 'عذرًا، لا نستطيع تحميل الفعاليات الآن. الرجاء المحاولة لاحقًا.' : "Sorry, we couldn't load the events. Please try again later.";
         grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
     }
+
+
+
 }
 //==================== End events Grid for tours event================================
 
@@ -428,8 +511,182 @@ async function searchJSONSafe(keyword) {
 }
 
 
+function searchcountry(eventtype, strcountry) {
+
+ 
+ 
+
+switch (eventtype) {
+    case "tours" :
+
+        searchtoursbyCountry (strcountry,"/data/tours_details/tours.json" );
+        break;
+
+    case "lectures":
+        searchlecturesbyCountry (strcountry,"/data/lecture_details/lectures.json" );
+        break;
+    
+   
+  }
+ 
+
+}
+
+
+async function searchlecturesbyCountry (country,strfilepath) {
+ 
+   
+  try {
+
+    const res = await fetch(strfilepath);
+
+    if (!res.ok) throw new Error("Failed to load JSON");
+
+    const data = await res.json();
+
+    const result = JSON.stringify(data);
+    
+    const lecturesdata = data.lectures.filter(u => u.country.toLowerCase() === country.toLowerCase());
+
+    var tour = Object.keys(lecturesdata);
+
+    
+    const section = document.getElementById('lectures');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('lectures-grid');
+    grid.innerHTML = '';
+
+   
+    let search = json2array(lecturesdata);
+
+    
+   
+    /*
+    for (const val of tour) {
+         alert ("Key: " + val.id + " Value: " + toursdata[val].title);
+    }
+    */
+
+    for(const item of search) {
+       
+         const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+             
+
+            <div id="${item.id}" class="event-card-content">
+                    <h4>Title:${item.title}</h4>
+                    <h2>Description: ${item.description}</h2>
+                    <p><strong>Date:</strong> ${item.date}</p>
+                    <p><strong>Speaker:</strong> ${item.speaker}</p>
+                    <p><strong>Venue:</strong>${item.venue}</p>
+                    <p><strong>City:</strong>${item.city}</p>
+                    <p><strong>Country:</strong>${item.country}</p>                   
+              
+            </div>`;
+
+            grid.appendChild(card);
+    }
+
+  
+     return tour;
+
+     
+  } catch (err) {
+     return err;
+  }
+}
+
+
+async function searchtoursbyCountry (country,strfilepath) {
+ 
+  
+  try {
+
+    const res = await fetch(strfilepath);
+
+    if (!res.ok) throw new Error("Failed to load JSON");
+
+    const data = await res.json();
+
+    const result = JSON.stringify(data);
+    
+    const toursdata = data.tours.filter(u => u.country.toLowerCase() === country.toLowerCase());
+
+    var tour = Object.keys(toursdata);
+
+    
+    const section = document.getElementById('tours');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('tours-grid');
+    grid.innerHTML = '';
+
+    //alert ("Inside searchtoursbyCountry: " + country + " Filepath: " + strfilepath);
+
+   
+    let search = json2array(toursdata);
+   
+    /*
+    for (const val of tour) {
+         alert ("Key: " + val.id + " Value: " + toursdata[val].title);
+    }
+    */
+
+
+    for(const item of search) {
+       
+         const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+             
+            <img src="${item.src}" alt="${item.title}">
+
+            
+            <div id="${item.id}" class="event-card-content">
+                <h4>Title:${item.title}</h4>
+                <h2>Description: ${item.description}</h2>
+                <p><strong>Seats:</strong> ${item.seats}</p>
+                <p><strong>Date:</strong> ${item.date}</p>
+                <p><strong>Price:</strong> ${item.price}</p>
+                <p><strong>Duration:</strong>${item.duration}</p>
+                <p><strong>City:</strong>${item.city}</p>
+                <p><strong>Country:</strong>${item.country}</p>
+                    
+            </div>`;
+   
+            grid.appendChild(card);
+    }
+
+  
+    
+    return tour;
+
+     
+  } catch (err) {
+     return err;
+  }
+}
+
+
+function json2array(datasearch){
+    
+  var resultsearch = [];
+   // alert ("Inside: " + JSON.stringify(datasearch));
+    var keys = Object.keys(datasearch);
+    keys.forEach(function(key){
+        resultsearch.push(datasearch[key]);
+       
+    });
+
+    return resultsearch;
+}
+
+
+
 // "/data/tours_details/tours.json"
-async function searchJSON(strid, strfilepath) {
+async function searchJSON(strid, strfilepath, datasearch) {
   try {
     const res = await fetch(strfilepath);
     if (!res.ok) throw new Error("Failed to load JSON");
@@ -502,7 +759,30 @@ async function finddata(id) {
 */
 
 
+class EvenTour {
+  constructor(id, title, description, seats, date, price, duration, city, country, src) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.seats = seats;
+    this.date = date;
+    this.price = price;
+    this.duration = duration;
+    this.city = city;
+    this.country = country;
+    this.src = src;
+  }
 
+  bookTour () {
+    if (this.seats > 0) {
+      this.seats--;
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+}
 
 class EventRegistration {
    constructor(eventName, eventDate, capacity = Infinity) {

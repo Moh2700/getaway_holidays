@@ -105,6 +105,10 @@
 
     <div class="name-input">
       <input id="username" placeholder="Your name" />
+      <label>
+        Event Title
+        <input type="text" id="eventTitle" disabled />
+      </label>
     </div>
 
     <div class="gridEvents" id="eventBookings"></div>
@@ -137,7 +141,7 @@
 
           card.innerHTML = `
           <h2>${event.name}</h2>
-          <div class="date">📅 ${event.date} XXXXXXXXX</div>
+          <div class="date">📅 ${event.date}</div>
           <div class="seats">Seats left: ${event.seats}</div>
           <button  class="cmdbutton   ${btnClass}">${btnText}</button>
         `;

@@ -3,27 +3,55 @@
     {
       "id": 1,
       "date": "12/03/2026",
-      "email": "First lecture",
-      "fullname": "First lecture"
+      "email": "david@gmail.com",
+      "fullname": "David Warner"
 
     },
     {
       "id": 1,
       "date": "12/03/2026",
-      "email": "First lecture",
-      "fullname": "First lecture"
+      "email": "mohammed@gmail.com",
+      "fullname": "Mohammed sadiq"
     },
     {
     "id": 1,
       "date": "12/03/2026",
-      "email": "First lecture",
-      "fullname": "First lecture"
+      "email": "ramy@gmail.com",
+      "fullname": "Ramy Hassan"
     },
     {
       "id": 1,
       "date": "12/03/2026",
-      "email": "First lecture",
-      "fullname": "First lecture"
+      "email": "robert@gmail.com",
+      "fullname": "Robert James"
+    }
+  ],
+
+  "Tours": [
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "david@gmail.com",
+      "fullname": "David Warner"
+
+    },
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "mohammed@gmail.com",
+      "fullname": "Mohammed sadiq"
+    },
+    {
+    "id": 1,
+      "date": "12/03/2026",
+      "email": "ramy@gmail.com",
+      "fullname": "Ramy Hassan"
+    },
+    {
+      "id": 1,
+      "date": "12/03/2026",
+      "email": "robert@gmail.com",
+      "fullname": "Robert James"
     }
   ]
 }
