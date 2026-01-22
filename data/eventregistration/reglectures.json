@@ -1,0 +1,33 @@
+{
+ "lectures": [
+    {
+      "id": 1,
+      "lectureid": "trs0004",
+      "date": "12/03/2026",
+      "email": "david@gmail.com",
+      "fullname": "David Warner"
+
+    },
+    {
+      "id": 1,
+      "lectureid": "trs0004",
+      "date": "12/03/2026",
+      "email": "mohammed@gmail.com",
+      "fullname": "Mohammed sadiq"
+    },
+    {
+    "id": 1,
+    "lectureid": "trs0004",
+      "date": "12/03/2026",
+      "email": "ramy@gmail.com",
+      "fullname": "Ramy Hassan"
+    },
+    {
+      "id": 1,
+      "lectureid": "trs0004",
+      "date": "12/03/2026",
+      "email": "robert@gmail.com",
+      "fullname": "Robert James"
+    }
+  ]   
+}

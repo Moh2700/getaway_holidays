@@ -1,0 +1,37 @@
+// Source - https://stackoverflow.com/a/73187398 // Posted by daDib, modified by
+community. See post 'Timeline' for change history // Retrieved 2026-01-09,
+License - CC BY-SA 4.0
+
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <script>
+      // do text manipulation here
+      let string1 = "test\r\n";
+      let string2 = "export.";
+
+      // assemble final string
+      const finalText = string1 + string2;
+
+      // convert to blob
+      const data = new Blob([finalText], { type: "text/plain" });
+
+      // create file link
+      const link = document.createElement("a");
+      link.innerHTML = "download";
+      link.setAttribute("download", "data.txt");
+      link.href = window.URL.createObjectURL(data);
+      document.body.appendChild(link);
+
+      // preview the output in a paragraph
+      const htmlBreak = (string) => {
+        return string.replace(/(?:\r\n|\r|\n)/g, "<br>");
+      };
+      const preview = document.createElement("p");
+      preview.innerHTML = htmlBreak(finalText);
+      preview.style.border = "1px solid black";
+      document.body.appendChild(preview);
+    </script>
+  </body>
+</html>

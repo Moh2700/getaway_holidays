@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +11,8 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
+    <style></style>
+
     <div class="container">
       <header class="site-header">
         <img
@@ -34,165 +36,96 @@
         <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="index.html#Offers">Holiday Offers</a></li>
+            <li>
+              <div class="dropdown">
+                Reservation
+
+                <div id="myDropdown" class="dropdown-content">
+                  <a
+                    onclick="alert('under Construction')"
+                    style="cursor: pointer"
+                    >Tours</a
+                  >
+                  <a
+                    onclick="alert('under construction')"
+                    style="cursor: pointer"
+                    >Lectures</a
+                  >
+                </div>
+              </div>
+            </li>
 
             <li>
-              <a onclick="loadLectureEvent();" style="cursor: pointer">
+              <div class="dropdown">
+                Registration
+                <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
+                <div id="myDropdown" class="dropdown-content">
+                  <a onclick="loadSiteRegistration()" style="cursor: pointer"
+                    >New Registration</a
+                  >
+
+                  <a
+                    onclick="
+                      showToursBookinglist();
+                      getSiteEvent('searchcriteria', 'none');
+                      getSiteEvent('lectures', 'none');
+                      getSiteEvent('tours', 'none');
+                    "
+                    style="cursor: pointer"
+                    >Show Users</a
+                  >
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <a
+                onclick="
+                  loadLectureEvent();
+                  getSiteEvent('tours-reservation', 'none');
+                "
+                style="cursor: pointer"
+              >
                 Lectures</a
               >
             </li>
 
             <li>
-              <a onclick="loadTourEvent();" style="cursor: pointer">Tours</a>
+              <a
+                onclick="
+                  loadTourEvent();
+                  getSiteEvent('tours-reservation', 'none');
+                "
+                style="cursor: pointer"
+                >Tours</a
+              >
             </li>
-            <li><a href="reservation.html">Event Reservation</a></li>
+
             <li><a href="contact.html">Visit Us</a></li>
           </ul>
         </nav>
       </header>
 
       <main>
-        <style>
-          .grid-container {
-            display: grid;
-            /*grid-template-columns: auto auto auto auto; */
-            grid-gap: 10px;
-            background-color: #2196f3;
-            padding: 10px;
-            border-radius: 8px;
-          }
-
-          .grid-container > div {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 20px 0;
-            font-size: 30px;
-            border-radius: 8px;
-          }
-
-          /* HERO */
-          .hero {
-            background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
-              center/cover;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .search-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 25px;
-            align-items: center;
-          }
-
-          .search-box h1 {
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          .search-fields {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 12px;
-          }
-
-          .search-fields input {
-            /*margin-right: 100px; */
-            border-radius: 10px;
-            border: 1px solid #ccc;
-          }
-
-          .search-fields input,
-          .search-fields button {
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            width: 70%;
-          }
-
-          .search-fields button {
-            background: #0071eb;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            width: 70%;
-          }
-
-          /*
-          #gridcontainer {
-            background-color: pink;
-            border-block-color: solid red;
-            width: 100%;
-            align-items: center;
-            height: 100px;
-            border-radius: 8px;
-          }
-
-          #grid {
-            margin-top: 10px;
-            display: grid;
-            width: 100%;
-            grid-template-columns: 50px 50px 50px 50px 1fr;
-            background-color: red;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 12px;
-            align-items: center;
-          }
-
-          #areaC {
-            background-color: lime;
-            width: 100%;
-          }
-          #areaA {
-            background-color: lime;
-            width: 100%;
-          }
-
-          #areaB {
-            background-color: yellow;
-            width: 100%;
-          }
-            */
-        </style>
-
         <br />
         <!-- Section for searching tours and events  -->
-        <section id="commands" class="content-section" style="display: visible">
-          <h2>Searching lectures</h2>
+        <section
+          id="searchcriteria"
+          class="content-section"
+          style="display: none"
+        >
+          <h2 id="hdrevent">Searching</h2>
 
-          <div id="searching-grid" class="search-box">
-            <div>
-              <!--h1>Find your perfect holiday</h1-->
-              <div class="search-fields">
-                <input
-                  id="countryInput"
-                  type="text"
-                  class="searchInput"
-                  placeholder="Country"
-                />
-                <input type="text" class="searchInput" placeholder="City" />
-                <input type="date" />
-                <input type="date" />
-                <button
-                  onclick="searchcountry( `${eventtype}`, document.getElementById('countryInput').value);"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
+          <div id="searching-grid" style="display: block"></div>
+
+          <div id="search-grid"></div>
         </section>
+
+        <br />
 
         <section id="lectures" class="content-section" style="display: none">
           <h2>Upcoming Events</h2>
+
           <div id="lectures-grid">
             <!-- Event cards will be loaded here by JavaScript -->
             <p>Loading events...</p>
@@ -200,6 +133,10 @@
         </section>
 
         <section id="tours" class="content-section" style="display: none">
+          <div id="banner">
+            Scroll down the screen to see more tours events to be able to book
+            your preferred tour.
+          </div>
           <h2>Upcoming Tours Events</h2>
           <div id="tours-grid">
             <!-- Event cards will be loaded here by JavaScript -->
@@ -211,19 +148,62 @@
             style="display: none"
           ></div>
         </section>
-
         <br />
+        <section
+          id="SiteRegistration"
+          class="content-section"
+          style="display: none"
+        >
+          <div id="siteregistration-grid"></div>
+          <!--h2>Site Registration</h2>
+
+          <div id="sitereg">
+
+            <div><label for="fname">Full Name</label></div>
+            <div>
+              <input
+                type="text"
+                id="regname"
+                name="regname"
+                placeholder="Your fullname"
+              />
+            </div>
+            <div><label for="regemail">Email</label></div>
+            <div>
+              <input
+                type="text"
+                id="regemail"
+                name="regemail"
+                placeholder="Your Email."
+              />
+            </div>
+            <div>
+              <p
+                class="book-btn"
+                id="cmdBooking"
+                onclick="confirmRegistration()"
+                style="width: 80px"
+              >
+                Confirm
+              </p>
+            </div>
+          </div-->
+        </section>
 
         <section
           id="tours-reservation"
           class="content-section"
           style="display: none"
         >
-          <h2>Upcoming Tours Reservation Events</h2>
+          <!--h2>Upcoming Tours Reservation Events</h2-->
           <div id="tours-reservation-grid">
             <!-- Event cards will be loaded here by JavaScript -->
-            <p>Loading Tours reservation...</p>
-            <h3>✅ Your Tours Bookings</h3>
+            <!--p>Loading Tours reservation...</p>
+            <h3>✅ Your Tours Bookings</h3-->
+            <div id="registeredusers-grid">
+              <!-- Event cards will be loaded here by JavaScript -->
+            </div>
+
             <ul id="tourbookinglist"></ul>
           </div>
         </section>

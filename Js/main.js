@@ -1,6 +1,171 @@
-// var eventtype= "";
+var eventtype= "";
  var eventid = "";  
  
+ 
+
+
+
+class TourEvent {
+  constructor(id, title, description, seats, date, price, duration, city, country, src) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.seats = seats;
+    this.date = date;
+    this.price = price;
+    this.duration = duration;
+    this.city = city;
+    this.country = country;
+    this.src = src;
+  }
+
+  bookTour () {
+    if (this.seats > 0) {
+      this.seats--;
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+}
+
+class LectureEvent {
+  constructor(id, title, description, date, speaker, venue, city, country) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.date = date;
+    this.speaker = speaker;
+    this.venue = venue;
+    this.city = city;
+    this.country = country;
+  }
+}
+
+class Attendee {
+  #msg; 
+ // #attendees;
+
+  constructor(event_id, name, email, dateRegistered) {
+    this.event_id = event_id;
+    this.name = name;
+    this.email = email;
+    this.dateRegistered = dateRegistered;
+    this.attendees = new Map(); // key: email, value: attendee info
+    this.#msg = "";
+    
+  }
+    
+    get getattendees() {
+       return this.attendees;
+        //return this.#attendees;
+    }
+
+    get errormsg() {
+        return this.#msg;
+    }
+
+    set errormsg(err) {
+        this.#msg = err;
+    }
+  
+
+    register(attendee) {
+    // Logic to register for event
+
+    if (!attendee?.name || !attendee?.email) {
+      
+      
+       this.#msg= "Attendee must have a name and email.";
+       return;
+      //throw new Error("Attendee must have a name and email.");
+    }
+     /*
+    if (this.attendees.size >= this.capacity) {
+      throw new Error("Event is full.");
+    }
+      */
+
+    if (this.attendees.has(attendee.email)) {
+      this.#msg = "Attendee already registered.";
+       return;
+     
+    }
+
+    /*
+    if (this.attendees.size >= this.capacity) {
+      throw new Error("Event is full.");
+    }
+    */
+
+     this.attendees.set(attendee.email, {
+      event_id: attendee.event_id,
+      name: attendee.name,
+      email: attendee.email,
+      dateRegistered: attendee.dateRegistered
+    });
+
+    return `Succcessful registration of Attendee: ${attendee.name} with email: ${attendee.email} registered on the ${new Date()}`;
+  }
+
+    unregister(email) {
+    if (!this.attendees.has(email)) {
+      throw new Error("Attendee not found.");
+    }
+
+    this.attendees.delete(email);
+    return "Unregistered successfully.";
+  }
+
+  isRegistered(email) {
+    return this.attendees.has(email);
+  }
+
+  listAttendees() {
+   return Array.from(this.attendees.values());
+   
+  }
+
+  regSummary() {
+    return {
+      event_id: this.event_id,
+      name: this.name,
+      email: this.email,
+      dateRegistered: this.dateRegistered,
+     // totalAttendees: this.attendees.size
+    };
+  }
+
+}
+
+let detailRespTour, detailsTour ;
+
+async function doSomething() {
+
+         detailRespTour = await fetch(`data/tours_details/tours.json`);
+         if (!detailRespTour.ok) throw new Error(`HTTP error! status: ${detailRespTour.status}`);
+         detailsTour = await detailRespTour.json() ;
+
+
+       /*
+        const noEventsMessage =  'No upcoming events at this time.';
+
+
+        if (!details.tours || details.tours.length === 0) {
+            grid.innerHTML = `<p>${noEventsMessage}</p>`;
+            return;
+        }
+        */
+}
+
+if (document.readyState === "loading") {
+  // Loading hasn't finished yet
+  document.addEventListener("DOMContentLoaded", doSomething);
+} else {
+  // `DOMContentLoaded` has already fired
+  doSomething();
+}
  
  // Mobile nav toggle
   function navtoggle () {
@@ -63,79 +228,36 @@
     }
   }
 
-// ------------------- Events Grid for Lectures-------------------
-/*
-async function loadLectureEvents() {
-
-    const divsection = document.getElementById('tours');
-    divsection.style.display = 'none';
-
-    const section = document.getElementById('events');
-    section.style.display = 'block';
-
-    const grid = document.getElementById('events-grid');
-    try {
-        const response = await fetch('data/lectureevent.json');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const eventIndex = await response.json();
-
-        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
-        const noEventsMessage = isRTL ? 'لا توجد فعاليات قادمة في الوقت الحالي.' : 'No upcoming events at this time.';
-
-
-        if (!eventIndex.lectures || eventIndex.lectures.length === 0) {
-            grid.innerHTML = `<p>${noEventsMessage}</p>`;
-            return;
-        }
-
-        grid.innerHTML = '';
-
-       
-        for (const event of eventIndex.lectures) {
-           
-            const detailResp = await fetch(`data/lecture_details/lecture${event.id}.json`);
-            const details = detailResp.ok ? await detailResp.json() : { id: event.id, date: event.date, description: event.description };
-            
-            
-            const card = document.createElement('div');
-            card.className = 'event-card';
-            card.innerHTML = `
-               
-                <div class="event-card-content">
-                    <h4>Title:${details.title}</h4>
-                    <h2>Description: ${event.description}</h2>
-                    <p><strong>Date:</strong> ${event.date}</p>
-                    <p><strong>Speaker:</strong> ${details.speaker}</p>
-                    <p><strong>Venue:</strong>${details.venue}</p>
-                </div>
-            `;
-            grid.appendChild(card);
-            
-            
-        }
-
-    } catch (error) {
-        console.error("Could not load events:", error);
-        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
-        const msg = isRTL ? 'عذرًا، لا نستطيع تحميل الفعاليات الآن. الرجاء المحاولة لاحقًا.' : "Sorry, we couldn't load the events. Please try again later.";
-        grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
-    }
-}
- */   
 
 async function loadLectureEvent() {
 
-  eventtype= "lectures";
-   
-     const lecturesection = document.getElementById('tours');
-     lecturesection.style.display = 'none';
+    
+    document.getElementById("hdrevent").innerHTML = "Searching for lecture event";
+    
+    const search = document.getElementById("searchcriteria");
+    search.style.display = 'block';
+    
+    const reg = document.getElementById("SiteRegistration");
+    reg.style.display = 'none';
 
-    const section = document.getElementById('lectures');
-    section.style.display = 'block';
+    const lec = document.getElementById("lectures");
+    lec.style.display = 'block'; 
 
     const grid = document.getElementById('lectures-grid');
-   
-   
+    
+     
+
+    
+
+    
+    LecturesSearchCriteria ();
+
+    eventtype= "lectures";
+
+    const tour = document.getElementById("tours");
+    tour.style.display = 'none'; 
+
+       
     try {
        
         grid.innerHTML = '';
@@ -144,10 +266,7 @@ async function loadLectureEvent() {
          if (!detailResp.ok) throw new Error(`HTTP error! status: ${detailResp.status}`);
         const details = await detailResp.json() ;
 
-        //const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
-      //  const noEventsMessage = isRTL ? 'لا توجد فعاليات قادمة في الوقت الحالي.' : 'No upcoming events at this time.';
-
-       // const isRTL = document.body.classList.contains('rtl') ;
+       
         const noEventsMessage =  'No upcoming events at this time.';
 
 
@@ -179,8 +298,7 @@ async function loadLectureEvent() {
 
         }
 
-        
-
+  
    // RegisterEvent (eventid);
 
     } catch (error) {
@@ -190,45 +308,199 @@ async function loadLectureEvent() {
         grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
     }
 
-
     
-
+   
 }
 //==================== End events Grid for tours event================================
 
+async function ToursSearchCriteria ()  {
+
+    const searchgrid = document.getElementById("searching-grid");
+    searchgrid.style.display = 'block'; 
+    searchgrid.innerHTML ="";
+
+    var search =`
+                <input
+                  id="countryInput"
+                  type="text"
+                  class="searchInput"
+                  placeholder="Country"
+                />
+                <input
+                  type="text"
+                  class="searchInput"
+                  placeholder="City"
+                  id="cityInput"
+                />
+                <input id="startdate" type="date" />
+                <input id="enddate" type="date" />`;
+
+    const card = document.createElement('div');
+    card.className = 'search-fields';
+    card.innerHTML = search;
+    
+    var btn = document.createElement('button');
+    btn.className = 'book-btn';
+    
+     
+    btn.innerText = 'Search';
+    btn.id = 'cmdSearch';
+   
+    if (btn) {
+
+      btn.addEventListener("click", runsearchTours);
+    
+       
+      function runsearchTours () {
+         var country = document.getElementById('countryInput').value;
+         var city = document.getElementById('cityInput').value;
+         var startdate = document.getElementById('startdate').value;
+         var enddate = document.getElementById('enddate').value;
+         var filepath= "/data/tours_details/tours.json";
+       
+        searchtours(country, city, startdate, enddate, filepath );
+      }
+
+    } else {
+      alert("Element not found!");
+    }
+    card.appendChild(btn);
+    searchgrid.appendChild(card);
+   
+}
+
+async function LecturesSearchCriteria ()  {
+  
+    const searchgrid = document.getElementById("searching-grid");
+    searchgrid.style.display = 'block'; 
+    searchgrid.innerHTML ="";
+
+    var search =`
+   
+    <div id="sitereg">
+              <div><label for="city">City</label></div>
+              <div>
+                <input
+                  type="text"
+                  id="city"
+                  
+                  placeholder="Enter City please"
+                />
+              </div>
+
+              <div><label for="speaker">Speaker</label></div>
+              <div>
+                <input
+                  type="text"
+                  id="speaker"
+                 
+                  placeholder="Enter Speaker please"
+                />
+              </div>
+              <div><label for="country">Country</label></div>
+              <div>
+                <input
+                  type="text"
+                  id="country"
+                 
+                  placeholder="Enter country please"
+                />
+              </div>
+             
+            </div>
+
+                `;
+                
+       /*     <div>
+                <p
+                  class="book-btn"
+                  id="cmdSearch"
+                  onclick="alert('')"
+                  style="width: 80px"
+                >
+                  Search
+                </p>
+              </div> */
+
+    const card = document.createElement('div');
+    //card.className = 'search-fields';
+    card.innerHTML = search;
+    
+    var btn = document.createElement('button');
+    btn.className = 'book-btn';
+    
+     
+    btn.innerText = 'Search';
+    btn.id = 'cmdSearch';
+   
+    if (btn) {
+
+      btn.addEventListener("click", runsearchLecture);
+    
+       
+      function runsearchLecture () {
+
+        
+         var country = document.getElementById('country').value;
+         var city = document.getElementById('city').value;
+         var speaker = document.getElementById('speaker').value;
+         var filepath = "/data/lecture_details/lectures.json"
+       
+        searchlectures (country, city, speaker, filepath);
+       
+      }
+
+    } else {
+      alert("Element not found!");
+    }
+    card.appendChild(btn);
+    searchgrid.appendChild(card);
+  
+
+}
 
 async function loadTourEvent() {
 
-  eventtype= "tours";
-   
-     const lecturesection = document.getElementById('lectures');
-     lecturesection.style.display = 'none';
+     document.getElementById("hdrevent").innerHTML = "Searching for Tours event";
+     const search = document.getElementById("searchcriteria");
+     search.style.display = 'block';
 
-    const section = document.getElementById('tours');
-    section.style.display = 'block';
+     const reg = document.getElementById("SiteRegistration");
+     reg.style.display = 'none'; 
+
+     const lec = document.getElementById("lectures");
+     lec.style.display = 'none'; 
 
     const grid = document.getElementById('tours-grid');
+
+    ToursSearchCriteria () ;
+    
+    eventtype = "tours";
    
+    const tour = document.getElementById("tours");
+    tour.style.display = 'block'; 
+
    
     try {
        
         grid.innerHTML = '';
-
+       
+        /*
         const detailResp = await fetch(`data/tours_details/tours.json`);
          if (!detailResp.ok) throw new Error(`HTTP error! status: ${detailResp.status}`);
         const details = await detailResp.json() ;
-
-        //const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+        */
+        
         const noEventsMessage =  'No upcoming events at this time.';
 
 
-        if (!details.tours || details.tours.length === 0) {
+        if (!detailsTour.tours || detailsTour.tours.length === 0) {
             grid.innerHTML = `<p>${noEventsMessage}</p>`;
             return;
         }
 
 
-        for (const event of details.tours) {
+        for (const event of detailsTour.tours) {
 
             const card = document.createElement('div');
             card.className = 'event-card';
@@ -250,11 +522,13 @@ async function loadTourEvent() {
             </div>
 
             <button id = "btn${event.id}" class="book-btn" onclick="openBooking('${event.id}')">
-                   Book / Register
+              Book
             </button>
           
             `;
             grid.appendChild(card);
+
+           // alert(card.innerHTML);
 
         }
 
@@ -264,29 +538,105 @@ async function loadTourEvent() {
 
     } catch (error) {
         console.error("Could not load events:", error);
-        const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
-        const msg = isRTL ? 'عذرًا، لا نستطيع تحميل الفعاليات الآن. الرجاء المحاولة لاحقًا.' : "Sorry, we couldn't load the events. Please try again later.";
-        grid.innerHTML = `<p style="color: #ff6b6b;">${msg}</p>`;
+        const isRTL = document.body.classList.contains('rtl') ;
+        //const isRTL = document.body.classList.contains('rtl') || document.documentElement.lang === 'ar';
+        //const msg = isRTL ? 'عذرًا، لا نستطيع تحميل الفعاليات الآن. الرجاء المحاولة لاحقًا.' : "Sorry, we couldn't load the events. Please try again later.";
+
+        grid.innerHTML = `<p style="color: #ff6b6b;">${isRTL}</p>`;
     }
 
 
 
 }
 //==================== End events Grid for tours event================================
+ 
+function getSiteEvent  (strEventType, displaystate) {
+  
+  const grid = document.getElementById(strEventType);
+  grid.style.display = displaystate;
+  return grid;
+} 
 
+function loadSiteRegistration () {
+  
+  getSiteEvent ('searchcriteria', 'none');
+  getSiteEvent ('lectures', 'none');
+  getSiteEvent ('tours', 'none');
+  getSiteEvent ('SiteRegistration', 'block');
+  
+  getSiteEvent ('tours-reservation', 'none');  
+ 
+   const grid = document.getElementById("siteregistration-grid");
+
+   grid.style.display = 'block';
+          
+      const card = document.createElement('div') ;
+      card.className = 'event-card';
+      card.innerHTML  = "";
+
+      var strNewReg  = `
+          
+        <h2>Registration</h2>
+
+          <div id="sitereg">
+
+            <div><label for="fname">Full Name</label></div>
+            <div>
+              <input
+                type="text"
+                id="regname"
+                name="regname"
+                placeholder="Your fullname"
+              />
+            </div>
+            <div><label for="regemail">Email</label></div>
+            <div>
+              <input
+                type="text"
+                id="regemail"
+                name="regemail"
+                placeholder="Your Email."
+              />
+            </div>
+            <div id ="divbutton">
+              <p
+                class="book-btn"
+                id="cmdBooking"
+                onclick="confirmRegistration()"
+                style="width: 80px"
+              >
+                Confirm
+              </p>
+
+               <p
+                class="book-btn"
+                id="cmdCancel"
+                onclick="cancelRegistration()"
+                style="width: 80px"
+              >
+                Cancel
+              </p>
+            </div>
+              ` 
+            ;
+
+      card.innerHTML = strNewReg;
+      grid.innerHTML = "";
+      grid.appendChild(card) 
+ 
+}
 
 function RegisterEvent (eventid)
 {
+    
     const grid = document.getElementById('bookingModal');
-    //grid.style.display ='block';
-     
-    // var regevent =` <div class="modal-content" class="modal" >
+    
     var regevent =` 
     
     <form id="BookingForm">
       <div class="modal-content"  >
 
-       <h2>Event Registration</h2>
+       <h2>Event Booking</h2>
         
       <label>
         Event ID
@@ -325,7 +675,9 @@ function RegisterEvent (eventid)
 
 function closeBooking() {
 
-      mdlBooking.style.display = "none";
+     // mdlBooking.style.display = "none";
+      const grid = document.getElementById('bookingModal');
+      grid.style.display ='none';
       form.reset();
 
 }
@@ -341,45 +693,13 @@ function populateBookingform (evenid, tour) {
 }
 
 
-function updateBooking ()
-{
- const fs = require("fs");
-
-// STEP 1: Reading JSON file 
-const users = require("/data/eventregistration/registration1.json");
-
-alert(users.length);
-
-// Defining new user 
-let user =
-{
-    name: "New User",
-    age: 30,
-    language: ["PHP", "Go", "JavaScript"]
-};
-
-// STEP 2: Adding new data to users object 
-users.push(user);
-
-alert(user);
-
-// STEP 3: Writing to a file 
-fs.writeFile(
-    "registration1.json",
-    JSON.stringify(users),
-    err => {
-        // Checking for errors 
-        if (err) throw err;
-
-        // Success 
-        console.log("Done writing");
-    }); 
-}
-
 function openBooking(eventid) {
       
+  
     searchJSONSafe(eventid); 
-    mdlBooking.style.display = 'block';
+     const grid = document.getElementById('bookingModal');
+     grid.style.display ='block';
+   
    
 }
 
@@ -425,44 +745,128 @@ function saveUserBooking()
 {
   
    const booked = [];
+
     booked.push({id:document.getElementById("eventId").value.trim(), 
-    title:document.getElementById("eventTitle").value.trim(), 
     username:document.getElementById("username").value.trim(), 
     useremail:document.getElementById("useremail").value.trim(), 
     date: new Date() });
+     
+    attendeeReg.register(booked);
 
   return booked;  
 }
 
-function renderBookingList   (bookingList, booked)
+ 
+function renderBookingList   ()
 {
-  booked.forEach((b) => {
-  const li = document.createElement("li");
-  li.innerHTML = `<strong>${b.username}</strong> booked <strong>${b.title}</strong>  on <strong>  (${b.date}) </strong>`;
-  bookingList.appendChild(li);
+
+  const bookingList = document.getElementById("tourbookinglist");
+  
+  bookingList.innerHTML = "";
+
+  attendeeReg.listAttendees().forEach((b) => {
+     
+    const li = document.createElement("li");
+       
+        li.onmouseover = function over (){
+          li.style.color = "green";
+          li.style.backgroundColor = "#EEEADF";
+          li.style.cursor = 'pointer';
+        };
+        li.onmouseout = function out (){
+          li.style.color = "black";
+          li.style.backgroundColor = green;
+        };
+
+        li.id = b.email;
+
+        li.ondblclick = function showUserDetails (){
+          
+          const grid = document.getElementById("registeredusers-grid");
+          grid.style.display = 'block';
+          
+          const card = document.createElement('div') ;
+          card.className = 'event-card';
+          card.innerHTML  = "";
+          card.id = b.email;
+
+          //card.ondblclick = 
+
+          var strUser  = `
+            <h3>✅ Registered User Details </h3>
+            <div id="${b.email}" class="event-card-content">
+                <h4><strong>Name:</strong>${b.name}</h4>
+                <h2><strong>Email:</strong> ${b.email}</h2>
+                <p><strong>Registration Date:</strong> ${b.dateRegistered}</p>
+              
+                <div id="divbutton" >
+                    <p class="book-btn" id="cmdDelete"  onclick="removeUser('${b.email}');">Delete</p>
+                
+                </div> 
+            </div>` ;
+
+            card.innerHTML = strUser;
+            grid.innerHTML = "";
+            grid.appendChild(card) ;
+
+        };
+
+        
+         li.innerHTML = `<strong>${b.name}</strong>`;
+    
+      
+      bookingList.appendChild(li);
   });
   
  
+  getSiteEvent ('SiteRegistration', 'none');
+
   return bookingList;
 }
 
 function confirmBooking (eventid) {
+
+
+   
+  
+  /*  for (const oAttendee of attendeeReg.listAttendees()) {
+     alert ("id: " + oAttendee.event_id + " date: " + oAttendee.dateRegistered);
+  
+   } */
+   
+   attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
+   attendeeReg.email = document.getElementById("useremail").value.trim();
+   attendeeReg.event_id = eventid;
+   attendeeReg.dateRegistered = new Date().toLocaleDateString();
+
+
+   
+    if(!attendeeReg.isRegistered(attendeeReg.email)) {
+        alert("You are not registered in the system  ");
+        return;
+    }else {
+       // if user is in the system update the existing record
+
+      //attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
+      //attendeeReg.email = document.getElementById("useremail").value.trim();
+     // attendeeReg.event_id = eventid;
       
-    const divsection = document.getElementById('tours-reservation');
-    divsection.style.display = 'block';
+      const booked = [];
 
-    const toursgrid = document.getElementById('tours-reservation-grid');
-    const bookingList = document.getElementById("tourbookinglist");
+      booked.push({event_id:document.getElementById("eventId").value.trim(), 
+      username:document.getElementById("username").value.trim(), 
+      useremail:document.getElementById("useremail").value.trim(), 
+      date: new Date().toLocaleDateString() });
+     
+      attendeeReg.register(booked);
 
+
+    }
     
-    const frmBooking = document.getElementById('BookingForm');
-    const name = document.getElementById("username").value.trim();
-    const email = document.getElementById("useremail").value.trim();
-
+     const name = document.getElementById("username").value.trim();
+     const email = document.getElementById("useremail").value.trim();
     
- 
-        
-        if (!name) {
+     if (!name) {
           alert("Please enter your name");
           return;
         }
@@ -471,23 +875,65 @@ function confirmBooking (eventid) {
           alert("Please enter your email");
           return;
         }
-         
-        var id = document.getElementById("eventId").value.trim();
-        
-        RenderTourBookings(id);
 
-        var booked = saveUserBooking ();
-
-        renderBookingList(bookingList, booked);
-
-
-    toursgrid.appendChild(bookingList);
+    eventid =  document.getElementById("eventId").value.trim();    
     
-    frmBooking.reset();
+    
+    RenderTourBookings(eventid);
 
-    mdlBooking.style.display = "none";
+    /*
+    for (const oAttendee of attendeeReg.listAttendees()) {
+     alert (oAttendee.email);
+  
+    }
+     */
+    saveUserBooking ();
+    
+    const frmBooking = document.getElementById("BookingForm");
+    frmBooking.reset ();
+
+    const grid = document.getElementById('bookingModal');
+    grid.style.display ='none';
+   
+    return;
+
+    //=================================================================
+    //===========  register user to the system ========================
+    
 
 }
+
+function removeUser (useremail)
+{
+            
+  let text = "Confirm if you want to remove the selected user";
+  if (confirm(text) == true) {
+    
+    attendeeReg.unregister(useremail);
+    showToursBookinglist ();
+    getSiteEvent("registeredusers-grid", "none");
+    
+  } 
+      
+    
+}
+
+
+function showToursBookinglist ()  {
+ 
+  const divsection = document.getElementById('tours-reservation');
+  divsection.style.display = 'block';
+  
+  const toursgrid = document.getElementById('tours-reservation-grid');
+  
+    
+  const lst = renderBookingList();
+
+  toursgrid.appendChild(lst);
+
+   
+}
+
 
 async function searchJSONSafe(keyword) {
   try {
@@ -500,6 +946,8 @@ async function searchJSONSafe(keyword) {
     
     const tour = data.tours.find(u => u.id === keyword);
 
+    //alert("Tour found: " + tour.title);
+
     populateBookingform (eventid, tour);
 
     return tour;
@@ -511,32 +959,16 @@ async function searchJSONSafe(keyword) {
 }
 
 
-function searchcountry(eventtype, strcountry) {
-
+async function searchlectures (country, city, speaker, strfilepath) {
  
- 
-
-switch (eventtype) {
-    case "tours" :
-
-        searchtoursbyCountry (strcountry,"/data/tours_details/tours.json" );
-        break;
-
-    case "lectures":
-        searchlecturesbyCountry (strcountry,"/data/lecture_details/lectures.json" );
-        break;
-    
-   
-  }
- 
-
-}
-
-
-async function searchlecturesbyCountry (country,strfilepath) {
- 
-   
+  
   try {
+
+    const section = document.getElementById('lectures');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('lectures-grid');
+    grid.innerHTML = '';
 
     const res = await fetch(strfilepath);
 
@@ -544,25 +976,24 @@ async function searchlecturesbyCountry (country,strfilepath) {
 
     const data = await res.json();
 
-    const result = JSON.stringify(data);
+    //const result = JSON.stringify(data);
     
-    const lecturesdata = data.lectures.filter(u => u.country.toLowerCase() === country.toLowerCase());
+   // const lecturesdata = data.lectures.filter(u => u.country.toLowerCase() === country.toLowerCase());
 
-    var tour = Object.keys(lecturesdata);
+     let filteredlectures = data.lectures.filter (function (lecture)
+    {
+        return  lecture.country.toLowerCase() === country.toLowerCase() 
+        || lecture.city.toLowerCase() === city.toLowerCase()
+        || lecture.speaker.toLowerCase() === speaker.toLowerCase()
+    })
 
-    
-    const section = document.getElementById('lectures');
-    section.style.display = 'block';
-
-    const grid = document.getElementById('lectures-grid');
-    grid.innerHTML = '';
-
-   
-    let search = json2array(lecturesdata);
+    //alert (filteredlectures);
+    let search = json2array(filteredlectures);
 
     
    
     /*
+    var tour = Object.keys(lecturesdata);
     for (const val of tour) {
          alert ("Key: " + val.id + " Value: " + toursdata[val].title);
     }
@@ -590,7 +1021,7 @@ async function searchlecturesbyCountry (country,strfilepath) {
     }
 
   
-     return tour;
+    // return tour;
 
      
   } catch (err) {
@@ -598,10 +1029,8 @@ async function searchlecturesbyCountry (country,strfilepath) {
   }
 }
 
-
-async function searchtoursbyCountry (country,strfilepath) {
+async function searchtours (strcountry, strcity,  startdate , enddate, strfilepath) {
  
-  
   try {
 
     const res = await fetch(strfilepath);
@@ -610,29 +1039,39 @@ async function searchtoursbyCountry (country,strfilepath) {
 
     const data = await res.json();
 
-    const result = JSON.stringify(data);
-    
-    const toursdata = data.tours.filter(u => u.country.toLowerCase() === country.toLowerCase());
 
-    var tour = Object.keys(toursdata);
+    let filteredtours = data.tours.filter (function (tour)
+    {
+        return  tour.country.toLowerCase() === strcountry.toLowerCase() 
+        || tour.city.toLowerCase() === strcity.toLowerCase()
+        || Date.parse (tour.date) >= Date.parse(startdate) && Date.parse(tour.date) <= Date.parse(enddate)
+    })
 
-    
+    ToursSearchCriteria () ;
+    //alert (filteredtours);
+
+    /*
+    var filter = {
+      country: '' + strcountry.toLowerCase(),
+        city: '' +  strcity.toLowerCase()
+    };
+
+    var filteredData = filterByMultipleColumns(data.tours, filter);
+    */
+
+    //alert (JSON.stringify(out));
+
+    //alert (JSON.stringify(filters));
+
+
     const section = document.getElementById('tours');
     section.style.display = 'block';
 
     const grid = document.getElementById('tours-grid');
     grid.innerHTML = '';
 
-    //alert ("Inside searchtoursbyCountry: " + country + " Filepath: " + strfilepath);
 
-   
-    let search = json2array(toursdata);
-   
-    /*
-    for (const val of tour) {
-         alert ("Key: " + val.id + " Value: " + toursdata[val].title);
-    }
-    */
+    let search = json2array(filteredtours);
 
 
     for(const item of search) {
@@ -659,9 +1098,8 @@ async function searchtoursbyCountry (country,strfilepath) {
             grid.appendChild(card);
     }
 
-  
     
-    return tour;
+    return grid;
 
      
   } catch (err) {
@@ -683,184 +1121,43 @@ function json2array(datasearch){
     return resultsearch;
 }
 
+function cancelRegistration ()  {
+  
+  getSiteEvent ('SiteRegistration', 'none');
 
-
-// "/data/tours_details/tours.json"
-async function searchJSON(strid, strfilepath, datasearch) {
-  try {
-    const res = await fetch(strfilepath);
-    if (!res.ok) throw new Error("Failed to load JSON");
-
-    const data = await res.json();
-
-    const result = JSON.stringify(data);
-    
-    const tour = data.tours.find(u => u.id === strid);
-
-    return tour;
-    
-  } catch (err) {
-     return err;
-  }
 }
 
-/*
-function useful ()  {
-var sitePersonel = {};
-var employees = []
-sitePersonel.employees = employees;
-//console.log(sitePersonel);
+function confirmRegistration() {
 
-var firstName = "John";
-var lastName = "Smith";
-var employee = {
-  "firstName": firstName,
-  "lastName": lastName
-}
-sitePersonel.employees.push(employee);
-//console.log(sitePersonel);
+   attendeeReg.name = document.getElementById("regname").value.trim();
+   attendeeReg.email = document.getElementById("regemail").value.trim();
 
-var manager = "Jane Doe";
-sitePersonel.employees[0].manager = manager;
-*/
-//console.log(sitePersonel);
-
-//alert(JSON.stringify(sitePersonel));
-
- 
-/*
-async function fetchMoviesBadStatus() {
-  const response = await fetch('/oops');
-
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
-    throw new Error(message);
-  }
-
-  const movies = await response.json();
-  return movies;
-}
-*/
-
-/*
-fetchMoviesBadStatus().catch(error => {
-  error.message; // 'An error has occurred: 404'
-});
-*/
-
-/*
-async function finddata(id) {
-  const res = await fetch("/data/tours_details/tours1.json");
-  const data = await res.json();
-
-  return data.filter(item => item.id === id);
- // return data ;
-}
-*/
-
-
-class EvenTour {
-  constructor(id, title, description, seats, date, price, duration, city, country, src) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.seats = seats;
-    this.date = date;
-    this.price = price;
-    this.duration = duration;
-    this.city = city;
-    this.country = country;
-    this.src = src;
-  }
-
-  bookTour () {
-    if (this.seats > 0) {
-      this.seats--;
-      return true;
-    } else {
-      return false;
+   attendeeReg.register({ name: attendeeReg.name, email: attendeeReg.email });
+   
+    if (!attendeeReg.name || !attendeeReg.email) {
+      alert (attendeeReg.errormsg);
+      return;
     }
 
-  }
+    document.getElementById("regname").value = '';
+    document.getElementById("regemail").value = '';
+   
 }
-
-class EventRegistration {
-   constructor(eventName, eventDate, capacity = Infinity) {
-    this.eventName = eventName;
-    this.eventDate = new Date(eventDate);
-    this.capacity = capacity;
-    this.attendees = new Map(); // key: email, value: attendee info
-  }
-
-  register(attendee) {
-    if (!attendee?.name || !attendee?.email) {
-      throw new Error("Attendee must have a name and email.");
-    }
-
-    if (this.attendees.size >= this.capacity) {
-      throw new Error("Event is full.");
-    }
-
-    if (this.attendees.has(attendee.email)) {
-      throw new Error("Attendee already registered.");
-    }
-
-    this.attendees.set(attendee.email, {
-      name: attendee.name,
-      email: attendee.email,
-      registeredAt: new Date()
-    });
-
-    return "Registration successful.";
-  }
-
-  unregister(email) {
-    if (!this.attendees.has(email)) {
-      throw new Error("Attendee not found.");
-    }
-
-    this.attendees.delete(email);
-    return "Unregistered successfully.";
-  }
-
-  isRegistered(email) {
-    return this.attendees.has(email);
-  }
-
-  listAttendees() {
-    return Array.from(this.attendees.values());
-  }
-
-  spotsRemaining() {
-    return this.capacity - this.attendees.size;
-  }
-
-  eventSummary() {
-    return {
-      eventName: this.eventName,
-      eventDate: this.eventDate,
-      capacity: this.capacity,
-      registered: this.attendees.size,
-      spotsRemaining: this.spotsRemaining()
-    };
-  }
-}
-
-/*
-const eventReg = new EventRegistration(
-  "JavaScript Workshop",
-  "2025-02-15",
-  2
-);
-
-eventReg.register({ name: "Alice", email: "alice@mail.com" });
-eventReg.register({ name: "Bob", email: "bob@mail.com" });
-
-console.log(eventReg.listAttendees());
-console.log(eventReg.eventSummary());
-*/
-
 
 navtoggle ();
 
-const mdlBooking = document.getElementById("bookingModal");
+const attendeeReg = new Attendee();
+
+
+attendeeReg.register({ event_id: "", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+attendeeReg.register({ event_id: "", name: "Bob Husky", email: "bob@mail.com", dateRegistered: new Date().toLocaleDateString() });
+
+attendeeReg.register({ event_id: "", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
+
+
+//alert(attendeeReg.listAttendees().length);
+//alert(attendeeReg.eventSummary()); 
+
+
+
