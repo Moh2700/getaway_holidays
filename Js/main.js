@@ -313,7 +313,7 @@ async function loadLectureEvent() {
 }
 //==================== End events Grid for tours event================================
 
-async function ToursSearchCriteria ()  {
+function ToursSearchCriteria ()  {
 
     const searchgrid = document.getElementById("searching-grid");
     searchgrid.style.display = 'block'; 
@@ -369,7 +369,12 @@ async function ToursSearchCriteria ()  {
    
 }
 
-async function LecturesSearchCriteria ()  {
+function changeSeats ()
+{
+ alert ('');
+}
+
+function LecturesSearchCriteria ()  {
   
     const searchgrid = document.getElementById("searching-grid");
     searchgrid.style.display = 'block'; 
@@ -411,16 +416,6 @@ async function LecturesSearchCriteria ()  {
 
                 `;
                 
-       /*     <div>
-                <p
-                  class="book-btn"
-                  id="cmdSearch"
-                  onclick="alert('')"
-                  style="width: 80px"
-                >
-                  Search
-                </p>
-              </div> */
 
     const card = document.createElement('div');
     //card.className = 'search-fields';
@@ -459,7 +454,7 @@ async function LecturesSearchCriteria ()  {
 
 }
 
-async function loadTourEvent() {
+function loadTourEvent() {
 
      document.getElementById("hdrevent").innerHTML = "Searching for Tours event";
      const search = document.getElementById("searchcriteria");
@@ -1039,7 +1034,8 @@ async function searchtours (strcountry, strcity,  startdate , enddate, strfilepa
 
     const data = await res.json();
 
-
+    
+    
     let filteredtours = data.tours.filter (function (tour)
     {
         return  tour.country.toLowerCase() === strcountry.toLowerCase() 
@@ -1048,6 +1044,7 @@ async function searchtours (strcountry, strcity,  startdate , enddate, strfilepa
     })
 
     ToursSearchCriteria () ;
+    
     //alert (filteredtours);
 
     /*
