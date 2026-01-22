@@ -369,10 +369,7 @@ function ToursSearchCriteria ()  {
    
 }
 
-function changeSeats ()
-{
- alert ('');
-}
+
 
 function LecturesSearchCriteria ()  {
   
