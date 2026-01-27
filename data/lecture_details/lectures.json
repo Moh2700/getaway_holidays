@@ -10,6 +10,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
+   "seats":18,
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
@@ -40,6 +41,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "14/03/2026",
+   "seats":20,
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
@@ -70,6 +72,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "12/03/2026",
+   "seats":4,
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
@@ -100,6 +103,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
+   "seats":5,
    "address":[ 
     {
         "streetAdd": "123 Carmen St",

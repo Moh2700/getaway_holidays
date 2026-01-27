@@ -15,12 +15,12 @@
       "description": "First lecture",
       "date": "12/03/2026",
       "seats":20,
-      "country":"Italy",
-      "city":"Granada",
+      "country":"Spain",
+      "city":"Cordoba",
       "address":[ 
       {
         "streetAdd": "123 Carmen St",
-        "city": "Granada",
+        "city": "Cordoba",
         "state": "Al Andalus",
         "postalCode": "12345"
       }
@@ -43,16 +43,16 @@
    "price": "£15",
    "language":["French","English", "Spanish", "Arabic"],
    "schedule": "Monday to Friday from 10AM to 14:00PM",
-   "program":["Official guide","Entrance to The Real Alcazar of Seville", "Cathedral of Santa Maria de la Sede", "Entrance to the Giralda."],
+   "program":["Official guide","Entrance Alhambra", "Cathedral of Santa Maria de la Sede", "Entrance to the Giralda."],
    "src":"https://images.pexels.com/photos/34136117/pexels-photo-34136117.jpeg",
-   "title": "Real Alcazar of Seville + Cathedral and Giralda: Guided Tour",
+   "title": "Alhambara Castle : Guided Tour",
    "start":"El Cathedral main entrance",
    "email": "getawaytravels@gmail.com",
    "description": "First lecture",
    "date": "13/03/2026",
    "seats":20,
    "country":"Spain",
-   "city":"Seville",
+   "city":"Granada",
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
@@ -79,16 +79,16 @@
    "price": "£15",
    "language":["French","English", "Spanish", "Arabic"],
    "schedule": "Monday to Friday from 10AM to 14:00PM",
-   "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
+   "program":["Official guide","Entrance to Alhambra castle", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
    "src":"https://images.pexels.com/photos/18348736/pexels-photo-18348736.jpeg",
-   "title": "Real Alcazar of Seville + Cathedral and Giralda: Guided Tour",
+   "title": "Albaycin and San Critobal: Guided Tour",
    "duration":"3 hours",
    "email": "getawaytravels@gmail.com",
    "description": "First lecture",
    "date": "14/03/2026",
    "seats":4,
    "country":"Spain",
-   "city":"Seville",
+   "city":"Granada",
    "address":[ 
     {
       "streetAdd": "123 Carmen St",
@@ -118,18 +118,18 @@
    "schedule": "Monday to Friday from 10AM to 14:00PM",
    "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
    "src":"https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg",
-   "title":"Grand Mezquita",
-   "start":"Grand Mezquita main entrance",
+   "title":"Visit of Alacazar de Sevilla",
+   "start":"Grand Mezqu",
    "description": "First lecture",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
    "seats":20,
-   "country":"spain",
-   "city":"Granada",
+   "country":"Spain",
+   "city":"Seville",
    "address":[ 
     {
         "streetAdd": "123 Carmen St",
-        "city": "Granada",
+        "city": "Seville",
         "state": "Al Andalus",
         "postalCode": "12345"
     }

@@ -118,6 +118,22 @@
     
 }
 
+/* For devices with a minimum width of 320px (small) and up 1440px*/
+@media screen and (min-width: 320px)  and (max-width: 1440px) {
+
+    #nav-toggle {
+      /*display:block; */ 
+      
+      left: 90%; /* fallback if needed */
+      left: calc(100% - 5em);
+    
+      position: fixed;
+      top: 35px;
+      height:26px;
+      
+    }
+
+}
 
 /* Responsive - small screens */
 @media (max-width: 768px) {

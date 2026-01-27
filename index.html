@@ -42,12 +42,18 @@
 
                 <div id="myDropdown" class="dropdown-content">
                   <a
-                    onclick="alert('under Construction')"
+                    onclick="
+                      UserTourBookings();
+                      useroption('toursreservation');
+                    "
                     style="cursor: pointer"
                     >Tours</a
                   >
                   <a
-                    onclick="alert('under construction')"
+                    onclick="
+                      UserLectureBookings();
+                      useroption('lecturesreservation');
+                    "
                     style="cursor: pointer"
                     >Lectures</a
                   >
@@ -60,16 +66,22 @@
                 Registration
                 <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
                 <div id="myDropdown" class="dropdown-content">
-                  <a onclick="loadSiteRegistration()" style="cursor: pointer"
+                  <a
+                    onclick="
+                      loadSiteRegistration();
+                      useroption('SiteRegistration');
+                    "
+                    style="cursor: pointer"
                     >New Registration</a
                   >
 
                   <a
                     onclick="
-                      showToursBookinglist();
-                      getSiteEvent('searchcriteria', 'none');
-                      getSiteEvent('lectures', 'none');
-                      getSiteEvent('tours', 'none');
+                      RegisteredUsers();
+                      useroption('users-registration');
+                      // getSiteEvent('searchcriteria', 'none');
+                      // getSiteEvent('lectures', 'none');
+                      // getSiteEvent('tours', 'none');
                     "
                     style="cursor: pointer"
                     >Show Users</a
@@ -82,7 +94,8 @@
               <a
                 onclick="
                   loadLectureEvent();
-                  getSiteEvent('tours-reservation', 'none');
+                  // getSiteEvent('tours-reservation', 'none');
+                  useroption('lectures');
                 "
                 style="cursor: pointer"
               >
@@ -94,7 +107,9 @@
               <a
                 onclick="
                   loadTourEvent();
-                  getSiteEvent('tours-reservation', 'none');
+
+                  //getSiteEvent('tours-reservation', 'none');
+                  useroption('tours');
                 "
                 style="cursor: pointer"
                 >Tours</a
@@ -106,7 +121,7 @@
         </nav>
       </header>
 
-      <main>
+      <main id="mainpage">
         <br />
         <!-- Section for searching tours and events  -->
         <section
@@ -122,6 +137,40 @@
         </section>
 
         <br />
+
+
+        <section
+          id="choicedisplay"
+          class="content-section"
+          style="display: none"
+        >
+          <div id="displayinfo"></div> 
+         
+        </section>
+
+        <section
+          id="toursreservation"
+          class="content-section"
+          style="display: none"
+        >
+          <div id="toursdisplay"></div> 
+          <div id="toursreservation-grid">
+            <h3>✅ Your Tours Bookings</h3>
+            <ul id="ToursReservationList"></ul>
+          </div>
+        </section>
+
+
+        <section
+          id="lecturesreservation"
+          class="content-section"
+          style="display: none"
+        >
+          <div id="lecturesreservation-grid">
+            <h3>✅ Your Lectures Bookings</h3>
+            <ul id="LecReservationList"></ul>
+          </div>
+        </section>
 
         <section id="lectures" class="content-section" style="display: none">
           <h2>Upcoming Events</h2>
@@ -142,52 +191,31 @@
             <!-- Event cards will be loaded here by JavaScript -->
             <p>Loading tours events ...</p>
           </div>
-          <div
-            class="tourbookings"
-            id="bookingModal"
-            style="display: none"
-          ></div>
         </section>
         <br />
+
+        <div class="tourbookings" id="bookingModal" style="display: none"></div>
+
         <section
           id="SiteRegistration"
           class="content-section"
           style="display: none"
         >
           <div id="siteregistration-grid"></div>
-          <!--h2>Site Registration</h2>
+        </section>
 
-          <div id="sitereg">
+        <section
+          id="users-registration"
+          class="content-section"
+          style="display: none"
+        >
+          <div id="users-registration-grid">
+            <p>Loading Users Registration</p>
 
-            <div><label for="fname">Full Name</label></div>
-            <div>
-              <input
-                type="text"
-                id="regname"
-                name="regname"
-                placeholder="Your fullname"
-              />
-            </div>
-            <div><label for="regemail">Email</label></div>
-            <div>
-              <input
-                type="text"
-                id="regemail"
-                name="regemail"
-                placeholder="Your Email."
-              />
-            </div>
-            <div>
-              <p
-                class="book-btn"
-                id="cmdBooking"
-                onclick="confirmRegistration()"
-                style="width: 80px"
-              >
-                Confirm
-              </p>
-            </div>
-          </div-->
+            <!-- Event cards will be loaded here by JavaScript -->
+            <h3>✅ Your registered users</h3>
+            <ul id="RegisteredUsersList"></ul>
+          </div>
         </section>
 
         <section
@@ -195,16 +223,27 @@
           class="content-section"
           style="display: none"
         >
-          <!--h2>Upcoming Tours Reservation Events</h2-->
           <div id="tours-reservation-grid">
             <!-- Event cards will be loaded here by JavaScript -->
-            <!--p>Loading Tours reservation...</p>
+            
             <h3>✅ Your Tours Bookings</h3-->
             <div id="registeredusers-grid">
               <!-- Event cards will be loaded here by JavaScript -->
             </div>
 
             <ul id="tourbookinglist"></ul>
+          </div>
+        </section>
+
+        <section id="reservation" class="content-section" style="display: none">
+          <div id="reservation-grid">
+            <!-- Event cards will be loaded here by JavaScript -->
+
+            <h3>✅ Your Lectures Bookings</h3>
+            <ul id="LecReservationList"></ul>
+
+            <h3>✅ Your Tours Bookings</h3>
+            <ul id="TourReservationList"></ul>
           </div>
         </section>
       </main>
