@@ -1416,7 +1416,7 @@ function UserLectureBookings ()
   const lst = renderLecBookingList();
   lst.style.display = 'block';
 
-  reservegrid.innerHTML="<h3>User Lecture Bookings</h3> <h5>Double click on users to view more details</h5>"
+  reservegrid.innerHTML="<h3>✅User Lecture Bookings</h3> <h5>Double click on users to view more details</h5>"
   reservegrid.append(lst);
 
 }
@@ -1435,7 +1435,7 @@ function UserTourBookings ()
   lst.style.display = 'block';
   
   
-  toursgrid.innerHTML="<h3>User Tours Bookings</h3> <h5>Double click on users to view more details</h5>"
+  toursgrid.innerHTML="<h3>✅User Tours Bookings</h3> <h5>Double click on users to view more details</h5>"
   toursgrid.append(lst);
  
 }
@@ -1693,6 +1693,8 @@ for (const section of sections) {
   
     }
     section.style.display='block';
+    const grid = document.getElementById('bookingModal');
+    grid.style.display ='none';
     //alert(choice)
   }
 }
