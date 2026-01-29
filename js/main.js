@@ -4,7 +4,7 @@ var eventtype= "";
  
 
 
-
+/*
 class TourEvent {
   constructor(id, title, description, seats, date, price, duration, city, country, src) {
     this.id = id;
@@ -42,6 +42,9 @@ class LectureEvent {
     this.country = country;
   }
 }
+*/
+
+
 
 class Attendee {
   #msg; 
@@ -145,6 +148,7 @@ class userBookingTour {
   #msg;
 
   constructor(tourid, name, email, dateBooked) {
+    this.id;
     this.tourid = tourid;
     this.name = name;
     this.email = email;
@@ -196,14 +200,22 @@ class userBookingTour {
     }
     */
 
-     this.tours.set(tour.tourid, {
+     /* this.tours.set(tour.tourid, {
+      tourid: tour.tourid,
+      name: tour.name,
+      email: tour.email,
+      dateBooked: tour.dateBooked
+    }); */
+
+
+    this.tours.set(tour.id, {
       tourid: tour.tourid,
       name: tour.name,
       email: tour.email,
       dateBooked: tour.dateBooked
     });
 
-     return `Succcessful registration of Attendee: ${tour.name} with email: ${tour.email} registered on the ${new Date()}`;
+     return `Succcessful registration of tour: ${tour.name} with email: ${tour.email} registered on the ${new Date()}`;
   }
 
     removeBooking(tourid) {
@@ -233,6 +245,7 @@ class userBookingLecture {
   #msg;
 
   constructor(lectureid, name, email, dateBooked) {
+    this.id;
     this.lectureid = lectureid;
     this.name = name;
     this.email = email;
@@ -284,7 +297,16 @@ class userBookingLecture {
     }
     */
 
-     this.lectures.set(lecture.lectureid, {
+    /*
+    this.attendees.set(attendee.email, {
+      event_id: attendee.event_id,
+      name: attendee.name,
+      email: attendee.email,
+      dateRegistered: attendee.dateRegistered
+    });
+   */
+  
+     this.lectures.set(lecture.id, {
       lectureid: lecture.lectureid,
       name: lecture.name,
       email: lecture.email,
@@ -316,8 +338,6 @@ class userBookingLecture {
 }
 
 
-
-
 let detailRespTour, detailsTour ;
 let detailRespLec, detailsLec ;
 
@@ -330,6 +350,9 @@ async function getLecturesandTours() {
          detailRespLec = await fetch(`data/lecture_details/lectures.json`);
          if (!detailRespLec.ok) throw new Error(`HTTP error! status: ${detailRespLec.status}`);
          detailsLec = await detailRespLec.json() ;
+
+
+      
 
 
 
@@ -1216,7 +1239,7 @@ function renderRegisteredUsersList   ()
   });
   
  
-  getSiteEvent ('SiteRegistration', 'none');
+ // getSiteEvent ('SiteRegistration', 'none');
 
   return RegList;
 }
@@ -1283,12 +1306,26 @@ function confirmLectureBooking (eventid) {
 
       const booked = [];
 
-      booked.push({event_id:document.getElementById("eventId").value.trim(), 
+      
+      booked.push({lectureid:document.getElementById("eventId").value.trim(), 
       username:document.getElementById("username").value.trim(), 
       useremail:document.getElementById("useremail").value.trim(), 
-      date: new Date().toLocaleDateString() });
+      dateRegistered: new Date().toLocaleDateString() });
      
-      attendeeReg.register(booked);
+     // attendeeReg.register(booked);
+     let userid = document.getElementById("eventId").value.trim();
+     let username = document.getElementById("username").value.trim();
+     let useremail = document.getElementById("useremail").value.trim();
+     let dateReg = new Date().toLocaleDateString();
+
+     lecbooked.book({lectureid: userid, name: username, email: useremail , dateRegistered: dateReg});
+
+     //lecbooked.book (booked);
+     alert (lecbooked.listLectures().length);
+
+    // lecbooked.book({lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+
+     return;
 
     }
     
@@ -1440,7 +1477,7 @@ function UserTourBookings ()
  
 }
 
-
+/*
 function getUserBookings (data, id)  {
 
   let result = data.filter(function(datatype){
@@ -1452,6 +1489,7 @@ function getUserBookings (data, id)  {
 
   return result;  
 }
+*/
 
 function RegisteredUsers ()   {
   
@@ -1701,19 +1739,42 @@ for (const section of sections) {
   
 }
 
-const attendeeReg = new Attendee();
+
+   const attendeeReg = new Attendee();
 
 const tourbooked = new userBookingTour();
-tourbooked.book({ tourid: "trs0002", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
-tourbooked.book({ tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+tourbooked.book({id:1, tourid: "trs0002", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+tourbooked.book({id:2, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+tourbooked.book({id:3, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+
 
 //alert ("Tours " + tourbooked.listTours().length);
 
 const lecbooked = new userBookingLecture();
-lecbooked.book({ lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
-lecbooked.book({ lectureid: "lec0003", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+lecbooked.book({id:1, lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+lecbooked.book({id:2, lectureid: "lec0003", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
-//alert ("Lectures" + lecbooked.listLectures().length);
+//lecbooked.book({  lectureid: "lec0003", name: "Robert Thomson", email: "Robert@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+
+let i = lecbooked.listLectures().length;
+
+//const lastelem = lecbooked.listLectures[Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1]];
+
+//const lastelem = lecbooked.listLectures[Object.keys(lecbooked.listLectures)[Object.keys(lecbooked.listLectures).length - 1]];
+//const lastelem  = Obj[Object.keys(Obj)[Object.keys(Obj).length - 1]]
+
+const lastelem  = lecbooked.listLectures()[Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1]];
+
+const lastkey = Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1];
+
+alert ("$$$$$$$ " + lastkey);
+
+let last;
+lecbooked.listLectures().forEach(item => {
+ last = item;
+ alert (last.name);
+});
+
 
 
 attendeeReg.register({ event_id: "", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
@@ -1721,8 +1782,7 @@ attendeeReg.register({ event_id: "", name: "Bob Husky", email: "bob@mail.com", d
 
 attendeeReg.register({ event_id: "", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
+//attendeeReg.register({ event_id: "", name: "Rob Husky2", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
 
 
-//alert("Attendees: " + attendeeReg.listAttendees().length);
-
-//findHTMLSection ();
+alert("Attendees: " + attendeeReg.listAttendees().length);
