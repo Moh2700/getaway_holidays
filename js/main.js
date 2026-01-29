@@ -442,12 +442,6 @@ function loadLectureEvent() {
     
     document.getElementById("hdrevent").innerHTML = "Searching for lecture event";
     
-   // const search = document.getElementById("searchcriteria");
-   // search.style.display = 'block';
-    
-   // const reg = document.getElementById("SiteRegistration");
-   // reg.style.display = 'none';
-
     const lec = document.getElementById("lectures");
     lec.style.display = 'block'; 
 
@@ -455,12 +449,6 @@ function loadLectureEvent() {
     
     LecturesSearchCriteria ();
 
-    //eventtype= "lectures";
-
-   // const tour = document.getElementById("tours");
-   // tour.style.display = 'none'; 
-
-       
     try {
        
         grid.innerHTML = '';
@@ -522,20 +510,6 @@ function loadLectureEvent() {
    
 }
 //==================== End events Grid for tours event================================
-
-/*
-function findHTMLSection  ()
-{
-  var e = document.getElementById('#mainpage');
-  if (e instanceof HTMLInputElement) {}         // <input>
-  else if (e instanceof HTMLSelectElement) {}    // <select>
-  else if (e instanceof HTMLTextAreaElement) {}  // <textarea>
-  else if (e instanceof HTMLSectionElement) {
-    alert ('Some sections');
-  }
-    
-}
-*/
 
 
 function ToursSearchCriteria ()  {
@@ -764,8 +738,8 @@ function loadTourEvent() {
 
 
 }
-//==================== End events Grid for tours event================================
- 
+
+
 function getSiteEvent  (strEventType, displaystate) {
   
   const grid = document.getElementById(strEventType);
@@ -775,12 +749,12 @@ function getSiteEvent  (strEventType, displaystate) {
 
 function loadSiteRegistration () {
   
-  getSiteEvent ('searchcriteria', 'none');
-  getSiteEvent ('lectures', 'none');
-  getSiteEvent ('tours', 'none');
-  getSiteEvent ('SiteRegistration', 'block');
+  //getSiteEvent ('searchcriteria', 'none');
+ // getSiteEvent ('lectures', 'none');
+  //getSiteEvent ('tours', 'none');
+ // getSiteEvent ('SiteRegistration', 'block');
   
-  getSiteEvent ('tours-reservation', 'none');  
+ // getSiteEvent ('tours-reservation', 'none');  
  
    const grid = document.getElementById("siteregistration-grid");
 
@@ -977,6 +951,52 @@ function openBookingTour(eventid) {
       
 }
 
+/*
+function renderBookings (eventid, grid)  {
+  
+  //const myNodelist = grid.querySelectorAll("p");
+
+  const objgrid = document.getElementById(eventid);
+  const myNodelist = objgrid.querySelectorAll("p");
+
+  //const tourgrid = document.getElementById('tours-grid');
+
+  //alert (objgrid.innerHTML);
+/*
+  var str= "";
+  var num;
+
+  for (let i = 0; i < myNodelist.length; i++) {
+
+   if (i== 0) {
+    num = myNodelist[i].innerText.replace(/[^0-9]/g, '');
+    num = parseInt(num);
+   
+     alert (  myNodelist.length + "*******" + str);
+
+    if (num == 0)  {
+      
+      document.getElementById("btn"+eventid).innerText = "Sold out";
+      document.getElementById("btn"+eventid ).disabled= true;
+      document.getElementById("btn"+eventid).style.cursor = 'not-allowed'; 
+
+      str = myNodelist[i].innerText = "Seats : " + num ;
+
+    } else {
+       num--;
+       str = myNodelist[i].innerText = "Seats : " + num ;
+
+    }
+   
+   }
+}
+return str;
+ 
+}
+*/
+
+
+
 function RenderTourBookings(eventid, num)  {
 
   const tourbooking = document.getElementById(eventid);
@@ -1014,6 +1034,8 @@ function RenderTourBookings(eventid, num)  {
 }
 return str;
 }
+
+
 
 function renderLecBookingList   ()
 {
@@ -1248,9 +1270,9 @@ function renderRegisteredUsersList   ()
 function BookingTour (tourid)  {
    
  
-let num ='';
+  let num ='';
 
-RenderTourBookings (tourid, num)  ;
+  RenderTourBookings (tourid, num)  ;
 
 let filteredtours = detailsTour.tours.filter (function (tour)
   {
@@ -1287,8 +1309,7 @@ function confirmLectureBooking (eventid) {
    
      eventid = document.getElementById("eventId").value.trim();
      
-     BookingTour (eventid) ;
-
+    
 
       attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
       attendeeReg.email = document.getElementById("useremail").value.trim();
@@ -1304,6 +1325,7 @@ function confirmLectureBooking (eventid) {
        
       // Save the user tour booking 
 
+      /*
       const booked = [];
 
       
@@ -1311,54 +1333,42 @@ function confirmLectureBooking (eventid) {
       username:document.getElementById("username").value.trim(), 
       useremail:document.getElementById("useremail").value.trim(), 
       dateRegistered: new Date().toLocaleDateString() });
+     */
+
      
-     // attendeeReg.register(booked);
-     let userid = document.getElementById("eventId").value.trim();
      let username = document.getElementById("username").value.trim();
      let useremail = document.getElementById("useremail").value.trim();
      let dateReg = new Date().toLocaleDateString();
 
-     lecbooked.book({lectureid: userid, name: username, email: useremail , dateRegistered: dateReg});
-
-     //lecbooked.book (booked);
-     alert (lecbooked.listLectures().length);
-
-    // lecbooked.book({lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
-
-     return;
+    const obj = lecbooked.listLectures();
+    const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
+     
+    lecbooked.book({id: lastkey+1, lectureid: eventid, name: username, email: useremail , dateBooked: dateReg});
+    
+    BookingTour (eventid) ;
 
     }
     
-    
-    let num ='';
-    RenderTourBookings(eventid, num);
-
-    /*
-    for (const oAttendee of attendeeReg.listAttendees()) {
-     alert (oAttendee.email);
-  
-    }
-     */
-    
+   // const lecgrid = document.getElementById('lectures-grid');
+   // renderBookings(eventid, lecgrid);
+   
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
     const grid = document.getElementById('bookingModal');
     grid.style.display ='none';
-   
+
 
 }
 
-
-
 function confirmTourBooking (eventid) {
 
-  
+  /*
      for (const oAttendee of attendeeReg.listAttendees()) {
      alert ("id: XXXXXX " + oAttendee.event_id + " date: " + oAttendee.dateRegistered);
   
    } 
-  
+  */
      const name = document.getElementById("username").value.trim();
      const email = document.getElementById("useremail").value.trim();
     
@@ -1391,6 +1401,7 @@ function confirmTourBooking (eventid) {
        
       // Save the user tour booking 
 
+      /*
       const booked = [];
 
       booked.push({event_id:document.getElementById("eventId").value.trim(), 
@@ -1399,20 +1410,32 @@ function confirmTourBooking (eventid) {
       date: new Date().toLocaleDateString() });
      
       attendeeReg.register(booked);
+      */
 
+      //let eventid = document.getElementById("eventId").value.trim();
+      let username = document.getElementById("username").value.trim();
+      let useremail = document.getElementById("useremail").value.trim();
+      let dateReg = new Date().toLocaleDateString();
+
+      const obj = tourbooked.listTours();
+      const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
+     
+      tourbooked.book({id: lastkey+1, tourid: eventid, name: username, email: useremail , dateBooked: dateReg});
+     
     }
     
+    //let num ='';
+    //RenderTourBookings(eventid, num);
     
-    let num ='';
-    RenderTourBookings(eventid, num);
+    //const tourgrid = document.getElementById('tours-grid');
+    //renderBookings(eventid, tourgrid);
 
-    
+    /*
     for (const oAttendee of attendeeReg.listAttendees()) {
      alert (oAttendee.email);
-  
     }
-     
-     
+    */
+    
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
@@ -1477,19 +1500,7 @@ function UserTourBookings ()
  
 }
 
-/*
-function getUserBookings (data, id)  {
 
-  let result = data.filter(function(datatype){
-      return datatype.id.trim() === id.trim();
-    });
-
-  
-  alert (result);
-
-  return result;  
-}
-*/
 
 function RegisteredUsers ()   {
   
@@ -1689,7 +1700,9 @@ function confirmRegistration() {
    attendeeReg.register({ name: attendeeReg.name, 
                           email: attendeeReg.email,
                           dateRegistered: attendeeReg.dateRegistered });
-   
+
+   //alert (attendeeReg.listAttendees().length);
+
     if (!attendeeReg.name || !attendeeReg.email) {
       alert (attendeeReg.errormsg);
       return;
@@ -1740,7 +1753,8 @@ for (const section of sections) {
 }
 
 
-   const attendeeReg = new Attendee();
+
+const attendeeReg = new Attendee();
 
 const tourbooked = new userBookingTour();
 tourbooked.book({id:1, tourid: "trs0002", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
@@ -1754,27 +1768,21 @@ const lecbooked = new userBookingLecture();
 lecbooked.book({id:1, lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 lecbooked.book({id:2, lectureid: "lec0003", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
-//lecbooked.book({  lectureid: "lec0003", name: "Robert Thomson", email: "Robert@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
-let i = lecbooked.listLectures().length;
+//const lastelem  = lecbooked.listLectures()[Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1]];
 
-//const lastelem = lecbooked.listLectures[Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1]];
+//let i = lecbooked.listLectures().length;
+//const lastkey = Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1];
 
-//const lastelem = lecbooked.listLectures[Object.keys(lecbooked.listLectures)[Object.keys(lecbooked.listLectures).length - 1]];
-//const lastelem  = Obj[Object.keys(Obj)[Object.keys(Obj).length - 1]]
+//alert ("$$$$$$$ " + lastkey);
 
-const lastelem  = lecbooked.listLectures()[Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1]];
-
-const lastkey = Object.keys(lecbooked.listLectures())[Object.keys(lecbooked.listLectures()).length - 1];
-
-alert ("$$$$$$$ " + lastkey);
-
+/*
 let last;
 lecbooked.listLectures().forEach(item => {
  last = item;
  alert (last.name);
 });
-
+*/
 
 
 attendeeReg.register({ event_id: "", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
@@ -1785,4 +1793,4 @@ attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", d
 //attendeeReg.register({ event_id: "", name: "Rob Husky2", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
 
 
-alert("Attendees: " + attendeeReg.listAttendees().length);
+//alert("Attendees: " + attendeeReg.listAttendees().length);
