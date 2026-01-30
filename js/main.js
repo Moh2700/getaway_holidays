@@ -488,18 +488,6 @@ function ToursSearchCriteria ()  {
    
     if (btn) {
 
-       /*
-        btn.addEventListener("click", runsearchTours);
-
-        
-          const country = document.getElementById('countryInput').value;
-          const city = document.getElementById('cityInput').value;
-          const startdate = document.getElementById('startdate').value;
-          const enddate = document.getElementById('enddate').value;
-          
-       
-          searchtours(country, city, startdate, enddate);
-        */
       
         btn.addEventListener("click", runsearchTours);
 
@@ -590,11 +578,11 @@ function LecturesSearchCriteria ()  {
          var country = document.getElementById('country').value;
          var city = document.getElementById('city').value;
          var speaker = document.getElementById('speaker').value;
-         var filepath = "/data/lecture_details/lectures.json"
+         //var filepath = "/data/lecture_details/lectures.json"
        
         
 
-        searchlectures (country, city, speaker, filepath);
+        searchlectures (country, city, speaker);
        
       }
 
@@ -1399,15 +1387,75 @@ function showToursBookinglist ()  {
 }
 
 
-async function searchlectures (country, city, speaker, strfilepath) {
+function searchlectures (country, city, speaker) {
  
   
   try {
 
-    //alert (country + 'XXX' + city + "  " + speaker + "++++" + strfilepath );
 
-    const section = document.getElementById('lectures');
-    section.style.display = 'block';
+    //const section = document.getElementById('lectures');
+    //section.style.display = 'block';
+
+    const grid = document.getElementById('lectures-grid');
+    grid.innerHTML = '';
+
+    /*
+    const res = await fetch(strfilepath);
+
+    if (!res.ok) throw new Error("Failed to load JSON");
+
+    const data = await res.json();
+    */
+    
+    
+    let filteredlectures = detailsLec.lectures.filter (function (lecture)
+    {
+        return  lecture.country.toLowerCase() === country.toLowerCase() 
+        || lecture.city.toLowerCase() === city.toLowerCase()
+        || lecture.speaker.toLowerCase() === speaker.toLowerCase()
+    })
+
+    
+    let search = json2array(filteredlectures);
+
+
+    for(const item of search) {
+       
+         const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+             
+
+            <div id="${item.id}" class="event-card-content">
+                    <h4>Title:${item.title}</h4>
+                    <h2>Description: ${item.description}</h2>
+                    <p><strong>Date:</strong> ${item.date}</p>
+                    <p><strong>Speaker:</strong> ${item.speaker}</p>
+                    <p><strong>Venue:</strong>${item.venue}</p>
+                    <p><strong>City:</strong>${item.city}</p>
+                    <p><strong>Country:</strong>${item.country}</p>                   
+              
+            </div>`;
+
+            grid.appendChild(card);
+    }
+
+  
+     
+  } catch (err) {
+     return err;
+  }
+}
+
+
+async function searchlecturesold (country, city, speaker, strfilepath) {
+ 
+  
+  try {
+
+
+    //const section = document.getElementById('lectures');
+    //section.style.display = 'block';
 
     const grid = document.getElementById('lectures-grid');
     grid.innerHTML = '';
@@ -1518,7 +1566,7 @@ function searchtoursold (strcountry, strcity,  startdate , enddate) {
   }
 }
 
-function searchtours (strcountry, strcity,  startdate , enddate, strfilepath) {
+function searchtours (strcountry, strcity,  startdate , enddate) {
  
   try {
 
