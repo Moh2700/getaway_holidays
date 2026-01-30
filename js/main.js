@@ -2,50 +2,6 @@ var eventtype= "";
  var eventid = "";  
  
  
-
-
-/*
-class TourEvent {
-  constructor(id, title, description, seats, date, price, duration, city, country, src) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.seats = seats;
-    this.date = date;
-    this.price = price;
-    this.duration = duration;
-    this.city = city;
-    this.country = country;
-    this.src = src;
-  }
-
-  bookTour () {
-    if (this.seats > 0) {
-      this.seats--;
-      return true;
-    } else {
-      return false;
-    }
-
-  }
-}
-
-class LectureEvent {
-  constructor(id, title, description, date, speaker, venue, city, country) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.date = date;
-    this.speaker = speaker;
-    this.venue = venue;
-    this.city = city;
-    this.country = country;
-  }
-}
-*/
-
-
-
 class Attendee {
   #msg; 
  // #attendees;
@@ -130,17 +86,7 @@ class Attendee {
    
   }
 
-  /*
-  regSummary() {
-    return {
-      event_id: this.event_id,
-      name: this.name,
-      email: this.email,
-      dateRegistered: this.dateRegistered,
-     // totalAttendees: this.attendees.size
-    };
-  }
-  */
+  
 }
 
 class userBookingTour {
@@ -199,14 +145,6 @@ class userBookingTour {
       throw new Error("Event is full.");
     }
     */
-
-     /* this.tours.set(tour.tourid, {
-      tourid: tour.tourid,
-      name: tour.name,
-      email: tour.email,
-      dateBooked: tour.dateBooked
-    }); */
-
 
     this.tours.set(tour.id, {
       tourid: tour.tourid,
@@ -440,6 +378,7 @@ if (document.readyState === "loading") {
 function loadLectureEvent() {
 
     
+
     document.getElementById("hdrevent").innerHTML = "Searching for lecture event";
     
     const lec = document.getElementById("lectures");
@@ -447,6 +386,8 @@ function loadLectureEvent() {
 
     const grid = document.getElementById('lectures-grid');
     
+   
+
     LecturesSearchCriteria ();
 
     try {
@@ -509,7 +450,6 @@ function loadLectureEvent() {
     
    
 }
-//==================== End events Grid for tours event================================
 
 
 function ToursSearchCriteria ()  {
@@ -570,6 +510,8 @@ function ToursSearchCriteria ()  {
 
 function LecturesSearchCriteria ()  {
   
+    
+    
     const searchgrid = document.getElementById("searching-grid");
     searchgrid.style.display = 'block'; 
     searchgrid.innerHTML ="";
@@ -635,6 +577,8 @@ function LecturesSearchCriteria ()  {
          var speaker = document.getElementById('speaker').value;
          var filepath = "/data/lecture_details/lectures.json"
        
+        
+
         searchlectures (country, city, speaker, filepath);
        
       }
@@ -650,6 +594,7 @@ function LecturesSearchCriteria ()  {
 
 function loadTourEvent() {
 
+   
      document.getElementById("hdrevent").innerHTML = "Searching for Tours event";
      //const search = document.getElementById("searchcriteria");
      //search.style.display = 'block';
@@ -951,53 +896,9 @@ function openBookingTour(eventid) {
       
 }
 
-/*
-function renderBookings (eventid, grid)  {
-  
-  //const myNodelist = grid.querySelectorAll("p");
-
-  const objgrid = document.getElementById(eventid);
-  const myNodelist = objgrid.querySelectorAll("p");
-
-  //const tourgrid = document.getElementById('tours-grid');
-
-  //alert (objgrid.innerHTML);
-/*
-  var str= "";
-  var num;
-
-  for (let i = 0; i < myNodelist.length; i++) {
-
-   if (i== 0) {
-    num = myNodelist[i].innerText.replace(/[^0-9]/g, '');
-    num = parseInt(num);
-   
-     alert (  myNodelist.length + "*******" + str);
-
-    if (num == 0)  {
-      
-      document.getElementById("btn"+eventid).innerText = "Sold out";
-      document.getElementById("btn"+eventid ).disabled= true;
-      document.getElementById("btn"+eventid).style.cursor = 'not-allowed'; 
-
-      str = myNodelist[i].innerText = "Seats : " + num ;
-
-    } else {
-       num--;
-       str = myNodelist[i].innerText = "Seats : " + num ;
-
-    }
-   
-   }
-}
-return str;
- 
-}
-*/
 
 
-
-function RenderTourBookings(eventid, num)  {
+function RenderBookings(eventid)  {
 
   const tourbooking = document.getElementById(eventid);
   const myNodelist = tourbooking.querySelectorAll("p");
@@ -1005,6 +906,8 @@ function RenderTourBookings(eventid, num)  {
   const tourgrid = document.getElementById('tours-grid');
   
   var str= "";
+
+  let num ='';
 
   for (let i = 0; i < myNodelist.length; i++) {
 
@@ -1032,10 +935,8 @@ function RenderTourBookings(eventid, num)  {
    
    }
 }
-return str;
+return num;
 }
-
-
 
 function renderLecBookingList   ()
 {
@@ -1267,31 +1168,7 @@ function renderRegisteredUsersList   ()
 }
 
 
-function BookingTour (tourid)  {
-   
- 
-  let num ='';
-
-  RenderTourBookings (tourid, num)  ;
-
-let filteredtours = detailsTour.tours.filter (function (tour)
-  {
-     if (tour.id === tourid) {
-        tour.seats = num ;
-      } 
-     
-  })
-
-
-}
-
-
 function confirmLectureBooking (eventid) {
-
-   /*  for (const oAttendee of attendeeReg.listAttendees()) {
-     alert ("id: " + oAttendee.event_id + " date: " + oAttendee.dateRegistered);
-  
-   } */
 
      const name = document.getElementById("username").value.trim();
      const email = document.getElementById("useremail").value.trim();
@@ -1323,19 +1200,6 @@ function confirmLectureBooking (eventid) {
         return;
     }else {
        
-      // Save the user tour booking 
-
-      /*
-      const booked = [];
-
-      
-      booked.push({lectureid:document.getElementById("eventId").value.trim(), 
-      username:document.getElementById("username").value.trim(), 
-      useremail:document.getElementById("useremail").value.trim(), 
-      dateRegistered: new Date().toLocaleDateString() });
-     */
-
-     
      let username = document.getElementById("username").value.trim();
      let useremail = document.getElementById("useremail").value.trim();
      let dateReg = new Date().toLocaleDateString();
@@ -1345,13 +1209,18 @@ function confirmLectureBooking (eventid) {
      
     lecbooked.book({id: lastkey+1, lectureid: eventid, name: username, email: useremail , dateBooked: dateReg});
     
-    BookingTour (eventid) ;
+      let num = RenderBookings (eventid)  ;
+
+      let filteredtours = detailsLec.lectures.filter (function (lecture)
+      {
+        if (lecture.id ===  eventid) {
+            lecture.seats = num ;
+          } 
+        
+      })
 
     }
-    
-   // const lecgrid = document.getElementById('lectures-grid');
-   // renderBookings(eventid, lecgrid);
-   
+      
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
@@ -1363,12 +1232,6 @@ function confirmLectureBooking (eventid) {
 
 function confirmTourBooking (eventid) {
 
-  /*
-     for (const oAttendee of attendeeReg.listAttendees()) {
-     alert ("id: XXXXXX " + oAttendee.event_id + " date: " + oAttendee.dateRegistered);
-  
-   } 
-  */
      const name = document.getElementById("username").value.trim();
      const email = document.getElementById("useremail").value.trim();
     
@@ -1383,10 +1246,8 @@ function confirmTourBooking (eventid) {
         }
 
    
-     eventid = document.getElementById("eventId").value.trim();
+      eventid = document.getElementById("eventId").value.trim();
      
-     BookingTour (eventid) ;
-
 
       attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
       attendeeReg.email = document.getElementById("useremail").value.trim();
@@ -1399,20 +1260,7 @@ function confirmTourBooking (eventid) {
         return;
     }else {
        
-      // Save the user tour booking 
-
-      /*
-      const booked = [];
-
-      booked.push({event_id:document.getElementById("eventId").value.trim(), 
-      username:document.getElementById("username").value.trim(), 
-      useremail:document.getElementById("useremail").value.trim(), 
-      date: new Date().toLocaleDateString() });
-     
-      attendeeReg.register(booked);
-      */
-
-      //let eventid = document.getElementById("eventId").value.trim();
+      
       let username = document.getElementById("username").value.trim();
       let useremail = document.getElementById("useremail").value.trim();
       let dateReg = new Date().toLocaleDateString();
@@ -1422,25 +1270,34 @@ function confirmTourBooking (eventid) {
      
       tourbooked.book({id: lastkey+1, tourid: eventid, name: username, email: useremail , dateBooked: dateReg});
      
-    }
-    
-    //let num ='';
-    //RenderTourBookings(eventid, num);
-    
-    //const tourgrid = document.getElementById('tours-grid');
-    //renderBookings(eventid, tourgrid);
+      let num =  RenderBookings (eventid)  ;
 
-    /*
-    for (const oAttendee of attendeeReg.listAttendees()) {
-     alert (oAttendee.email);
+      //find index of item to be replaced
+      const targetIndex = detailsTour.tours.findIndex(tour=>tour.id=== eventid); 
+
+      //replace the object with a new one.
+      detailsTour.tours[targetIndex].seats = num;
+     
+     // working code 
+     /*
+      let filteredtours =  detailsTour.tours.filter (function (tour)
+      {
+        if (tour.id.trim() ===  eventid.trim()) {
+            tour.seats = num ;
+           
+          } 
+        
+      })
+      */
+      
     }
-    */
-    
+        
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
     const grid = document.getElementById('bookingModal');
     grid.style.display ='none';
+
    
    
 }
@@ -1537,6 +1394,8 @@ async function searchlectures (country, city, speaker, strfilepath) {
   
   try {
 
+    //alert (country + 'XXX' + city + "  " + speaker + "++++" + strfilepath );
+
     const section = document.getElementById('lectures');
     section.style.display = 'block';
 
@@ -1549,6 +1408,7 @@ async function searchlectures (country, city, speaker, strfilepath) {
 
     const data = await res.json();
 
+    
     
     let filteredlectures = data.lectures.filter (function (lecture)
     {
@@ -1612,22 +1472,6 @@ async function searchtours (strcountry, strcity,  startdate , enddate, strfilepa
 
     ToursSearchCriteria () ;
     
-    //alert (filteredtours);
-
-    /*
-    var filter = {
-      country: '' + strcountry.toLowerCase(),
-        city: '' +  strcity.toLowerCase()
-    };
-
-    var filteredData = filterByMultipleColumns(data.tours, filter);
-    */
-
-    //alert (JSON.stringify(out));
-
-    //alert (JSON.stringify(filters));
-
-
     const section = document.getElementById('tours');
     section.style.display = 'block';
 
