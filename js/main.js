@@ -308,6 +308,7 @@ async function getLecturesandTours() {
 if (document.readyState === "loading") {
   // Loading hasn't finished yet
   document.addEventListener("DOMContentLoaded", getLecturesandTours);
+   getLecturesandTours() ;
 } else {
   // `DOMContentLoaded` has already fired
   getLecturesandTours() ;
