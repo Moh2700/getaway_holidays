@@ -488,19 +488,33 @@ function ToursSearchCriteria ()  {
    
     if (btn) {
 
-      btn.addEventListener("click", runsearchTours);
-    
-       
-      function runsearchTours () {
-         var country = document.getElementById('countryInput').value;
-         var city = document.getElementById('cityInput').value;
-         var startdate = document.getElementById('startdate').value;
-         var enddate = document.getElementById('enddate').value;
-         var filepath= "/data/tours_details/tours.json";
-       
-        searchtours(country, city, startdate, enddate, filepath );
-      }
+       /*
+        btn.addEventListener("click", runsearchTours);
 
+        
+          const country = document.getElementById('countryInput').value;
+          const city = document.getElementById('cityInput').value;
+          const startdate = document.getElementById('startdate').value;
+          const enddate = document.getElementById('enddate').value;
+          
+       
+          searchtours(country, city, startdate, enddate);
+        */
+      
+        btn.addEventListener("click", runsearchTours);
+
+        function runsearchTours () {
+
+          const country = document.getElementById('countryInput').value;
+          const city = document.getElementById('cityInput').value;
+          const startdate = document.getElementById('startdate').value;
+          const enddate = document.getElementById('enddate').value;
+       
+          searchtours(country, city, startdate, enddate);
+        
+      }
+     
+      
     } else {
       alert("Element not found!");
     }
@@ -595,9 +609,8 @@ function LecturesSearchCriteria ()  {
 
 function loadTourEvent() {
 
-   
      document.getElementById("hdrevent").innerHTML = "Searching for Tours event";
-     //const search = document.getElementById("searchcriteria");
+    // const search = document.getElementById("searchcriteria");
      //search.style.display = 'block';
 
     // const reg = document.getElementById("SiteRegistration");
@@ -606,16 +619,14 @@ function loadTourEvent() {
     // const lec = document.getElementById("lectures");
     // lec.style.display = 'none'; 
 
-    const grid = document.getElementById('tours-grid');
-
     ToursSearchCriteria () ;
-    
-   // eventtype = "tours";
-   
+
+    const grid = document.getElementById('tours-grid');
     const tour = document.getElementById("tours");
     tour.style.display = 'block'; 
 
-   
+
+
     try {
        
         grid.innerHTML = '';
@@ -680,7 +691,6 @@ function loadTourEvent() {
 
         grid.innerHTML = `<p style="color: #ff6b6b;">${isRTL}</p>`;
     }
-
 
 
 }
@@ -1359,7 +1369,6 @@ function UserTourBookings ()
 }
 
 
-
 function RegisteredUsers ()   {
   
   const divsection = document.getElementById('users-registration');
@@ -1452,19 +1461,12 @@ async function searchlectures (country, city, speaker, strfilepath) {
   }
 }
 
-async function searchtours (strcountry, strcity,  startdate , enddate, strfilepath) {
+
+function searchtoursold (strcountry, strcity,  startdate , enddate) {
  
   try {
 
-    const res = await fetch(strfilepath);
-
-    if (!res.ok) throw new Error("Failed to load JSON");
-
-    const data = await res.json();
-
-    
-    
-    let filteredtours = data.tours.filter (function (tour)
+    let filteredtours = detailsTour.tours.filter (function (tour)
     {
         return  tour.country.toLowerCase() === strcountry.toLowerCase() 
         || tour.city.toLowerCase() === strcity.toLowerCase()
@@ -1516,6 +1518,70 @@ async function searchtours (strcountry, strcity,  startdate , enddate, strfilepa
   }
 }
 
+function searchtours (strcountry, strcity,  startdate , enddate, strfilepath) {
+ 
+  try {
+
+    /*
+    const res = await fetch(strfilepath);
+
+    if (!res.ok) throw new Error("Failed to load JSON");
+
+    const data = await res.json();
+    */
+    
+    
+    let filteredtours = detailsTour.tours.filter (function (tour)
+    {
+        return  tour.country.toLowerCase() === strcountry.toLowerCase() 
+        || tour.city.toLowerCase() === strcity.toLowerCase()
+        || Date.parse (tour.date) >= Date.parse(startdate) && Date.parse(tour.date) <= Date.parse(enddate)
+    })
+
+    ToursSearchCriteria () ;
+    
+    const section = document.getElementById('tours');
+    section.style.display = 'block';
+
+    const grid = document.getElementById('tours-grid');
+    grid.innerHTML = '';
+
+
+    let search = json2array(filteredtours);
+
+
+    for(const item of search) {
+       
+         const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+             
+            <img src="${item.src}" alt="${item.title}">
+
+            
+            <div id="${item.id}" class="event-card-content">
+                <h4>Title:${item.title}</h4>
+                <h2>Description: ${item.description}</h2>
+                <p><strong>Seats:</strong> ${item.seats}</p>
+                <p><strong>Date:</strong> ${item.date}</p>
+                <p><strong>Price:</strong> ${item.price}</p>
+                <p><strong>Duration:</strong>${item.duration}</p>
+                <p><strong>City:</strong>${item.city}</p>
+                <p><strong>Country:</strong>${item.country}</p>
+                    
+            </div>`;
+   
+            grid.appendChild(card);
+    }
+
+    
+    return grid;
+
+     
+  } catch (err) {
+     return err;
+  }
+}
 
 function json2array(datasearch){
     
