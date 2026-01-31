@@ -521,43 +521,43 @@ function LecturesSearchCriteria ()  {
 
     var search =`
    
-    <div id="sitereg">
-              <div><label for="city">City</label></div>
-              <div>
-                <input
-                  type="text"
+    
+              <!--div><label for="city">City</label></div-->
+             
+                <input 
+                  type="text" class="searchInput"
                   id="city"
                   
                   placeholder="Enter City please"
                 />
-              </div>
+            
 
-              <div><label for="speaker">Speaker</label></div>
-              <div>
-                <input
-                  type="text"
+              <!--div><label for="speaker">Speaker</label></div-->
+            
+                <input 
+                  type="text" class="searchInput"
                   id="speaker"
                  
                   placeholder="Enter Speaker please"
                 />
-              </div>
-              <div><label for="country">Country</label></div>
-              <div>
-                <input
-                  type="text"
+              
+              <!--div><label for="country">Country</label></div-->
+              
+                <input 
+                  type="text" class="searchInput"
                   id="country"
                  
                   placeholder="Enter country please"
                 />
-              </div>
              
-            </div>
+             
+          
 
                 `;
                 
 
     const card = document.createElement('div');
-    //card.className = 'search-fields';
+    card.className = 'search-fields';
     card.innerHTML = search;
     
     var btn = document.createElement('button');
@@ -880,7 +880,7 @@ function openBookingForm (id, data)   {
 
 function openBookingLecture(eventid) {
 
-    openBookingForm (eventid, detailsLec.lectures )
+    openBookingForm (eventid, detailsLec.lectures );
       
    /*  const lecture =  detailsLec.lectures.find(u => u.id === eventid);
 
@@ -920,7 +920,7 @@ function openBookingTour(eventid) {
 
    */
     
-    openBookingForm (eventid, detailsTour.tours )
+    openBookingForm (eventid, detailsTour.tours );
       
 }
 
