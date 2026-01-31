@@ -598,14 +598,7 @@ function LecturesSearchCriteria ()  {
 function loadTourEvent() {
 
      document.getElementById("hdrevent").innerHTML = "Searching for Tours event";
-    // const search = document.getElementById("searchcriteria");
-     //search.style.display = 'block';
-
-    // const reg = document.getElementById("SiteRegistration");
-    // reg.style.display = 'none'; 
-
-    // const lec = document.getElementById("lectures");
-    // lec.style.display = 'none'; 
+   
 
     ToursSearchCriteria () ;
 
@@ -856,16 +849,40 @@ function BookLectureEvent (eventid)
 
 function closeBooking() {
 
-     // mdlBooking.style.display = "none";
+      const divSection = document.getElementById('Bookings');
+      divSection.style.display ='none';
+     
       const grid = document.getElementById('bookingModal');
       grid.style.display ='none';
       form.reset();
+     
+
+}
+
+function openBookingForm (id, data)   {
+    
+    const objevent =  data.find(u => u.id === id);
+
+    document.getElementById("eventTitle").value = objevent.title;
+    document.getElementById("eventId").value = objevent.id;
+
+    
+    document.getElementById("eventId").setAttribute('value', objevent.id);
+    document.getElementById("eventTitle").setAttribute('value', objevent.title);
+
+    const divSection = document.getElementById('Bookings');
+    divSection.style.display ='block';
+
+    const grid = document.getElementById('bookingModal');
+    grid.style.display ='block';
 
 }
 
 function openBookingLecture(eventid) {
+
+    openBookingForm (eventid, detailsLec.lectures )
       
-    const lecture =  detailsLec.lectures.find(u => u.id === eventid);
+   /*  const lecture =  detailsLec.lectures.find(u => u.id === eventid);
 
     document.getElementById("eventTitle").value = lecture.title;
     document.getElementById("eventId").value = lecture.id;
@@ -874,13 +891,19 @@ function openBookingLecture(eventid) {
     document.getElementById("eventId").setAttribute('value', lecture.id);
     document.getElementById("eventTitle").setAttribute('value', lecture.title);
 
-     const grid = document.getElementById('bookingModal');
-     grid.style.display ='block';
+    const divSection = document.getElementById('Bookings');
+    divSection.style.display ='block';
+
+    const grid = document.getElementById('bookingModal');
+    grid.style.display ='block';
+    
+    */
    
 }
 
 function openBookingTour(eventid) {
-      
+    
+   /*
     const tour =  detailsTour.tours.find(u => u.id === eventid);
 
     document.getElementById("eventTitle").value = tour.title;
@@ -889,9 +912,15 @@ function openBookingTour(eventid) {
     document.getElementById("eventId").setAttribute('value', tour.id);
     document.getElementById("eventTitle").setAttribute('value', tour.title);
 
+    const divSection = document.getElementById('Bookings');
+    divSection.style.display ='block';
+
     const grid = document.getElementById('bookingModal');
     grid.style.display ='block';
+
+   */
     
+    openBookingForm (eventid, detailsTour.tours )
       
 }
 
@@ -1064,7 +1093,7 @@ function renderTourBookingList   ()
           card.id = b.email;
 
           for(const item of search) {
-            //alert (item.title);
+           
         
            var strUser  = `
             <h3>✅ Tours Details </h3>
@@ -1161,7 +1190,6 @@ function renderRegisteredUsersList   ()
   });
   
  
- // getSiteEvent ('SiteRegistration', 'none');
 
   return RegList;
 }
@@ -1367,6 +1395,8 @@ function RegisteredUsers ()   {
   const lst = renderRegisteredUsersList() ;
   lst.style.display = 'block';
 
+ 
+  usersgrid.innerHTML="<h3>✅Registered Users</h3> <h5>Double click on users to view more details</h5>"
   usersgrid.append(lst);
 
  
@@ -1447,15 +1477,15 @@ function searchlectures (country, city, speaker) {
   }
 }
 
-
+/*
 async function searchlecturesold (country, city, speaker, strfilepath) {
  
   
   try {
 
 
-    //const section = document.getElementById('lectures');
-    //section.style.display = 'block';
+    const section = document.getElementById('lectures');
+    section.style.display = 'block';
 
     const grid = document.getElementById('lectures-grid');
     grid.innerHTML = '';
@@ -1508,8 +1538,9 @@ async function searchlecturesold (country, city, speaker, strfilepath) {
      return err;
   }
 }
+*/
 
-
+/*
 function searchtoursold (strcountry, strcity,  startdate , enddate) {
  
   try {
@@ -1565,20 +1596,13 @@ function searchtoursold (strcountry, strcity,  startdate , enddate) {
      return err;
   }
 }
+*/
+
 
 function searchtours (strcountry, strcity,  startdate , enddate) {
  
   try {
 
-    /*
-    const res = await fetch(strfilepath);
-
-    if (!res.ok) throw new Error("Failed to load JSON");
-
-    const data = await res.json();
-    */
-    
-    
     let filteredtours = detailsTour.tours.filter (function (tour)
     {
         return  tour.country.toLowerCase() === strcountry.toLowerCase() 
@@ -1672,45 +1696,130 @@ function confirmRegistration() {
    
 }
 
-navtoggle ();
-
-
 
 function useroption (choice) {
    
-  const sections = document.querySelectorAll('section');
+  //const sections = document.querySelectorAll('.section');
+  var sections = document.getElementsByTagName('section');
+  
   var searchgrid, search ;
+
+  //alert (sections[1].style.id);
  
 for (const section of sections) {
+ 
+ // alert ("ID: " + section.id + "  Display: " + section.style.display + "  Choice: " + choice);
+
   section.style.display='none'; 
+  
   if (section.id.trim() === choice.trim() ){
 
     switch(choice) {
-      case "tours":
-        searchgrid = document.getElementById("searching-grid");
-        searchgrid.style.display = 'block';  
-        search = document.getElementById('searchcriteria');
-        search.style.display = 'block';
+        case "tours":
+          searchgrid = document.getElementById("searching-grid");
+          searchgrid.style.display = 'block';  
+          search = document.getElementById('searchcriteria');
+          search.style.display = 'block';
+
+          section.style.display='block';
+          //const grid = document.getElementById('bookingModal');
+          //grid.style.display ='none'; 
+
+         
         break;
 
-      case "lectures":
-        searchgrid = document.getElementById("search-grid");
-        searchgrid.style.display = 'block';  
-        search = document.getElementById('searchcriteria');
-        search.style.display = 'block';
-       
-      break;
-  
-    }
-    section.style.display='block';
-    const grid = document.getElementById('bookingModal');
-    grid.style.display ='none';
-    //alert(choice)
-  }
-}
-  
-}
+        case "lectures":
+          searchgrid = document.getElementById("search-grid");
+          searchgrid.style.display = 'block';  
+          search = document.getElementById('searchcriteria');
+          search.style.display = 'block';
 
+          //=======show booking form=================
+       
+          break;
+        
+          /*
+        case "Bookings" :
+           //=======show booking form===============
+           const divBooking = document.getElementById('Bookings');
+           divBooking.style.display ='block'; 
+
+           const grid = document.getElementById('bookingModal');
+           grid.style.display ='block'; 
+           break;
+         */
+
+        case "logging"  :
+            
+           section.style.display='block';
+           grid = document.getElementById('loginform');
+           grid.style.display ='block';
+           break; 
+
+        case "users-registration":
+        
+          if (isAdmin === false) {
+          
+            document.getElementById("regusersubmnu").disabled= true;
+            document.getElementById("regusersubmnu").style.cursor = 'not-allowed';
+            return; 
+          }
+          break;
+        
+
+        case "lecturesreservation":
+        
+          if (isAdmin === false) {
+          
+            document.getElementById("rsrvdtoursubmnu").disabled= true;
+            document.getElementById("rsrvdtoursubmnu").style.cursor = 'not-allowed';
+            return; 
+          }
+          break;
+        
+
+        case "toursreservation":
+        
+          if (isAdmin === false) {
+          
+            document.getElementById("rsrvdlecsubmnu").disabled= true;
+            document.getElementById("rsrvdlecsubmnu").style.cursor = 'not-allowed';
+            return; 
+          }
+          break;
+        
+      } //====end of switch================
+
+      section.style.display='block';
+     //const grid = document.getElementById('bookingModal');
+     //grid.style.display ='none'; 
+  
+    } //=====end of if===========
+
+    // section.style.display='none';
+    //const grid = document.getElementById('bookingModal');
+    // grid.style.display ='none'; 
+    
+
+  } //===== end of for loop=========
+  
+}//========== end of function========
+
+
+
+navtoggle ();
+
+let isAdmin = false;
+
+
+function logAdmin (username, userpass) {
+    if (username === 'admin' && userpass === 'admin') {
+       document.getElementById('loginform').style.display ='none';
+       isAdmin = true;
+    }else {
+       alert ('wrong credentials!!! try again');
+    }
+}
 
 
 const attendeeReg = new Attendee();

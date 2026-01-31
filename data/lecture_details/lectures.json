@@ -10,6 +10,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
+   "description": "First lecture",
    "seats":18,
    "address":[ 
     {
@@ -41,6 +42,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "14/03/2026",
+   "description": "First lecture",
    "seats":20,
    "address":[ 
     {
@@ -72,6 +74,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "12/03/2026",
+   "description": "First lecture", 
    "seats":4,
    "address":[ 
     {
@@ -103,6 +106,7 @@
    "city":"Seville",
    "email": "getawaytravels@gmail.com",
    "date": "18/03/2026",
+   "description": "First lecture",
    "seats":5,
    "address":[ 
     {

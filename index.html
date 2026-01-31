@@ -41,22 +41,22 @@
                 Reservation
 
                 <div id="myDropdown" class="dropdown-content">
-                  <a
+                  <a id="rsrvdtoursubmnu"
                     onclick="
                       UserTourBookings();
                       useroption('toursreservation');
                     "
                     style="cursor: pointer"
-                    >Tours</a
-                  >
-                  <a
+                    >Reserved Tours <!--span class="tooltip1 tooltiptext"> disabled button </span--></a>
+                  
+                  <a id="rsrvdlecsubmnu"
                     onclick="
                       UserLectureBookings();
                       useroption('lecturesreservation');
                     "
                     style="cursor: pointer"
-                    >Lectures</a
-                  >
+                    >Reserved Lectures</a>
+                  
                 </div>
               </div>
             </li>
@@ -75,13 +75,11 @@
                     >New Registration</a
                   >
 
-                  <a
+                  <a id="regusersubmnu"
                     onclick="
                       RegisteredUsers();
                       useroption('users-registration');
-                      // getSiteEvent('searchcriteria', 'none');
-                      // getSiteEvent('lectures', 'none');
-                      // getSiteEvent('tours', 'none');
+                      
                     "
                     style="cursor: pointer"
                     >Show Users</a
@@ -94,7 +92,6 @@
               <a
                 onclick="
                   loadLectureEvent();
-                  // getSiteEvent('tours-reservation', 'none');
                   useroption('lectures');
                 "
                 style="cursor: pointer"
@@ -107,8 +104,6 @@
               <a
                 onclick="
                   loadTourEvent();
-
-                  //getSiteEvent('tours-reservation', 'none');
                   useroption('tours');
                 "
                 style="cursor: pointer"
@@ -116,12 +111,66 @@
               >
             </li>
 
-            <li><a href="contact.html">Visit Us</a></li>
+            <li ><a style="cursor: pointer" onclick = "
+              document.getElementById('loginform').style.display ='block' 
+              useroption('logging');
+              " >Login</a></li>
           </ul>
         </nav>
       </header>
 
       <main id="mainpage">
+
+      <section id = "logging">
+
+        <div id= "loginform" class="login-container center" style="display:none">
+        <h2>Welcome Back</h2>
+        <p>Please login to your account</p>
+
+        <form>
+          <div class="input-group">
+            <input id="username" type="text" required />
+            <label>Username</label>
+          </div>
+
+          <div class="input-group">
+            <input id="userpass" type="password" required />
+            <label>Password</label>
+          </div>
+
+          <!--button class="btn btn-outline-info tooltip1" disabled>
+            Hover over me
+            <span class="tooltip1 tooltiptext"> disabled button </span>
+          </button-->
+
+          <button
+            type="button"
+            class="book-btn"
+            onclick="
+              logAdmin(
+                document.getElementById('username').value.trim(),
+                document.getElementById('userpass').value.trim(),
+              )
+            "
+          >
+            <!--span class="tooltip1 tooltiptext"> disabled button </span-->
+            Login
+          </button>
+          <button
+            style="margin-top: 20px"
+            type="button"
+            class="book-btn"
+            onclick = "document.getElementById('loginform').style.display ='none' "
+          >
+            Cancel
+          </button>
+        </form>
+        </div>
+
+
+      </section>  
+      
+
         <br />
         <!-- Section for searching tours and events  -->
         <section
@@ -194,8 +243,13 @@
         </section>
         <br />
 
-        <div class="tourbookings" id="bookingModal" style="display: none"></div>
+        
 
+        <section id="Bookings" class="content-section" style="display: none"> 
+          
+           <div class="tourbookings center" id="bookingModal" style="display: none"></div>
+        </section>
+        
         <section
           id="SiteRegistration"
           class="content-section"

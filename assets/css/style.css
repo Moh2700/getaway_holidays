@@ -134,13 +134,16 @@ body::before {
 
   .tourbookings {
     position: absolute;
-    top: 50%;
+    
+    /*
+    top: 90%;
     left: 50%;
+    */
     transform: translate(-50%, -50%);
     /*box-shadow: 0, 20px, 30px  #FEF8EF;*/
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15); 
-    /*transition: transform 0.3s, box-shadow 0.3s;*/
- } 
+    transition: transform 0.3s, box-shadow 0.3s;
+   } 
  
  /* SEARCH BOX STYLES */
   .search-box {
@@ -266,6 +269,135 @@ body::before {
   background-color: #3e8e41;
 }
 
+
+.tooltip1 {
+        position: relative !important;
+        display: inline-block !important;
+        width: 175px !important;
+        font-size: 14px;
+      }
+
+      .tooltip1 .tooltiptext {
+        visibility: hidden;
+        width: 120px !important;
+        background-color: black !important;
+        color: #fff !important;
+        text-align: center !important;
+        border-radius: 6px !important;
+        padding: 5px 0 !important;
+        position: absolute !important;
+        z-index: 1 !important;
+        top: -5px !important;
+        left: 110% !important;
+      }
+
+      .tooltip1 .tooltiptext::after {
+        content: "";
+        position: absolute !important;
+        top: 50% !important;
+        right: 100% !important;
+        margin-top: -5px !important;
+        border-width: 5px !important;
+        border-style: solid !important;
+        border-color: transparent black transparent transparent !important;
+      }
+
+      .tooltip1:hover .tooltiptext {
+        visibility: visible !important;
+      }
+
+
+      .center {
+            position: absolute;
+
+            top: 20%;
+            left: 50%;
+            
+            transform: translate(-50%, -50%);
+           /* width: 200px;*/
+           /* background-color: lightgreen;*/
+
+           /* transform: translate(-50%, -50%);*/
+           /*box-shadow: 0, 20px, 30px  #FEF8EF;*/
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15); 
+      }
+
+       .login-container {
+        width: 200px;
+        padding: 40px;
+        /*background: rgba(255, 255, 255, 0.15);*/
+        background: var(--emmerald);
+
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        /*color: #fff;*/
+        color:black;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-align: center;
+
+        
+      }
+
+      .login-container h2 {
+        margin-bottom: 10px;
+      }
+
+      .login-container p {
+        font-size: 14px;
+        margin-bottom: 30px;
+        opacity: 0.8;
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 10px 0;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .input-group label {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        font-size: 16px;
+        pointer-events: none;
+        transition: 0.3s;
+        opacity: 0.7;
+      }
+
+      .input-group input:focus + label,
+      .input-group input:valid + label {
+        top: -12px;
+        font-size: 12px;
+        opacity: 1;
+      }
+
+      /*
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 25px;
+        background: #fff;
+        color: #764ba2;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #eaeaea;
+      }
+      */
 /*======================================*/
 
 
