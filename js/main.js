@@ -378,8 +378,6 @@ if (document.readyState === "loading") {
 
 function loadLectureEvent() {
 
-    
-
     document.getElementById("hdrevent").innerHTML = "Searching for lecture event";
     
     const lec = document.getElementById("lectures");
@@ -387,7 +385,6 @@ function loadLectureEvent() {
 
     const grid = document.getElementById('lectures-grid');
     
-   
 
     LecturesSearchCriteria ();
 
@@ -409,37 +406,46 @@ function loadLectureEvent() {
         }
 
 
-        for (const event of detailsLec.lectures) {
+        for (const lec of detailsLec.lectures) {
 
             const card = document.createElement('div');
             card.className = 'event-card';
 
             card.innerHTML = `
              
-                <div id="${event.id}" class="event-card-content">
-                    <h4>Title:${event.title}</h4>
-                    <h2>Description: ${event.description}</h2>
-                    <p><strong>Seats:</strong> ${event.seats}</p>
-                    <p><strong>Date:</strong> ${event.date}</p>
-                    <p><strong>Speaker:</strong> ${event.speaker}</p>
-                    <p><strong>Venue:</strong>${event.venue}</p>
-                    <p><strong>City:</strong>${event.city}</p>
-                    <p><strong>Country:</strong>${event.country}</p> 
+                <div id="${lec.id}" class="event-card-content">
+                    <h4>Title:${lec.title}</h4>
+                    <h2>Description: ${lec.description}</h2>
+                    <p><strong>Seats:</strong> ${lec.seats}</p>
+                    <p><strong>Date:</strong> ${lec.date}</p>
+                    <p><strong>Speaker:</strong> ${lec.speaker}</p>
+                    <p><strong>Venue:</strong>${lec.venue}</p>
+                    <p><strong>City:</strong>${lec.city}</p>
+                    <p><strong>Country:</strong>${lec.country}</p> 
                                    
                 </div>
 
-                <button id = "btn${event.id}" class="book-btn" onclick="openBookingLecture('${event.id}')">
+                <button id = "btn${lec.id}" class="book-btn" onclick="openBookingLecture('${lec.id}')">
                   Book
                 </button>
 
             `;
             grid.appendChild(card);
+           
+           BookLectureEvent ();
 
         }
 
+        /*
+
+         <button id = "btn${lec.id}" class="book-btn" onclick="openBookingLecture('${lec.id}')">
+                  Book
+                </button>
+        */
   
     //RegisterEvent (eventid);
-    BookLectureEvent (eventid);
+    
+    BookLectureEvent (`${lec.id}`);
 
     } catch (error) {
         console.error("Could not load events:", error);
@@ -513,8 +519,6 @@ function ToursSearchCriteria ()  {
 
 function LecturesSearchCriteria ()  {
   
-    
-    
     const searchgrid = document.getElementById("searching-grid");
     searchgrid.style.display = 'block'; 
     searchgrid.innerHTML ="";
@@ -550,8 +554,6 @@ function LecturesSearchCriteria ()  {
                   placeholder="Enter country please"
                 />
              
-             
-          
 
                 `;
                 
@@ -627,32 +629,31 @@ function loadTourEvent() {
         }
 
 
-        for (const event of detailsTour.tours) {
+        for (const tour of detailsTour.tours) {
 
             const card = document.createElement('div');
             card.className = 'event-card';
             card.innerHTML = `
              
-            <img src="${event.src}" alt="${event.title}">
+            <img src="${tour.src}" alt="${tour.title}">
 
             
-            <div id="${event.id}" class="event-card-content">
-                <h4>Title:${event.title}</h4>
-                <h2>Description: ${event.description}</h2>
-                <p><strong>Seats:</strong> ${event.seats}</p>
-                <p><strong>Date:</strong> ${event.date}</p>
-                <p><strong>Price:</strong> ${event.price}</p>
-                <p><strong>Duration:</strong>${event.duration}</p>
-                <p><strong>City:</strong>${event.city}</p>
-                <p><strong>Country:</strong>${event.country}</p>
+            <div id="${tour.id}" class="event-card-content">
+                <h4>Title:${tour.title}</h4>
+                <h2>Description: ${tour.description}</h2>
+                <p><strong>Seats:</strong> ${tour.seats}</p>
+                <p><strong>Date:</strong> ${tour.date}</p>
+                <p><strong>Price:</strong> ${tour.price}</p>
+                <p><strong>Duration:</strong>${tour.duration}</p>
+                <p><strong>City:</strong>${tour.city}</p>
+                <p><strong>Country:</strong>${tour.country}</p>
                     
             </div>
 
-            <button id = "btn${event.id}" class="book-btn" onclick="openBookingTour('${event.id}')">
+            <button id = "btn${tour.id}" class="book-btn" onclick="openBookingTour('${tour.id}')">
               Book
             </button>
            
-          
             `;
 
             grid.appendChild(card);
@@ -660,9 +661,15 @@ function loadTourEvent() {
 
         }
 
+      /*
+ <button id = "btn${tour.id}" class="book-btn" onclick="openBookingTour('${tour.id}')">
+              Book
+            </button>
+
+      */
         
     //RegisterEvent (eventid);
-    BookTourEvent (eventid);
+    BookTourEvent ();
 
     } catch (error) {
         console.error("Could not load events:", error);
@@ -686,12 +693,6 @@ function getSiteEvent  (strEventType, displaystate) {
 
 function loadSiteRegistration () {
   
-  //getSiteEvent ('searchcriteria', 'none');
- // getSiteEvent ('lectures', 'none');
-  //getSiteEvent ('tours', 'none');
- // getSiteEvent ('SiteRegistration', 'block');
-  
- // getSiteEvent ('tours-reservation', 'none');  
  
    const grid = document.getElementById("siteregistration-grid");
 
@@ -753,7 +754,7 @@ function loadSiteRegistration () {
  
 }
 
-function BookTourEvent (eventid)
+function BookTourEvent ()
 {
     
     const grid = document.getElementById('bookingModal');
@@ -786,7 +787,7 @@ function BookTourEvent (eventid)
         <input type="email" id="useremail" required />
       </label>
 
-      <div id="divbutton" " >
+      <div id="divbutton">
          <p class="book-btn" id="cmdBooking"  onclick="confirmTourBooking('${eventid}')"  >Confirm</p>
          <p class="book-btn" id ="cmdCancel" onclick="closeBooking()">Cancel</p>
       </div>
@@ -833,8 +834,8 @@ function BookLectureEvent (eventid)
         <input type="email" id="useremail" required />
       </label>
 
-      <div id="divbutton" " >
-         <p class="book-btn" id="cmdBooking"  onclick="confirmLectureBooking('${eventid}')"  >Confirm</p>
+      <div id="divbutton" >
+         <p class="book-btn" id="cmdBooking"  onclick="confirmLectureBooking()"  >Confirm</p>
          <p class="book-btn" id ="cmdCancel" onclick="closeBooking()">Cancel</p>
       </div>
     
@@ -852,22 +853,25 @@ function closeBooking() {
       const divSection = document.getElementById('Bookings');
       divSection.style.display ='none';
      
+      
+
+      const frm =  document.getElementById('BookingForm');
+      frm.reset();
       const grid = document.getElementById('bookingModal');
       grid.style.display ='none';
-      form.reset();
-     
+
 
 }
 
-function openBookingForm (id, data)   {
-    
-    const objevent =  data.find(u => u.id === id);
+function openBookingForm (eventid, data)   {
+   
+    const objevent =  data.find(u => u.id === eventid);
 
     document.getElementById("eventTitle").value = objevent.title;
-    document.getElementById("eventId").value = objevent.id;
+    document.getElementById("eventId").value = eventid;
 
     
-    document.getElementById("eventId").setAttribute('value', objevent.id);
+    document.getElementById("eventId").setAttribute('value', eventid);
     document.getElementById("eventTitle").setAttribute('value', objevent.title);
 
     const divSection = document.getElementById('Bookings');
@@ -880,47 +884,14 @@ function openBookingForm (id, data)   {
 
 function openBookingLecture(eventid) {
 
-    openBookingForm (eventid, detailsLec.lectures );
-      
-   /*  const lecture =  detailsLec.lectures.find(u => u.id === eventid);
 
-    document.getElementById("eventTitle").value = lecture.title;
-    document.getElementById("eventId").value = lecture.id;
-
-    
-    document.getElementById("eventId").setAttribute('value', lecture.id);
-    document.getElementById("eventTitle").setAttribute('value', lecture.title);
-
-    const divSection = document.getElementById('Bookings');
-    divSection.style.display ='block';
-
-    const grid = document.getElementById('bookingModal');
-    grid.style.display ='block';
-    
-    */
-   
+  openBookingForm (eventid, detailsLec.lectures );
+     
 }
 
 function openBookingTour(eventid) {
     
-   /*
-    const tour =  detailsTour.tours.find(u => u.id === eventid);
-
-    document.getElementById("eventTitle").value = tour.title;
-    document.getElementById("eventId").value = tour.id;
-
-    document.getElementById("eventId").setAttribute('value', tour.id);
-    document.getElementById("eventTitle").setAttribute('value', tour.title);
-
-    const divSection = document.getElementById('Bookings');
-    divSection.style.display ='block';
-
-    const grid = document.getElementById('bookingModal');
-    grid.style.display ='block';
-
-   */
-    
-    openBookingForm (eventid, detailsTour.tours );
+  openBookingForm (eventid, detailsTour.tours );
       
 }
 
@@ -1195,11 +1166,13 @@ function renderRegisteredUsersList   ()
 }
 
 
-function confirmLectureBooking (eventid) {
+function confirmLectureBooking () {
 
-     const name = document.getElementById("username").value.trim();
-     const email = document.getElementById("useremail").value.trim();
-    
+     const name = document.forms['BookingForm'].username.value.trim();
+     const email = document.forms['BookingForm'].useremail.value.trim();
+     eventid = document.forms['BookingForm'].eventId.value.trim();
+     const dateReg = new Date().toLocaleDateString();
+
      if (!name) {
           alert("Please enter your name");
           return;
@@ -1210,26 +1183,16 @@ function confirmLectureBooking (eventid) {
           return;
         }
 
-   
-     eventid = document.getElementById("eventId").value.trim();
-     
-    
-
-      attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
-      attendeeReg.email = document.getElementById("useremail").value.trim();
-      attendeeReg.event_id = eventid;
-      attendeeReg.dateRegistered = new Date().toLocaleDateString();
-   
-     
+    attendeeReg.name = name;
+    attendeeReg.email = email;
+    attendeeReg.event_id = eventid;
+    attendeeReg.dateRegistered = new Date().toLocaleDateString();  
    
     if(!attendeeReg.isRegistered(attendeeReg.email)) {
         alert("You are not registered in the system  ");
         return;
     }else {
-       
-     let username = document.getElementById("username").value.trim();
-     let useremail = document.getElementById("useremail").value.trim();
-     let dateReg = new Date().toLocaleDateString();
+    
 
     const obj = lecbooked.listLectures();
     const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
@@ -1248,6 +1211,9 @@ function confirmLectureBooking (eventid) {
 
     }
       
+    const divSection = document.getElementById('Bookings');
+    divSection.style.display ='none';
+
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
@@ -1257,10 +1223,12 @@ function confirmLectureBooking (eventid) {
 
 }
 
-function confirmTourBooking (eventid) {
+function confirmTourBooking () {
 
-     const name = document.getElementById("username").value.trim();
-     const email = document.getElementById("useremail").value.trim();
+    const name = document.forms['BookingForm'].username.value.trim();
+    const email = document.forms['BookingForm'].useremail.value.trim();
+    eventid = document.forms['BookingForm'].eventId.value.trim();
+    const dateReg = new Date().toLocaleDateString();
     
      if (!name) {
           alert("Please enter your name");
@@ -1273,25 +1241,16 @@ function confirmTourBooking (eventid) {
         }
 
    
-      eventid = document.getElementById("eventId").value.trim();
-     
-
-      attendeeReg.name = document.getElementById("username").value.trim().toLowerCase();   
-      attendeeReg.email = document.getElementById("useremail").value.trim();
-      attendeeReg.event_id = eventid;
-      attendeeReg.dateRegistered = new Date().toLocaleDateString();
-   
+    attendeeReg.name = name;
+    attendeeReg.email = email;
+    attendeeReg.event_id = eventid;
+    attendeeReg.dateRegistered = new Date().toLocaleDateString();  
 
     if(!attendeeReg.isRegistered(attendeeReg.email)) {
         alert("You are not registered in the system  ");
         return;
     }else {
-       
       
-      let username = document.getElementById("username").value.trim();
-      let useremail = document.getElementById("useremail").value.trim();
-      let dateReg = new Date().toLocaleDateString();
-
       const obj = tourbooked.listTours();
       const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
      
@@ -1305,7 +1264,7 @@ function confirmTourBooking (eventid) {
       //replace the object with a new one.
       detailsTour.tours[targetIndex].seats = num;
      
-     // working code 
+     // this code is working 
      /*
       let filteredtours =  detailsTour.tours.filter (function (tour)
       {
@@ -1318,7 +1277,10 @@ function confirmTourBooking (eventid) {
       */
       
     }
-        
+    
+    const divSection = document.getElementById('Bookings');
+    divSection.style.display ='none';
+
     const frmBooking = document.getElementById("BookingForm");
     frmBooking.reset ();
 
@@ -1477,127 +1439,6 @@ function searchlectures (country, city, speaker) {
   }
 }
 
-/*
-async function searchlecturesold (country, city, speaker, strfilepath) {
- 
-  
-  try {
-
-
-    const section = document.getElementById('lectures');
-    section.style.display = 'block';
-
-    const grid = document.getElementById('lectures-grid');
-    grid.innerHTML = '';
-
-    const res = await fetch(strfilepath);
-
-    if (!res.ok) throw new Error("Failed to load JSON");
-
-    const data = await res.json();
-
-    
-    
-    let filteredlectures = data.lectures.filter (function (lecture)
-    {
-        return  lecture.country.toLowerCase() === country.toLowerCase() 
-        || lecture.city.toLowerCase() === city.toLowerCase()
-        || lecture.speaker.toLowerCase() === speaker.toLowerCase()
-    })
-
-    
-    let search = json2array(filteredlectures);
-
-
-    for(const item of search) {
-       
-         const card = document.createElement('div');
-            card.className = 'event-card';
-            card.innerHTML = `
-             
-
-            <div id="${item.id}" class="event-card-content">
-                    <h4>Title:${item.title}</h4>
-                    <h2>Description: ${item.description}</h2>
-                    <p><strong>Date:</strong> ${item.date}</p>
-                    <p><strong>Speaker:</strong> ${item.speaker}</p>
-                    <p><strong>Venue:</strong>${item.venue}</p>
-                    <p><strong>City:</strong>${item.city}</p>
-                    <p><strong>Country:</strong>${item.country}</p>                   
-              
-            </div>`;
-
-            grid.appendChild(card);
-    }
-
-  
-    // return tour;
-
-     
-  } catch (err) {
-     return err;
-  }
-}
-*/
-
-/*
-function searchtoursold (strcountry, strcity,  startdate , enddate) {
- 
-  try {
-
-    let filteredtours = detailsTour.tours.filter (function (tour)
-    {
-        return  tour.country.toLowerCase() === strcountry.toLowerCase() 
-        || tour.city.toLowerCase() === strcity.toLowerCase()
-        || Date.parse (tour.date) >= Date.parse(startdate) && Date.parse(tour.date) <= Date.parse(enddate)
-    })
-
-    ToursSearchCriteria () ;
-    
-    const section = document.getElementById('tours');
-    section.style.display = 'block';
-
-    const grid = document.getElementById('tours-grid');
-    grid.innerHTML = '';
-
-
-    let search = json2array(filteredtours);
-
-
-    for(const item of search) {
-       
-         const card = document.createElement('div');
-            card.className = 'event-card';
-            card.innerHTML = `
-             
-            <img src="${item.src}" alt="${item.title}">
-
-            
-            <div id="${item.id}" class="event-card-content">
-                <h4>Title:${item.title}</h4>
-                <h2>Description: ${item.description}</h2>
-                <p><strong>Seats:</strong> ${item.seats}</p>
-                <p><strong>Date:</strong> ${item.date}</p>
-                <p><strong>Price:</strong> ${item.price}</p>
-                <p><strong>Duration:</strong>${item.duration}</p>
-                <p><strong>City:</strong>${item.city}</p>
-                <p><strong>Country:</strong>${item.country}</p>
-                    
-            </div>`;
-   
-            grid.appendChild(card);
-    }
-
-    
-    return grid;
-
-     
-  } catch (err) {
-     return err;
-  }
-}
-*/
-
 
 function searchtours (strcountry, strcity,  startdate , enddate) {
  
@@ -1697,14 +1538,35 @@ function confirmRegistration() {
 }
 
 
+function checkAdmin (submnu, section) {
+  
+  
+  if (isAdmin == 'false')
+  {
+    document.getElementById(submnu).disabled= true;
+    document.getElementById(submnu).style.cursor = 'not-allowed';
+    
+  }else  {
+    section.style.display = 'block';
+    //alert(section.id);
+    document.getElementById(submnu).disabled= false;
+    document.getElementById(submnu).style.cursor = 'pointer';
+
+    
+
+  }
+
+  return isAdmin;
+}
+
 function useroption (choice) {
    
-  //const sections = document.querySelectorAll('.section');
+ 
+
   var sections = document.getElementsByTagName('section');
   
   var searchgrid, search ;
 
-  //alert (sections[1].style.id);
  
 for (const section of sections) {
  
@@ -1715,107 +1577,88 @@ for (const section of sections) {
   if (section.id.trim() === choice.trim() ){
 
     switch(choice) {
+
         case "tours":
           searchgrid = document.getElementById("searching-grid");
-          searchgrid.style.display = 'block';  
+          searchgrid.style.display = 'block';
+
           search = document.getElementById('searchcriteria');
           search.style.display = 'block';
 
           section.style.display='block';
-          //const grid = document.getElementById('bookingModal');
-          //grid.style.display ='none'; 
-
+         
          
         break;
 
         case "lectures":
           searchgrid = document.getElementById("search-grid");
-          searchgrid.style.display = 'block';  
+          searchgrid.style.display = 'block'; 
+
           search = document.getElementById('searchcriteria');
           search.style.display = 'block';
 
-          //=======show booking form=================
-       
+          section.style.display='block';
+          
           break;
         
-          /*
-        case "Bookings" :
-           //=======show booking form===============
-           const divBooking = document.getElementById('Bookings');
-           divBooking.style.display ='block'; 
-
-           const grid = document.getElementById('bookingModal');
-           grid.style.display ='block'; 
-           break;
-         */
 
         case "logging"  :
             
-           section.style.display='block';
-           grid = document.getElementById('loginform');
-           grid.style.display ='block';
-           break; 
+          section.style.display='block';
+          grid = document.getElementById('loginform');
+          grid.style.display ='block';
+          break; 
 
         case "users-registration":
-        
-          if (isAdmin === false) {
+          window.onclick = e => {
+            if (e.target.innerText == 'New Registration')  {
+              const divSection = document.getElementById("SiteRegistration");
+              divSection.style.display = 'block';
+              loadSiteRegistration();
+              return;
+            }
+          } 
+          if (checkAdmin ("regusersubmnu", section) == 'true') {
+            RegisteredUsers();
+          }  
           
-            document.getElementById("regusersubmnu").disabled= true;
-            document.getElementById("regusersubmnu").style.cursor = 'not-allowed';
-            return; 
-          }
           break;
         
 
         case "lecturesreservation":
-        
-          if (isAdmin === false) {
-          
-            document.getElementById("rsrvdtoursubmnu").disabled= true;
-            document.getElementById("rsrvdtoursubmnu").style.cursor = 'not-allowed';
-            return; 
-          }
-          break;
+
+        if (checkAdmin ("rsrvdlecsubmnu", section) == 'true') {
+           UserLectureBookings();
+        } 
+
+        break;
         
 
         case "toursreservation":
         
-          if (isAdmin === false) {
-          
-            document.getElementById("rsrvdlecsubmnu").disabled= true;
-            document.getElementById("rsrvdlecsubmnu").style.cursor = 'not-allowed';
-            return; 
-          }
-          break;
+        if (checkAdmin ("rsrvdtoursubmnu", section) == 'true') {
+           UserTourBookings();
+        }  
+
+        break;
         
       } //====end of switch================
-
-      section.style.display='block';
-     //const grid = document.getElementById('bookingModal');
-     //grid.style.display ='none'; 
   
-    } //=====end of if===========
-
-    // section.style.display='none';
-    //const grid = document.getElementById('bookingModal');
-    // grid.style.display ='none'; 
-    
-
-  } //===== end of for loop=========
+    } //=====end of if===================
+   
+  } //===== end of for loop============
   
 }//========== end of function========
 
-
-
 navtoggle ();
 
-let isAdmin = false;
+let isAdmin = 'false';
 
 
 function logAdmin (username, userpass) {
     if (username === 'admin' && userpass === 'admin') {
        document.getElementById('loginform').style.display ='none';
-       isAdmin = true;
+       isAdmin = 'true';
     }else {
        alert ('wrong credentials!!! try again');
     }
