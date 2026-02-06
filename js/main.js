@@ -1,6 +1,18 @@
 var eventtype= "";
  var eventid = "";  
  
+let data_array = [];
+ 
+let my_object = {};
+  
+let isAdmin = 'false';
+
+let detailRespTour, detailsTour ;
+let detailRespLec, detailsLec ;
+
+const track = document.getElementById("carouselTrack");
+let currentIndex = 0;
+ 
  
 class Attendee {
   #msg; 
@@ -276,8 +288,6 @@ class userBookingLecture {
 }
 
 
-let detailRespTour, detailsTour ;
-let detailRespLec, detailsLec ;
 
 async function getLecturesandTours() {
 
@@ -309,9 +319,14 @@ if (document.readyState === "loading") {
   // Loading hasn't finished yet
   document.addEventListener("DOMContentLoaded", getLecturesandTours);
    getLecturesandTours() ;
+   
+  // alert (detailsTour.tours);
+
 } else {
   // `DOMContentLoaded` has already fired
   getLecturesandTours() ;
+
+ // alert (detailsTour.tours);
 }
  
  // Mobile nav toggle
@@ -373,6 +388,8 @@ if (document.readyState === "loading") {
             }
         });  
     }
+
+    
   }
 
 
@@ -573,17 +590,12 @@ function LecturesSearchCriteria ()  {
 
       btn.addEventListener("click", runsearchLecture);
     
-       
       function runsearchLecture () {
 
-        
          var country = document.getElementById('country').value;
          var city = document.getElementById('city').value;
          var speaker = document.getElementById('speaker').value;
-         //var filepath = "/data/lecture_details/lectures.json"
-       
         
-
         searchlectures (country, city, speaker);
        
       }
@@ -661,14 +673,7 @@ function loadTourEvent() {
 
         }
 
-      /*
- <button id = "btn${tour.id}" class="book-btn" onclick="openBookingTour('${tour.id}')">
-              Book
-            </button>
-
-      */
-        
-    //RegisterEvent (eventid);
+    
     BookTourEvent ();
 
     } catch (error) {
@@ -693,7 +698,6 @@ function getSiteEvent  (strEventType, displaystate) {
 
 function loadSiteRegistration () {
   
- 
    const grid = document.getElementById("siteregistration-grid");
 
    grid.style.display = 'block';
@@ -884,7 +888,6 @@ function openBookingForm (eventid, data)   {
 
 function openBookingLecture(eventid) {
 
-
   openBookingForm (eventid, detailsLec.lectures );
      
 }
@@ -894,7 +897,6 @@ function openBookingTour(eventid) {
   openBookingForm (eventid, detailsTour.tours );
       
 }
-
 
 
 function RenderBookings(eventid)  {
@@ -1347,6 +1349,7 @@ function UserTourBookings ()
 }
 
 
+
 function RegisteredUsers ()   {
   
   const divsection = document.getElementById('users-registration');
@@ -1381,24 +1384,14 @@ function showToursBookinglist ()  {
 
 function searchlectures (country, city, speaker) {
  
-  
   try {
 
-
-    //const section = document.getElementById('lectures');
-    //section.style.display = 'block';
+    const section = document.getElementById('lectures');
+    section.style.display = 'block';
 
     const grid = document.getElementById('lectures-grid');
     grid.innerHTML = '';
 
-    /*
-    const res = await fetch(strfilepath);
-
-    if (!res.ok) throw new Error("Failed to load JSON");
-
-    const data = await res.json();
-    */
-    
     
     let filteredlectures = detailsLec.lectures.filter (function (lecture)
     {
@@ -1409,6 +1402,8 @@ function searchlectures (country, city, speaker) {
 
     
     let search = json2array(filteredlectures);
+
+   // alert ("Country: " + country + "City:  " + city  + "  Speaker " + speaker);
 
 
     for(const item of search) {
@@ -1499,7 +1494,7 @@ function searchtours (strcountry, strcity,  startdate , enddate) {
 function json2array(datasearch){
     
   var resultsearch = [];
-   // alert ("Inside: " + JSON.stringify(datasearch));
+    //alert ("Inside: " + JSON.stringify(datasearch));
     var keys = Object.keys(datasearch);
     keys.forEach(function(key){
         resultsearch.push(datasearch[key]);
@@ -1548,11 +1543,8 @@ function checkAdmin (submnu, section) {
     
   }else  {
     section.style.display = 'block';
-    //alert(section.id);
     document.getElementById(submnu).disabled= false;
     document.getElementById(submnu).style.cursor = 'pointer';
-
-    
 
   }
 
@@ -1560,9 +1552,7 @@ function checkAdmin (submnu, section) {
 }
 
 function useroption (choice) {
-   
- 
-
+  
   var sections = document.getElementsByTagName('section');
   
   var searchgrid, search ;
@@ -1602,7 +1592,7 @@ for (const section of sections) {
           break;
         
 
-        case "logging"  :
+        case "logging":
             
           section.style.display='block';
           grid = document.getElementById('loginform');
@@ -1637,6 +1627,8 @@ for (const section of sections) {
         case "toursreservation":
         
         if (checkAdmin ("rsrvdtoursubmnu", section) == 'true') {
+           document.getElementById("rsrvdtoursubmnu").disabled= false;
+           document.getElementById("rsrvdtoursubmnu").style.cursor = 'pointer';
            UserTourBookings();
         }  
 
@@ -1650,10 +1642,6 @@ for (const section of sections) {
   
 }//========== end of function========
 
-navtoggle ();
-
-let isAdmin = 'false';
-
 
 function logAdmin (username, userpass) {
     if (username === 'admin' && userpass === 'admin') {
@@ -1665,6 +1653,59 @@ function logAdmin (username, userpass) {
 }
 
 
+async function getCarouselImages () {
+  
+  
+
+  fetch("data/tours_details/tours.json")
+  .then((response) => response.json())
+  .then((data) => {
+  
+
+  for (const item of data.tours)
+   {
+      // load data into object
+      var title =item.title;
+      var desc =item.description;
+      var imgsrc = item.src;
+      
+       my_object = {
+          "title": title,
+          "desc": desc,
+          "imgsrc": imgsrc 
+      }; 
+      
+       data_array.push(my_object);
+
+   }
+
+
+    data_array.forEach((itemtour) => {
+
+        const slide = document.createElement("div");
+        slide.className = "slide";
+        slide.innerHTML = `
+        <img src="${itemtour.imgsrc}" alt="${itemtour.title}">
+        <h2>${itemtour.title}</h2>
+        <p>${itemtour.desc}</p>
+      `;
+            
+        track.appendChild(slide);
+      });
+
+    
+  });
+
+
+  
+}
+
+navtoggle ();
+
+getCarouselImages ();
+
+
+
 const attendeeReg = new Attendee();
 
 const tourbooked = new userBookingTour();
@@ -1672,8 +1713,6 @@ tourbooked.book({id:1, tourid: "trs0002", name: "Alice Thomson", email: "alice@m
 tourbooked.book({id:2, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 tourbooked.book({id:3, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
-
-//alert ("Tours " + tourbooked.listTours().length);
 
 const lecbooked = new userBookingLecture();
 lecbooked.book({id:1, lectureid: "lec0002", name: "Margaret Thomson", email: "margaret@mail.com" , dateRegistered: new Date().toLocaleDateString()});
@@ -1705,3 +1744,35 @@ attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", d
 
 
 //alert("Attendees: " + attendeeReg.listAttendees().length);
+
+ /* 
+document.addEventListener("DOMContentLoaded", async getImages =>  {
+
+    //alert (' ' + detailsTour.tours);
+
+});
+  */
+      
+      
+      
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        //currentIndex = (currentIndex + 1) % carouselData.length;
+        currentIndex = (currentIndex + 1) % data_array.length;
+        updateCarousel();
+      }
+
+      function prevSlide() {
+        currentIndex =
+          //(currentIndex - 1 + carouselData.length) % carouselData.length;
+           (currentIndex - 1 + data_array.length) % data_array.length;
+        updateCarousel();
+      }
+
+      // 🔹 Auto Play (optional)
+      setInterval(nextSlide, 4000);
+
+    

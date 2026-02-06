@@ -1,0 +1,16 @@
+{
+  "images": [
+    {
+      "src": "https://www.shutterstock.com/image-photo/panoramic-view-alhambra-fortress-palace-600nw-2612517489.jpg",
+      "alt": "First image"
+    },
+    {
+      "src": "https://images.pexels.com/photos/11829257/pexels-photo-11829257.jpeg",
+      "alt": "Second image"
+    },
+    {
+      "src": "https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg",
+      "alt": "Third image"
+    }
+  ]
+}

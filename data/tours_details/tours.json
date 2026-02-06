@@ -1,157 +1,183 @@
-
 {
-  "tours" :[ 
-  {
-      "id": "trs0001",
-      "duration" :"2 hours",
-      "price": "£15",
-      "language":["French","English", "Spanish", "Arabic"],
-      "schedule": "Monday to Friday from 10AM to 14:00PM",
-      "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
-      "src":"https://images.pexels.com/photos/19797972/pexels-photo-19797972.jpeg",
-      "title":"Cathedral-Mezquita of Córdoba, a symbol of history and coexistence between cultures",
-      "start":"Grand Mezquita main entrance",
-      "email": "getawaytravels@gmail.com",
-      "description": "First lecture",
-      "date": "12/03/2026",
-      "seats":20,
-      "country":"Spain",
-      "city":"Cordoba",
-      "address":[ 
-      {
-        "streetAdd": "123 Carmen St",
-        "city": "Cordoba",
-        "state": "Al Andalus",
-        "postalCode": "12345"
-      }
+  "tours": [
+    {
+      "address": [
+        {
+          "city": "Cordoba",
+          "postalCode": "12345",
+          "state": "Al Andalus",
+          "streetAdd": "123 Carmen St"
+        }
       ],
-        "phone":[
-      {
-        "type": "office",
-        "number": "555-555-5554"
-      },
-      {
-        "type": "mobile",
-        "number": "555-555-5555"
-      }
-    ]
-  },
-
-  {
-  "id": "trs0002",
-   "duration" :"2 hours",
-   "price": "£15",
-   "language":["French","English", "Spanish", "Arabic"],
-   "schedule": "Monday to Friday from 10AM to 14:00PM",
-   "program":["Official guide","Entrance Alhambra", "Cathedral of Santa Maria de la Sede", "Entrance to the Giralda."],
-   "src":"https://images.pexels.com/photos/34136117/pexels-photo-34136117.jpeg",
-   "title": "Alhambara Castle : Guided Tour",
-   "start":"El Cathedral main entrance",
-   "email": "getawaytravels@gmail.com",
-   "description": "First lecture",
-   "date": "13/03/2026",
-   "seats":20,
-   "country":"Spain",
-   "city":"Granada",
-   "address":[ 
-    {
-        "streetAdd": "123 Carmen St",
-        "city": "Seville",
-        "state": "Al Andalus",
-        "postalCode": "12345"
-    }
-        ],
-    "phone":[
+      "city": "Cordoba",
+      "country": "Spain",
+      "date": "12/03/2026",
+      "description": "First lecture",
+      "duration": "2 hours",
+      "email": "getawaytravels@gmail.com",
+      "id": "trs0001",
+      "language": [
+        "French",
+        "English",
+        "Spanish",
+        "Arabic"
+      ],
+      "phone": [
         {
-          "type": "office",
-          "number": "555-555-5554"
+          "number": "555-555-5554",
+          "type": "office"
         },
         {
-          "type": "mobile",
-          "number": "555-555-5555"
+          "number": "555-555-5555",
+          "type": "mobile"
         }
-    ]
-
-  },
-
-  {
-   "id": "trs0003",
-   "price": "£15",
-   "language":["French","English", "Spanish", "Arabic"],
-   "schedule": "Monday to Friday from 10AM to 14:00PM",
-   "program":["Official guide","Entrance to Alhambra castle", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
-   "src":"https://images.pexels.com/photos/18348736/pexels-photo-18348736.jpeg",
-   "title": "Albaycin and San Critobal: Guided Tour",
-   "duration":"3 hours",
-   "email": "getawaytravels@gmail.com",
-   "description": "First lecture",
-   "date": "14/03/2026",
-   "seats":4,
-   "country":"Spain",
-   "city":"Granada",
-   "address":[ 
+      ],
+      "price": "£15",
+      "program": [
+        "Official guide",
+        "Entrance to the Mosque cathedral",
+        "Entrance to the synaguogue",
+        "Entrance to the Castle of the Christian Monarchs."
+      ],
+      "schedule": "Monday to Friday from 10AM to 14:00PM",
+      "seats": 20,
+      "src": "https://images.pexels.com/photos/19797972/pexels-photo-19797972.jpeg",
+      "start": "Grand Mezquita main entrance",
+      "title": "Cathedral-Mezquita of Córdoba, a symbol of history and coexistence between cultures"
+    },
     {
-      "streetAdd": "123 Carmen St",
+      "address": [
+        {
+          "city": "Seville",
+          "postalCode": "12345",
+          "state": "Al Andalus",
+          "streetAdd": "123 Carmen St"
+        }
+      ],
       "city": "Granada",
-      "state": "Al Andalus",
-      "postalCode": "12345"
-    }
-        ],
-    "phone":[
+      "country": "Spain",
+      "date": "13/03/2026",
+      "description": "First lecture",
+      "duration": "2 hours",
+      "email": "getawaytravels@gmail.com",
+      "id": "trs0002",
+      "language": [
+        "French",
+        "English",
+        "Spanish",
+        "Arabic"
+      ],
+      "phone": [
         {
-          "type": "office",
-          "number": "555-555-5554"
+          "number": "555-555-5554",
+          "type": "office"
         },
         {
-          "type": "mobile",
-          "number": "555-555-5555"
+          "number": "555-555-5555",
+          "type": "mobile"
         }
-    ]
-
-  },
-
-  {
-   "id": "trs0004",
-   "duration" :"2 hours",
-   "price": "£15",
-   "language":["French","English", "Spanish", "Arabic"],
-   "schedule": "Monday to Friday from 10AM to 14:00PM",
-   "program":["Official guide","Entrance to the Mosque cathedral", "Entrance to the synaguogue", "Entrance to the Castle of the Christian Monarchs."],
-   "src":"https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg",
-   "title":"Visit of Alacazar de Sevilla",
-   "start":"Grand Mezqu",
-   "description": "First lecture",
-   "email": "getawaytravels@gmail.com",
-   "date": "18/03/2026",
-   "seats":20,
-   "country":"Spain",
-   "city":"Seville",
-   "address":[ 
+      ],
+      "price": "£15",
+      "program": [
+        "Official guide",
+        "Entrance Alhambra",
+        "Cathedral of Santa Maria de la Sede",
+        "Entrance to the Giralda."
+      ],
+      "schedule": "Monday to Friday from 10AM to 14:00PM",
+      "seats": 20,
+      "src": "https://images.pexels.com/photos/34136117/pexels-photo-34136117.jpeg",
+      "start": "El Cathedral main entrance",
+      "title": "Alhambara Castle : Guided Tour"
+    },
     {
-        "streetAdd": "123 Carmen St",
-        "city": "Seville",
-        "state": "Al Andalus",
-        "postalCode": "12345"
-    }
-        ],
-    "phone":[
+      "address": [
         {
-          "type": "office",
-          "number": "555-555-5554"
+          "city": "Granada",
+          "postalCode": "12345",
+          "state": "Al Andalus",
+          "streetAdd": "123 Carmen St"
+        }
+      ],
+      "city": "Granada",
+      "country": "Spain",
+      "date": "14/03/2026",
+      "description": "First lecture",
+      "duration": "3 hours",
+      "email": "getawaytravels@gmail.com",
+      "id": "trs0003",
+      "language": [
+        "French",
+        "English",
+        "Spanish",
+        "Arabic"
+      ],
+      "phone": [
+        {
+          "number": "555-555-5554",
+          "type": "office"
         },
         {
-          "type": "mobile",
-          "number": "555-555-5555"
+          "number": "555-555-5555",
+          "type": "mobile"
         }
-    ]
-
-
-  }
-
-
-
+      ],
+      "price": "£15",
+      "program": [
+        "Official guide",
+        "Entrance to Alhambra castle",
+        "Entrance to the synaguogue",
+        "Entrance to the Castle of the Christian Monarchs."
+      ],
+      "schedule": "Monday to Friday from 10AM to 14:00PM",
+      "seats": 4,
+      "src": "https://images.pexels.com/photos/18348736/pexels-photo-18348736.jpeg",
+      "title": "Albaycin and San Critobal: Guided Tour"
+    },
+    {
+      "address": [
+        {
+          "city": "Seville",
+          "postalCode": "12345",
+          "state": "Al Andalus",
+          "streetAdd": "123 Carmen St"
+        }
+      ],
+      "city": "Seville",
+      "country": "Spain",
+      "date": "18/03/2026",
+      "description": "First lecture",
+      "duration": "2 hours",
+      "email": "getawaytravels@gmail.com",
+      "id": "trs0004",
+      "language": [
+        "French",
+        "English",
+        "Spanish",
+        "Arabic"
+      ],
+      "phone": [
+        {
+          "number": "555-555-5554",
+          "type": "office"
+        },
+        {
+          "number": "555-555-5555",
+          "type": "mobile"
+        }
+      ],
+      "price": "£15",
+      "program": [
+        "Official guide",
+        "Entrance to the Mosque cathedral",
+        "Entrance to the synaguogue",
+        "Entrance to the Castle of the Christian Monarchs."
+      ],
+      "schedule": "Monday to Friday from 10AM to 14:00PM",
+      "seats": 20,
+      "src": "https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg",
+      "start": "Grand Mezqu",
+      "title": "Visit of Alacazar de Sevilla"
+    }
   ]
-    
 }
-   
-

@@ -156,6 +156,7 @@ class JavascriptDataDownloader {
 } 
 
 
+//https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file#renaming-a-file-using-the-command-line
 
 
 function updateBooking ()
@@ -232,3 +233,6 @@ sitePersonel.employees[0].manager = manager;
   //const booked = [];
  
    //alert( attendeeReg.listAttendees().length);
+
+
+   //https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax

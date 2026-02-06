@@ -36,6 +36,7 @@
         <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
+           
             <li>
               <div class="dropdown">
                 Reservation
@@ -43,7 +44,7 @@
                 <div id="myDropdown" class="dropdown-content">
                   <a id="rsrvdtoursubmnu"
                     onclick="
-                      UserTourBookings();
+                     // UserTourBookings();
                       useroption('toursreservation');
                     "
                     style="cursor: pointer"
@@ -71,6 +72,7 @@
                       
                       useroption('SiteRegistration');
                     "
+                    onmouseover = "checkAdmin ('regusersubmnu', 'SiteRegistration')"
                     style="cursor: pointer"
                     >New Registration</a
                   >
@@ -120,6 +122,31 @@
 
       <main id="mainpage">
 
+        <br/>
+      
+             
+        <section id="events-carousel"  class="content-section" style="display: block" >
+        
+          <div class="carousel">
+          <div class="carousel-track" id="carouselTrack"></div>
+
+          <button class="nav-btn prev" onclick="prevSlide()">❮</button>
+          <button class="nav-btn next" onclick="nextSlide()">❯</button>
+        </div>
+
+        </section>
+      
+     <!--div class="slide">
+            <img src="https://www.shutterstock.com/image-photo/panoramic-view-alhambra-fortress-palace-600nw-2612517489.jpg" width="100%", height="100%" alt= ''/>
+          </div>
+          <div class="slide">
+            <img src ="https://images.pexels.com/photos/11829257/pexels-photo-11829257.jpeg" width="100%", height="100%"/>
+          </div>
+          <div class="slide">
+            <img src ="https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg" width="100%", height="100%"/>
+          </div-->
+
+
       <section id = "logging">
 
         <div id= "loginform" class="login-container center" style="display:none">
@@ -136,11 +163,6 @@
             <input id="userpass" type="password" required />
             <label>Password</label>
           </div>
-
-          <!--button class="btn btn-outline-info tooltip1" disabled>
-            Hover over me
-            <span class="tooltip1 tooltiptext"> disabled button </span>
-          </button-->
 
           <button
             type="button"

@@ -45,3 +45,57 @@ As an admin, I want to manage tours, lectures, users, and bookings so the platfo
 As an admin, I want to update content and schedules so information stays accurate and current.
 
 # Getaway Holidays Features
+
+- **Navigation Bar**
+  - the full responsive navigation bar includes links to the Logo, Home page, Tours, Registration, Lectures and Login page for easy navigation through the existing system
+  - This section will allow the user to easily navigate from section to section across all devices in my program.
+
+![Navigation Bar](./docs/features/navigmenu.png)
+
+- **The Home page image**
+  - This includes an image about the magnificent and still holding at this time the Alahambra Castle wordly known as the jewel of a wonderful era of cohexistence between three cultures Islamic and Judeo Christian during the reign of Muslims in Al Andalus.
+  - This section introduces the user to the history of an eye cathing of the wonders of Andalusian heritage of Muslim Spain.
+
+![Landing Page](./docs/features/mainbackgrnd.png)
+
+- **The Login Hyperlink**
+- When making a selection for this option the user is prompted with a logging screen to enter the credentials to use the system.
+- This screen is only for admin to view and manage the system. The normal registered user has no access to this option.
+  This option allow the user to delete [Registered Users], [Booked Tour Users], [Booked Lectures Users] and hopefully update users details if times has got no constraints.
+
+![Landing Page](./docs/features/loginscreen.png)
+
+- **The Tours Hyperlink**
+- The user can browse the varierty of tours offered.
+
+![Landing Page](./docs/features/tours.png)
+
+# Project Structure
+
+GETAWAY_HOLIDAYS/
+│
+├── assets/ # Images, icons, fonts
+| |**css/ # Stylesheets
+| |**images/ # Images
+├── js/ # JavaScript files
+├── index.html # Main HTML file
+|  
+└── README.md # Project documentation
+
+# Project Challenges
+
+# Project Technologies Used
+
+# How to Install and Run the Project
+
+# Credits
+
+# Tests
+
+## Validator Testing
+
+**HTML Validation**
+
+## Home page
+
+**Evidence**
