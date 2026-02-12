@@ -11,13 +11,11 @@
     <script src="./js/main.js" defer></script>
   </head>
   <body>
-    <style></style>
-
     <div class="container">
       <header class="site-header">
         <img
           src="./assets/images/logo.png"
-          alt="getaway holidays logo"
+          alt="Getaway Travels Logo"
           class="site-logo"
         />
 
@@ -36,28 +34,30 @@
         <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
-           
+
             <li>
               <div class="dropdown">
                 Reservation
 
-                <div id="myDropdown" class="dropdown-content">
-                  <a id="rsrvdtoursubmnu"
+                <div id="mnuReservation" class="dropdown-content">
+                  <a
+                    id="rsrvdtoursubmnu"
                     onclick="
-                     // UserTourBookings();
-                      useroption('toursreservation');
+                      // UserTourBookings();
+
+                      useroption('toursreservation')
                     "
                     style="cursor: pointer"
-                    >Reserved Tours <!--span class="tooltip1 tooltiptext"> disabled button </span--></a>
-                  
-                  <a id="rsrvdlecsubmnu"
-                    onclick="
-                      
-                      useroption('lecturesreservation');
-                    "
+                    >Reserved Tours
+                    <!--span class="tooltip1 tooltiptext"> disabled button </span--></a
+                  >
+
+                  <a
+                    id="rsrvdlecsubmnu"
+                    onclick="useroption('lecturesreservation')"
                     style="cursor: pointer"
-                    >Reserved Lectures</a>
-                  
+                    >Reserved Lectures</a
+                  >
                 </div>
               </div>
             </li>
@@ -66,22 +66,26 @@
               <div class="dropdown">
                 Registration
                 <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
-                <div id="myDropdown" class="dropdown-content">
+                <div id="mnuRegistration" class="dropdown-content">
                   <a
-                    onclick="
-                      
-                      useroption('SiteRegistration');
+                    onclick="useroption('SiteRegistration')"
+                    onmouseover="
+                      highlightMenuItem(
+                        document.getElementById('regusersubmnu'),
+                      )
                     "
-                    onmouseover = "checkAdmin ('regusersubmnu', 'SiteRegistration')"
                     style="cursor: pointer"
                     >New Registration</a
                   >
 
-                  <a id="regusersubmnu"
-                    onclick="
-                      useroption('users-registration');
+                  <a
+                    id="regusersubmnu"
+                    onclick="useroption('users-registration')"
+                    onmouseover="
+                      highlightMenuItem(
+                        document.getElementById('regusersubmnu'),
+                      )
                     "
-                    
                     style="cursor: pointer"
                     >Show Users</a
                   >
@@ -92,8 +96,8 @@
             <li>
               <a
                 onclick="
-                  loadLectureEvent();
-                  useroption('lectures');
+                  //loadLectureEvent();
+                  useroption('lectures')
                 "
                 style="cursor: pointer"
               >
@@ -104,93 +108,85 @@
             <li>
               <a
                 onclick="
-                  loadTourEvent();
-                  useroption('tours');
+                  //loadTourEvent();
+                  useroption('tours')
                 "
                 style="cursor: pointer"
                 >Tours</a
               >
             </li>
 
-            <li ><a style="cursor: pointer" onclick = "
-              document.getElementById('loginform').style.display ='block' 
-              useroption('logging');
-              " >Login</a></li>
+            <li>
+              <a style="cursor: pointer" onclick="useroption('logging')"
+                >Login</a
+              >
+            </li>
           </ul>
         </nav>
       </header>
 
       <main id="mainpage">
+        <br />
 
-        <br/>
-      
-             
-        <section id="events-carousel"  class="content-section" style="display: block" >
-        
+        <section
+          id="events-carousel"
+          class="content-section"
+          style="display: block"
+        >
+          <h2>Enjoy the wonders of Al Andalus</h2>
           <div class="carousel">
-          <div class="carousel-track" id="carouselTrack"></div>
+            <div class="carousel-track" id="carouselTrack"></div>
 
-          <button class="nav-btn prev" onclick="prevSlide()">❮</button>
-          <button class="nav-btn next" onclick="nextSlide()">❯</button>
-        </div>
-
+            <button class="nav-btn prev" onclick="prevSlide()">❮</button>
+            <button class="nav-btn next" onclick="nextSlide()">❯</button>
+          </div>
         </section>
-      
-     <!--div class="slide">
-            <img src="https://www.shutterstock.com/image-photo/panoramic-view-alhambra-fortress-palace-600nw-2612517489.jpg" width="100%", height="100%" alt= ''/>
-          </div>
-          <div class="slide">
-            <img src ="https://images.pexels.com/photos/11829257/pexels-photo-11829257.jpeg" width="100%", height="100%"/>
-          </div>
-          <div class="slide">
-            <img src ="https://images.pexels.com/photos/31156673/pexels-photo-31156673.jpeg" width="100%", height="100%"/>
-          </div-->
 
-
-      <section id = "logging">
-
-        <div id= "loginform" class="login-container center" style="display:none">
-        <h2>Welcome Back</h2>
-        <p>Please login to your account</p>
-
-        <form>
-          <div class="input-group">
-            <input id="username" type="text" required />
-            <label>Username</label>
-          </div>
-
-          <div class="input-group">
-            <input id="userpass" type="password" required />
-            <label>Password</label>
-          </div>
-
-          <button
-            type="button"
-            class="book-btn"
-            onclick="
-              logAdmin(
-                document.getElementById('username').value.trim(),
-                document.getElementById('userpass').value.trim(),
-              )
-            "
+        <section id="logging">
+          <div
+            id="loginform"
+            class="login-container center"
+            style="display: none"
           >
-            <!--span class="tooltip1 tooltiptext"> disabled button </span-->
-            Login
-          </button>
-          <button
-           
-            type="button"
-            class="book-btn"
-            onclick = "document.getElementById('loginform').style.display ='none' "
-          >
-            Cancel
-          </button>
-        </form>
-        </div>
+            <h2>Welcome Back</h2>
+            <p>Please login to your account</p>
 
+            <form>
+              <div class="input-group">
+                <input id="username" type="text" required />
+                <label>Username</label>
+              </div>
 
-      </section>  
-      
+              <div class="input-group">
+                <input id="userpass" type="password" required />
+                <label>Password</label>
+              </div>
+
+              <button
+                type="button"
+                class="book-btn"
+                onclick="
+                  logAdmin(
+                    document.getElementById('username').value.trim(),
+                    document.getElementById('userpass').value.trim(),
+                  )
+                "
+              >
+                <!--span class="tooltip1 tooltiptext"> disabled button </span-->
+                Login
+              </button>
+              <button
+                type="button"
+                class="book-btn"
+                onclick="
+                  document.getElementById('loginform').style.display = 'none'
+                "
+              >
+                Cancel
+              </button>
+            </form>
+          </div>
+        </section>
 
         <br />
         <!-- Section for searching tours and events  -->
@@ -201,37 +197,23 @@
         >
           <h2 id="hdrevent">Searching</h2>
 
-          <div id="searching-grid" style="display: block">
-
-          </div>
+          <div id="searching-grid" style="display: block"></div>
 
           <div id="search-grid"></div>
         </section>
 
         <br />
 
-
-        <section
-          id="choicedisplay"
-          class="content-section"
-          style="display: none"
-        >
-          <div id="displayinfo"></div> 
-         
-        </section>
-
         <section
           id="toursreservation"
           class="content-section"
           style="display: none"
         >
-          <div id="toursdisplay"></div> 
           <div id="toursreservation-grid">
             <h3>✅ Your Tours Bookings</h3>
             <ul id="ToursReservationList"></ul>
           </div>
         </section>
-
 
         <section
           id="lecturesreservation"
@@ -242,6 +224,15 @@
             <h3>✅ Your Lectures Bookings</h3>
             <ul id="LecReservationList"></ul>
           </div>
+        </section>
+
+        <section
+          id="choicedisplay"
+          class="content-section"
+          style="display: none"
+        >
+          <h2>Booking Tour and Lecture Details</h2>
+          <div id="displayinfo"></div>
         </section>
 
         <section id="lectures" class="content-section" style="display: none">
@@ -264,23 +255,25 @@
             <p>Loading tours events ...</p>
           </div>
         </section>
+
         <br />
 
-        
-
-        <section id="Bookings" class="content-section" style="display: none"> 
-          
-           <div class="tourbookings center" id="bookingModal" style="display: none"></div>
+        <section
+          id="Bookings"
+          class="content-section overlay center"
+          style="display: none; margin-top: 10px"
+        >
+          <h2>Booking Details</h2>
+          <div id="bookingModal" style="display: block"></div>
         </section>
-        
+
         <section
           id="SiteRegistration"
           class="content-section"
           style="display: none"
         >
-          <div id="siteregistration-grid">
-
-          </div>
+          <h2>Welcome to Getaway Travels</h2>
+          <div id="siteregistration-grid"></div>
         </section>
 
         <section
@@ -304,8 +297,8 @@
         >
           <div id="tours-reservation-grid">
             <!-- Event cards will be loaded here by JavaScript -->
-            
-            <h3>✅ Your Tours Bookings</h3-->
+
+            <h3>✅ Your Tours Bookings</h3>
             <div id="registeredusers-grid">
               <!-- Event cards will be loaded here by JavaScript -->
             </div>
@@ -314,15 +307,73 @@
           </div>
         </section>
 
-        <section id="reservation" class="content-section" style="display: none">
-          <div id="reservation-grid">
-            <!-- Event cards will be loaded here by JavaScript -->
-
-            <h3>✅ Your Lectures Bookings</h3>
-            <ul id="LecReservationList"></ul>
-
-            <h3>✅ Your Tours Bookings</h3>
-            <ul id="TourReservationList"></ul>
+        <section
+          id="social-media"
+          class="content-section"
+          style="display: block"
+        >
+          <h2>Follow Us on Social Media</h2>
+          <div id="socialmedia-grid" class="div_group" style="display: block">
+            <div>
+              <p
+                onclick="
+                  window.open(
+                    'https://www.facebook.com/getawaytravels',
+                    '_blank',
+                  )
+                "
+              >
+                Facebook
+              </p>
+            </div>
+            <div>
+              <p
+                onclick="
+                  window.open(
+                    'https://www.twitter.com/getawaytravels',
+                    '_blank',
+                  )
+                "
+              >
+                Twitter
+              </p>
+            </div>
+            <div>
+              <p
+                onclick="
+                  window.open(
+                    'https://www.instagram.com/getawaytravels',
+                    '_blank',
+                  )
+                "
+              >
+                Instagram
+              </p>
+            </div>
+            <div>
+              <p
+                onclick="
+                  window.open(
+                    'https://www.linkedin.com/company/getawaytravels',
+                    '_blank',
+                  )
+                "
+              >
+                LinkedIn
+              </p>
+            </div>
+            <div>
+              <p
+                onclick="
+                  window.open(
+                    'https://www.youtube.com/getawaytravels',
+                    '_blank',
+                  )
+                "
+              >
+                YouTube
+              </p>
+            </div>
           </div>
         </section>
       </main>

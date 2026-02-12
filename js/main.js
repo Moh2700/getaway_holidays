@@ -430,6 +430,8 @@ function loadLectureEvent() {
 
             card.innerHTML = `
              
+              <img src="${lec.src}" alt="${lec.title}">
+              
                 <div id="${lec.id}" class="event-card-content">
                     <h4>Title:${lec.title}</h4>
                     <h2>Description: ${lec.description}</h2>
@@ -475,7 +477,6 @@ function loadLectureEvent() {
    
 }
 
-
 function ToursSearchCriteria ()  {
 
     const searchgrid = document.getElementById("searching-grid");
@@ -504,7 +505,7 @@ function ToursSearchCriteria ()  {
     
     var btn = document.createElement('button');
     btn.className = 'book-btn';
-    
+   // btn.className = 'search-fields';
      
     btn.innerText = 'Search';
     btn.id = 'cmdSearch';
@@ -565,7 +566,7 @@ function LecturesSearchCriteria ()  {
               <!--div><label for="country">Country</label></div-->
               
                 <input 
-                  type="text" class="searchInput"
+                  type="text" class=""
                   id="country"
                  
                   placeholder="Enter country please"
@@ -768,15 +769,15 @@ function BookTourEvent ()
     <form id="BookingForm">
       <div class="modal-content"  >
 
-       <h2>Event Booking</h2>
+       <h2>Tour Booking</h2>
         
-      <label>
-        Event ID
-        <input type="text" id="eventId" value='${eventid}'  disabled/>
+      <label style="visibility:hidden">
+        Tour ID
+        <input type="text" id="eventId" value='${eventid}' disabled/>
       </label>
 
       <label>
-        Event Title
+        Tour Title
         <input type="text" id="eventTitle"  disabled/>
       </label>
 
@@ -815,15 +816,11 @@ function BookLectureEvent (eventid)
     <form id="BookingForm">
       <div class="modal-content"  >
 
-       <h2>Event Booking</h2>
+       <h2>Lecture Booking</h2>
         
+      
       <label>
-        Event ID
-        <input type="text" id="eventId" value='${eventid}'  disabled/>
-      </label>
-
-      <label>
-        Event Title
+        Lecture Title
         <input type="text" id="eventTitle"  disabled/>
       </label>
 
@@ -838,11 +835,17 @@ function BookLectureEvent (eventid)
         <input type="email" id="useremail" required />
       </label>
 
+
       <div id="divbutton" >
          <p class="book-btn" id="cmdBooking"  onclick="confirmLectureBooking()"  >Confirm</p>
          <p class="book-btn" id ="cmdCancel" onclick="closeBooking()">Cancel</p>
       </div>
     
+      <label style="visibility:hidden">
+        Lecture ID
+        <input type="text" id="eventId" value='${eventid}'  disabled/>
+      </label>
+
       </div>
       
       </form>` ;
@@ -878,23 +881,29 @@ function openBookingForm (eventid, data)   {
     document.getElementById("eventId").setAttribute('value', eventid);
     document.getElementById("eventTitle").setAttribute('value', objevent.title);
 
+
+    useroption('Bookings');
+
+    /*
     const divSection = document.getElementById('Bookings');
     divSection.style.display ='block';
 
     const grid = document.getElementById('bookingModal');
     grid.style.display ='block';
+    */
 
 }
 
 function openBookingLecture(eventid) {
 
   openBookingForm (eventid, detailsLec.lectures );
+
      
 }
 
 function openBookingTour(eventid) {
     
-  openBookingForm (eventid, detailsTour.tours );
+ openBookingForm (eventid, detailsTour.tours );
       
 }
 
@@ -943,38 +952,28 @@ function renderLecBookingList   ()
 {
 
   const LectureList = document.getElementById("LecReservationList");
+  LectureList.style.display = 'block';
   LectureList.innerHTML = "";
   
-   const TourList = document.getElementById("TourReservationList");
-   TourList.style.display ='none';
-
-
+  
   lecbooked.listLectures().forEach((b) => {
      
+  
     const li = document.createElement("li");
        
-        li.onmouseover = function over (){
-          li.style.color = "white";
-           li.style.backgroundColor = "green";
-          
-          li.style.cursor = 'pointer';
-        };
-        li.onmouseout = function out (){
-          li.style.color = "black";
-          li.style.backgroundColor = "#EEEADF";
-        };
+      li.id = b.email; 
+      
 
-        li.id = b.email;
+      highlightItem (li);
 
-        let result = detailsLec.lectures.filter(function(lecture){
+
+      let result = detailsLec.lectures.filter(function(lecture){
            return lecture.id.trim() === b.lectureid.trim();
-        });
+      });
 
-        let search = json2array(result);
+      let search = json2array(result);
 
-
-
-        li.ondblclick = function showUserDetails (){
+         li.addEventListener("click", () => {
 
           const sect = document.getElementById("choicedisplay");
           sect.style.display = 'block';
@@ -982,13 +981,16 @@ function renderLecBookingList   ()
           const grid = document.getElementById("displayinfo");
           grid.style.display = 'block';
           
+          
           const card = document.createElement('div') ;
           card.className = 'event-card';
           card.innerHTML  = "";
           card.id = b.email;
 
-        for(const item of search) {
-            //alert (item.title);
+          alert (" Lecture id " + b.lectureid + " email " + b.email);
+
+          for(const item of search) {
+            
             var strUser  = `
             
             <h3>✅ Lecture Details </h3>
@@ -1000,51 +1002,62 @@ function renderLecBookingList   ()
                 <div id="divbutton" >
                     <p class="book-btn" id="cmdDelete"  onclick="removeUser('${b.email}');">Delete</p>
                 </div> 
-            </div>` ;
+            </div><br/>` ;
 
             card.innerHTML = strUser;
             grid.innerHTML = "";
             grid.appendChild(card) ;
-        }
+          } //======== end of for loop
 
-        };
+        });//===== end of function
 
-         li.innerHTML = `<strong>${b.name}</strong>`;
-         LectureList.appendChild(li);
+ 
+        li.innerHTML = `<strong>${b.name}</strong>`;
+        LectureList.appendChild(li);
 
-  });
+  });//======== end of foreach
   
  
 
   return LectureList;
 }
 
+function highlightItem (item) {
+
+  
+   
+    item.onmouseover = function over (){
+      item.style.color = "white";
+      item.style.backgroundColor = "green";
+      item.style.cursor = 'pointer';
+    };
+    
+    item.onmouseout = function out (){
+      item.style.color = "black";
+      item.style.backgroundColor = "#EEEADF";
+    };
+
+   return item 
+}
+
+
 function renderTourBookingList   ()
 {
 
-  const TourList = document.getElementById("TourReservationList");
+  const TourList = document.getElementById("ToursReservationList");
+  TourList.style.display ='block';
   TourList.innerHTML = "";
-
-  const LectureList = document.getElementById("LecReservationList");
-  LectureList.style.display ='none';
 
   
   tourbooked.listTours().forEach((b) => {
      
     const li = document.createElement("li");
-    li.style.color = 'black';
-      
-        li.onmouseover = function over (){
-          li.style.color = "white";
-          li.style.backgroundColor = "green";
-          li.style.cursor = 'pointer';
-        };
-        li.onmouseout = function out (){
-          li.style.color = "black";
-          li.style.backgroundColor = "#EEEADF";
-        };
+   
+    li.id = b.email;
 
-        li.id = b.email;
+    highlightItem (li);
+
+
 
         let result = detailsTour.tours.filter(function(tour){
            return tour.id.trim() === b.tourid.trim();
@@ -1052,7 +1065,7 @@ function renderTourBookingList   ()
 
         let search = json2array(result);
 
-        li.ondblclick = function showUserDetails (){
+         li.addEventListener("click", () => {
           
           const sect = document.getElementById("choicedisplay");
           sect.style.display = 'block';
@@ -1078,13 +1091,13 @@ function renderTourBookingList   ()
                 <div id="divbutton" >
                     <p class="book-btn" id="cmdDelete"  onclick="removeUser('${b.email}');">Delete</p>
                 </div> 
-            </div>` ;
+            </div><br>` ;
 
             card.innerHTML = strUser;
             grid.innerHTML = "";
             grid.appendChild(card) ;
           } 
-        };
+        });
  
     
      li.innerHTML = `<strong>${b.name}</strong>`;
@@ -1106,24 +1119,13 @@ function renderRegisteredUsersList   ()
 
   attendeeReg.listAttendees().forEach((b) => {
      
-     const li = document.createElement("li");
-    li.style.color = 'black';
-      
-    //===================
-        li.onmouseover = function over (){
-          li.style.color = "white";
-          li.style.backgroundColor = "green";
-          li.style.cursor = 'pointer';
-        };
-        li.onmouseout = function out (){
-          li.style.color = "black";
-          li.style.backgroundColor = "#EEEADF";
-        };
+    const li = document.createElement("li");
+    li.id = b.email;
+    
+     highlightItem (li);
 
-        li.id = b.email;
-        
-
-        li.ondblclick = function showUserDetails (){
+    
+         li.addEventListener("click", () => {
           
           const sect = document.getElementById("choicedisplay");
           sect.style.display = 'block';
@@ -1148,13 +1150,13 @@ function renderRegisteredUsersList   ()
                 <div id="divbutton" >
                     <p class="book-btn" id="cmdDelete"  onclick="removeUser('${b.email}');">Delete</p>
                 </div> 
-            </div>` ;
+            </div><br>` ;
 
             card.innerHTML = strUser;
             grid.innerHTML = "";
             grid.appendChild(card) ;
 
-        };
+        });
  
     
      li.innerHTML = `<strong>${b.name}</strong>`;
@@ -1190,6 +1192,16 @@ function confirmLectureBooking () {
     attendeeReg.event_id = eventid;
     attendeeReg.dateRegistered = new Date().toLocaleDateString();  
    
+    if (!isValidLetter(attendeeReg.name)) {
+      alert ("Please enter a valid name (letters and spaces only)");
+      return;
+    } 
+    
+    if (!isValidEmail(attendeeReg.email)) {
+      alert ("Please enter a valid email address");
+      return;
+    }
+
     if(!attendeeReg.isRegistered(attendeeReg.email)) {
         alert("You are not registered in the system  ");
         return;
@@ -1198,10 +1210,10 @@ function confirmLectureBooking () {
 
     const obj = lecbooked.listLectures();
     const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
-     
-    lecbooked.book({id: lastkey+1, lectureid: eventid, name: username, email: useremail , dateBooked: dateReg});
-    
-      let num = RenderBookings (eventid)  ;
+    lecbooked.book({id: lastkey+1, lectureid: eventid, name: name, email: email , dateBooked: dateReg});
+ 
+       
+    let num = RenderBookings (eventid)  ;
 
       let filteredtours = detailsLec.lectures.filter (function (lecture)
       {
@@ -1248,6 +1260,17 @@ function confirmTourBooking () {
     attendeeReg.event_id = eventid;
     attendeeReg.dateRegistered = new Date().toLocaleDateString();  
 
+
+    if (!isValidLetter(attendeeReg.name)) {
+      alert ("Please enter a valid name (letters and spaces only)");
+      return;
+    } 
+    
+    if (!isValidEmail(attendeeReg.email)) {
+      alert ("Please enter a valid email address");
+      return;
+    }
+
     if(!attendeeReg.isRegistered(attendeeReg.email)) {
         alert("You are not registered in the system  ");
         return;
@@ -1255,8 +1278,11 @@ function confirmTourBooking () {
       
       const obj = tourbooked.listTours();
       const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
+
+      tourbooked.book({id: lastkey+1, tourid: eventid, name: name, email: email , dateBooked: dateReg});
+
      
-      tourbooked.book({id: lastkey+1, tourid: eventid, name: username, email: useremail , dateBooked: dateReg});
+     // tourbooked.book({id: lastkey+1, tourid: eventid, name: username, email: useremail , dateBooked: dateReg});
      
       let num =  RenderBookings (eventid)  ;
 
@@ -1271,10 +1297,8 @@ function confirmTourBooking () {
       let filteredtours =  detailsTour.tours.filter (function (tour)
       {
         if (tour.id.trim() ===  eventid.trim()) {
-            tour.seats = num ;
-           
+            tour.seats = num 
           } 
-        
       })
       */
       
@@ -1510,28 +1534,66 @@ function cancelRegistration ()  {
 
 }
 
+function isValidEmail(strvalue)
+{
+  // Regular expression for validating an Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(strvalue);
+}
+
+
+function isValidLetter(strvalue) 
+{  
+   return /^[A-Za-z ]+$/.test(strvalue);
+}
+
 function confirmRegistration() {
 
    attendeeReg.name = document.getElementById("regname").value.trim();
    attendeeReg.email = document.getElementById("regemail").value.trim();
    attendeeReg.dateRegistered = new Date().toLocaleDateString();
    
+   if (!isValidEmail(attendeeReg.email)) {
+      alert ("Please enter a valid email address");
+      return;
+    }
+
+   if (!attendeeReg.name || !attendeeReg.email) {
+      //alert (attendeeReg.errormsg);
+      alert ("please fill in all required fields for both name and email");
+      return;
+    } 
+
+   if (!isValidLetter(attendeeReg.name)) {
+      alert ("Please enter a valid name (letters and spaces only)");
+      return;
+    }
+
    attendeeReg.register({ name: attendeeReg.name, 
                           email: attendeeReg.email,
                           dateRegistered: attendeeReg.dateRegistered });
 
    //alert (attendeeReg.listAttendees().length);
-
-    if (!attendeeReg.name || !attendeeReg.email) {
-      alert (attendeeReg.errormsg);
-      return;
-    }
-
+    alert ("Registration successful! Welcome " + attendeeReg.name);
+    
     document.getElementById("regname").value = '';
     document.getElementById("regemail").value = '';
    
 }
 
+function highlightMenuItem (item) {
+
+   if (checkAdmin(item.id, null) == 'true') {
+      item.style.cursor = 'pointer';
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+      item.style.cursor = 'not-allowed';
+      item.style.color = 'black';
+    }
+  
+
+}
 
 function checkAdmin (submnu, section) {
   
@@ -1542,7 +1604,7 @@ function checkAdmin (submnu, section) {
     document.getElementById(submnu).style.cursor = 'not-allowed';
     
   }else  {
-    section.style.display = 'block';
+    
     document.getElementById(submnu).disabled= false;
     document.getElementById(submnu).style.cursor = 'pointer';
 
@@ -1562,11 +1624,20 @@ for (const section of sections) {
  
  // alert ("ID: " + section.id + "  Display: " + section.style.display + "  Choice: " + choice);
 
+ //alert ("users-registration clicked" + "  isAdmin: " + isAdmin + "  section: " + section.id + "  display: " + choice);
+
   section.style.display='none'; 
   
   if (section.id.trim() === choice.trim() ){
 
     switch(choice) {
+
+        case "SiteRegistration":
+
+          const divSection = document.getElementById("SiteRegistration");
+          divSection.style.display = 'block';
+          loadSiteRegistration();
+          break;
 
         case "tours":
           searchgrid = document.getElementById("searching-grid");
@@ -1577,6 +1648,7 @@ for (const section of sections) {
 
           section.style.display='block';
          
+          loadTourEvent();
          
         break;
 
@@ -1589,25 +1661,28 @@ for (const section of sections) {
 
           section.style.display='block';
           
+          loadLectureEvent();
+
           break;
         
+        case "Bookings" :
+          
+          section.style.display ='block';
 
+          grid = document.getElementById('bookingModal');
+          grid.style.display ='block';
+          break;
+          
         case "logging":
             
           section.style.display='block';
           grid = document.getElementById('loginform');
           grid.style.display ='block';
+          
           break; 
 
         case "users-registration":
-          window.onclick = e => {
-            if (e.target.innerText == 'New Registration')  {
-              const divSection = document.getElementById("SiteRegistration");
-              divSection.style.display = 'block';
-              loadSiteRegistration();
-              return;
-            }
-          } 
+       
           if (checkAdmin ("regusersubmnu", section) == 'true') {
             RegisteredUsers();
           }  
@@ -1627,9 +1702,10 @@ for (const section of sections) {
         case "toursreservation":
         
         if (checkAdmin ("rsrvdtoursubmnu", section) == 'true') {
-           document.getElementById("rsrvdtoursubmnu").disabled= false;
-           document.getElementById("rsrvdtoursubmnu").style.cursor = 'pointer';
-           UserTourBookings();
+           //document.getElementById("rsrvdtoursubmnu").disabled= false;
+           //document.getElementById("rsrvdtoursubmnu").style.cursor = 'pointer';
+            UserTourBookings();
+          // alert("Sorry, this feature is not available at the moment. Please check back later.");
         }  
 
         break;
@@ -1711,7 +1787,7 @@ const attendeeReg = new Attendee();
 const tourbooked = new userBookingTour();
 tourbooked.book({id:1, tourid: "trs0002", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 tourbooked.book({id:2, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
-tourbooked.book({id:3, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+tourbooked.book({id:3, tourid: "trs0004", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
 
 const lecbooked = new userBookingLecture();
@@ -1742,18 +1818,6 @@ attendeeReg.register({ event_id: "", name: "Jimmy Thomson", email: "Jimmy@mail.c
 attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
 //attendeeReg.register({ event_id: "", name: "Rob Husky2", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
 
-
-//alert("Attendees: " + attendeeReg.listAttendees().length);
-
- /* 
-document.addEventListener("DOMContentLoaded", async getImages =>  {
-
-    //alert (' ' + detailsTour.tours);
-
-});
-  */
-      
-      
       
       function updateCarousel() {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
