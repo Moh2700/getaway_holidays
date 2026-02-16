@@ -415,12 +415,10 @@ function loadLectureEvent() {
        
         const noEventsMessage =  'No upcoming events at this time.';
 
-
         if (!detailsLec.lectures || detailsLec.lectures.length === 0) {
             grid.innerHTML = `<p>${noEventsMessage}</p>`;
             return;
         }
-
 
         for (const lec of detailsLec.lectures) {
 
@@ -443,25 +441,16 @@ function loadLectureEvent() {
                                    
                 </div>
 
-                <button id = "btn${lec.id}" class="book-btn" onclick="openBookingLecture('${lec.id}')">
-                  Book
-                </button>
-
+               <button id = "btn${lec.id}" class="book-btn" onclick="openBookingLecture('${lec.id}')">
+                 Book
+               </button>
             `;
+
             grid.appendChild(card);
            
            BookLectureEvent ();
 
         }
-
-        /*
-
-         <button id = "btn${lec.id}" class="book-btn" onclick="openBookingLecture('${lec.id}')">
-                  Book
-                </button>
-        */
-  
-    //RegisterEvent (eventid);
     
     BookLectureEvent (`${lec.id}`);
 
@@ -847,6 +836,8 @@ function closeBooking() {
 
 function openBookingForm (eventid, data)   {
    
+  //alert (JSON.stringify(data));
+
     const objevent =  data.find(u => u.id === eventid);
 
     document.getElementById("eventTitle").value = objevent.title;
@@ -1678,10 +1669,8 @@ for (const section of sections) {
         case "toursreservation":
         
         if (checkAdmin ("rsrvdtoursubmnu", section) == 'true') {
-           //document.getElementById("rsrvdtoursubmnu").disabled= false;
-           //document.getElementById("rsrvdtoursubmnu").style.cursor = 'pointer';
             UserTourBookings();
-          // alert("Sorry, this feature is not available at the moment. Please check back later.");
+
         }  
 
         break;
@@ -1706,7 +1695,6 @@ function logAdmin (username, userpass) {
 
 
 async function getCarouselImages () {
-  
   
 
   fetch("data/tours_details/tours.json")
@@ -1793,27 +1781,25 @@ attendeeReg.register({ event_id: "", name: "Bob Husky", email: "bob@mail.com", d
 
 attendeeReg.register({ event_id: "", name: "Jimmy Thomson", email: "Jimmy@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 attendeeReg.register({ event_id: "", name: "Rob Husky", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
-//attendeeReg.register({ event_id: "", name: "Rob Husky2", email: "Rob@mail.com", dateRegistered: new Date().toLocaleDateString() });
 
-      
-      function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+ }
 
-      function nextSlide() {
-        //currentIndex = (currentIndex + 1) % carouselData.length;
-        currentIndex = (currentIndex + 1) % data_array.length;
-        updateCarousel();
-      }
+function nextSlide() {
+  
+   currentIndex = (currentIndex + 1) % data_array.length;
+   updateCarousel();
+ }
 
-      function prevSlide() {
-        currentIndex =
-          //(currentIndex - 1 + carouselData.length) % carouselData.length;
-           (currentIndex - 1 + data_array.length) % data_array.length;
-        updateCarousel();
-      }
+function prevSlide() {
+ currentIndex =
+ 
+ (currentIndex - 1 + data_array.length) % data_array.length;
+  updateCarousel();
+}
 
-      // 🔹 Auto Play (optional)
-      setInterval(nextSlide, 4000);
+//Auto Play (optional)
+setInterval(nextSlide, 4000);
 
     
