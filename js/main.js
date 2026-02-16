@@ -330,7 +330,7 @@ if (document.readyState === "loading") {
 }
  
  // Mobile nav toggle
-  function navtoggle () {
+function navtoggle () {
    
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
@@ -390,8 +390,7 @@ if (document.readyState === "loading") {
     }
 
     
-  }
-
+}
 
 function loadLectureEvent() {
 
@@ -484,29 +483,20 @@ function ToursSearchCriteria ()  {
     searchgrid.innerHTML ="";
 
     var search =`
-                <input
-                  id="countryInput"
-                  type="text"
-                  class="searchInput"
-                  placeholder="Country"
-                />
-                <input
-                  type="text"
-                  class="searchInput"
-                  placeholder="City"
-                  id="cityInput"
-                />
-                <input id="startdate" type="date" />
-                <input id="enddate" type="date" />`;
+     <input id="countryInput" type="text" placeholder="Enter Country Please"  />
+     <input type="text"  placeholder="Enter City Please" id="cityInput" />
+     <input id="startdate" type="date" />
+     <input id="enddate" type="date" />`;
 
     const card = document.createElement('div');
-    card.className = 'search-fields';
+    //card.className = 'search-fields';
+    card.className = 'search';
+
     card.innerHTML = search;
     
     var btn = document.createElement('button');
-    btn.className = 'book-btn';
-   // btn.className = 'search-fields';
-     
+    //btn.className = 'book-btn';
+
     btn.innerText = 'Search';
     btn.id = 'cmdSearch';
    
@@ -535,58 +525,43 @@ function ToursSearchCriteria ()  {
    
 }
 
+
 function LecturesSearchCriteria ()  {
   
-    const searchgrid = document.getElementById("searching-grid");
-    searchgrid.style.display = 'block'; 
-    searchgrid.innerHTML ="";
+  const searchgrid = document.getElementById("searching-grid");
+  searchgrid.style.display = 'block'; 
+  searchgrid.innerHTML ="";
 
-    var search =`
-   
-    
-              <!--div><label for="city">City</label></div-->
-             
-                <input 
-                  type="text" class="searchInput"
-                  id="city"
-                  
-                  placeholder="Enter City please"
-                />
-            
+  const card = document.createElement('div');
+  card.className = 'search';
 
-              <!--div><label for="speaker">Speaker</label></div-->
-            
-                <input 
-                  type="text" class="searchInput"
-                  id="speaker"
-                 
-                  placeholder="Enter Speaker please"
-                />
-              
-              <!--div><label for="country">Country</label></div-->
-              
-                <input 
-                  type="text" class=""
-                  id="country"
-                 
-                  placeholder="Enter country please"
-                />
-             
+  
+  var search=  ` 
+    <div class="searchitem">
+      <input type="text" id="city" placeholder="Enter City Please" />
+    </div>
+    <div class="searchitem">
+      <input type="text" id="speaker" placeholder="Enter Speaker Please" />
+    </div>
+    <div class="searchitem">
+      <input type="text" id="country" placeholder="Enter Country Please" />
+    </div>
+  `;
 
-                `;
-                
+    const objdiv = document.createElement("div");
+    objdiv.className ='searchitem';
 
-    const card = document.createElement('div');
-    card.className = 'search-fields';
-    card.innerHTML = search;
-    
     var btn = document.createElement('button');
-    btn.className = 'book-btn';
-    
-     
     btn.innerText = 'Search';
-    btn.id = 'cmdSearch';
-   
+    btn.id = 'cmdSearch'; 
+
+
+    objdiv.appendChild(btn);
+
+    card.innerHTML = search;
+    card.appendChild(objdiv);
+
+
     if (btn) {
 
       btn.addEventListener("click", runsearchLecture);
@@ -604,7 +579,7 @@ function LecturesSearchCriteria ()  {
     } else {
       alert("Element not found!");
     }
-    card.appendChild(btn);
+   
     searchgrid.appendChild(card);
   
 
@@ -987,7 +962,7 @@ function renderLecBookingList   ()
           card.innerHTML  = "";
           card.id = b.email;
 
-          alert (" Lecture id " + b.lectureid + " email " + b.email);
+          //alert (" Lecture id " + b.lectureid + " email " + b.email);
 
           for(const item of search) {
             
@@ -1424,30 +1399,28 @@ function searchlectures (country, city, speaker) {
         || lecture.speaker.toLowerCase() === speaker.toLowerCase()
     })
 
-    
     let search = json2array(filteredlectures);
 
    // alert ("Country: " + country + "City:  " + city  + "  Speaker " + speaker);
-
 
     for(const item of search) {
        
          const card = document.createElement('div');
             card.className = 'event-card';
             card.innerHTML = `
-             
-
             <div id="${item.id}" class="event-card-content">
-                    <h4>Title:${item.title}</h4>
-                    <h2>Description: ${item.description}</h2>
-                    <p><strong>Date:</strong> ${item.date}</p>
-                    <p><strong>Speaker:</strong> ${item.speaker}</p>
-                    <p><strong>Venue:</strong>${item.venue}</p>
-                    <p><strong>City:</strong>${item.city}</p>
-                    <p><strong>Country:</strong>${item.country}</p>                   
-              
-            </div>`;
-
+                <h4>Title:${item.title}</h4>
+                <h2>Description: ${item.description}</h2>
+                <p><strong>Date:</strong> ${item.date}</p>
+                <p><strong>Speaker:</strong> ${item.speaker}</p>
+                <p><strong>Venue:</strong>${item.venue}</p>
+                <p><strong>City:</strong>${item.city}</p>
+                <p><strong>Country:</strong>${item.country}</p>   
+            </div>
+            <button id = "btn${item.id}" class="book-btn" onclick="openBookingLecture('${item.id}')">
+              Book
+            </button>` ;
+            
             grid.appendChild(card);
     }
 
@@ -1501,8 +1474,11 @@ function searchtours (strcountry, strcity,  startdate , enddate) {
                 <p><strong>City:</strong>${item.city}</p>
                 <p><strong>Country:</strong>${item.country}</p>
                     
-            </div>`;
-   
+            </div>
+            <button id = "btn${item.id}" class="book-btn" onclick="openBookingTour('${item.id}')">
+              Book
+            </button>` ;
+            
             grid.appendChild(card);
     }
 
@@ -1775,6 +1751,7 @@ async function getCarouselImages () {
 
   
 }
+
 
 navtoggle ();
 

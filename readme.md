@@ -1,3 +1,13 @@
+<h1 align="center">Getaway Holidays Website</h1>
+
+[View the live project here.] ("https://moh2700.github.io/getaway_holidays/index.html")
+
+This is the main Internet booking website for Getaway Travels. It is designed to be responsibe and accessible on a range of devices, making it easy to navigate for potential Visitors and researches enthusiast for the lost Jewel of wonderful Moorish Andalusian Convivencia during the reign of Muslims in Spain.
+
+<h2 align="center"><img src="./docs/features/mainbackgrnd.png"></h2>
+
+<h2 align="center"><img src="./docs/features/multidevices.png"></h2>
+
 # Getaway Holidays overview
 
 This website specializes in booking historical tours and educational lectures focused on Al-Andalus and the Moorish legacy in Iberia. It offers expertly guided experiences that explore the region’s history, culture, architecture, and intellectual heritage.
@@ -10,35 +20,35 @@ Visitors can easily discover, explore, and book guided tours of historic cities,
 
 ### As a Visitor / History Enthusiast
 
-As a Visitor/ History Enthusiast using the system I want to be able to browse historical tours and lectures about Al-Andalus so I can choose experiences that match my interests.
+1. As a Visitor/ History Enthusiast using the system I want to be able to browse historical tours and lectures about Al-Andalus so I can choose experiences that match my interests.
 
-I want to see detailed descriptions, dates, locations, and historical context so I understand what each experience offers.
+2. I want to see detailed descriptions, dates, locations, and historical context so I understand what each experience offers.
 
-I want to book tours or lectures online easily so I can secure my spot without hassle.
+3. I want to book tours or lectures online easily so I can secure my spot without hassle.
 
 ### As a Tourist
 
-As a tourist, I want to filter tours by city, date, or theme so I can plan my trip efficiently.
+1. As a tourist, I want to filter tours by city, country and date so I can plan my trip efficiently.
 
-As a tourist, I want to see tour duration and language options so I can choose what fits my schedule.
+2. As a tourist, I want to see tour duration and language options so I can choose what fits my schedule.
 
 ### As a Student / Researcher
 
-As a learner, I want access to lectures and historical resources so I can deepen my understanding of Moorish history.
+1. As a learner, I want access to lectures and historical resources so I can deepen my understanding of Moorish history.
 
-As a learner, I want to attend online or in-person lectures so I can learn regardless of my location.
+2. As a learner, I want to attend online or in-person lectures so I can learn regardless of my location.
 
 ### As a Tour Guide / Lecturer
 
-As a guide, I want to create and manage my tours or lectures so I can present my expertise.
+1. As a guide, I want to create and manage my tours or lectures so I can present my expertise.
 
-As a guide, I want to see bookings and attendee numbers so I can prepare properly.
+2. As a guide, I want to see bookings and attendee numbers so I can prepare properly.
 
 ### As an Admin
 
-As an admin, I want to manage tours, lectures, users, and bookings so the platform runs smoothly.
+1. As an admin, I want to manage tours, lectures, users, and bookings so the platform runs smoothly.
 
-As an admin, I want to update content and schedules so information stays accurate and current.
+2. As an admin, I want to update content and schedules so information stays accurate and current.
 
 # Getaway Holidays Features
 
@@ -49,20 +59,21 @@ As an admin, I want to update content and schedules so information stays accurat
 ![Navigation Bar](./docs/features/navigmenu.png)
 
 - **The Home page image**
-  - This includes an image about the magnificent and still holding at this time the Alahambra Castle wordly known as the jewel of a wonderful era of cohexistence between three cultures Islamic and Judeo Christian during the reign of Muslims in Al Andalus.
-  - This section introduces the user to the history of an eye cathing of the wonders of Andalusian heritage of Muslim Spain.
+  1. This includes an image about the magnificent and still holding at this time the Alahambra Castle wordly known as the jewel of a wonderful era of cohexistence between three cultures Islamic and Judeo Christian during the reign of Muslims in Al Andalus.
+  2. This section introduces the user to the history of an eye cathing of the wonders of Andalusian heritage of Muslim Spain.
 
 ![Landing Page](./docs/features/mainbackgrnd.png)
 
 - **The Login Hyperlink**
-- When making a selection for this option the user is prompted with a logging screen to enter the credentials to use the system.
-- This screen is only for admin to view and manage the system. The normal registered user has no access to this option.
-  This option allow the user to delete [Registered Users], [Booked Tour Users], [Booked Lectures Users] and hopefully update users details if times has got no constraints.
+
+1.  When making a selection for this option the user is prompted with a logging screen to enter the credentials to use the system.
+2.  This screen is only for admin to view and manage the system. The normal registered user has no access to this option.
+3.  This option allow the user to delete [Registered Users], [Booked Tour Users], [Booked Lectures Users] and hopefully update users details if times has got no constraints.
 
 ![Landing Page](./docs/features/loginscreen.png)
 
 - **The Tours Hyperlink**
-- The user can browse the varierty of tours offered.
+  The user can browse the varierty of tours offered.
 
 ![Landing Page](./docs/features/tours.png)
 
@@ -75,24 +86,36 @@ As an admin, I want to update content and schedules so information stays accurat
   ![Landing Page](./docs/features/registration.png)
   - Show Users Hyperlink
 
-  ![Landing Page](./docs/features/registeredusers.png)
-  - Show Users Details
+This admin option for showing users list registered on the system is only accessible when you login as admin with the following credentials:
 
-  ![Landing Page](./docs/features/regusrdetails.png)
+1. username: admin
+2. password: admin
+
+![Landing Page](./docs/features/registeredusers.png)
+
+- Show Users
+
+![Landing Page](./docs/features/regusrdetails.png)
 
 - **The Reservation Menu**
   - Reserved Tours Hyperlink
 
-  ![Landing Page](./docs/features/toursusr.png)
+This admin option for showing booked tours users list registered on the system is only accessible when you login as admin with the following credentials:
 
-  ![Landing Page](./docs/features/tourusrdetails.png)
-  - Reserved Lectures Hyperlink
+1. username: admin
+2. password: admin
 
-  ![Landing Page](./docs/features/lecturesusr.png)
+![Landing Page](./docs/features/toursusr.png)
 
-  ![Landing Page](./docs/features/lectureusrdetails.png)
+![Landing Page](./docs/features/tourusrdetails.png)
 
-# System Testing
+- Reserved Lectures Hyperlink
+
+![Landing Page](./docs/features/lecturesusr.png)
+
+![Landing Page](./docs/features/lectureusrdetails.png)
+
+# Testing
 
 The system has no restrictions when it comes to browsing for lectures and tours in which the user can have multitude information regarding the Al Andalus. But to be able to use the system for booking tours or lectures, the user needs to be registered through the website.
 The screens below will highlight how the system works.
@@ -123,6 +146,35 @@ The screens below will highlight how the system works.
 
 ![Landing Page](./docs/features/testlecture4.png)
 
+# Testing Search
+
+- Tours Section
+
+Testing if the search routine is working for city option
+
+![Landing Page](./docs/features/searchtours1.png)
+
+Testing result for search routine for city option
+
+![Landing Page](./docs/features/searchtours2.png)
+
+- Lectures Section
+
+Testing if the search routine is working for speaker option
+
+![Landing Page](./docs/features/searchlectures1.png)
+
+Testing result for search routine for city option
+
+![Landing Page](./docs/features/searchlectures2.png)
+
+# Responsive Design
+
+Here is in this graphic image it shows how the application is responsive to many devices
+such as tablet and mobile phones in which the application is adapting itself to every reponsive possible situation.
+
+![Landing Page](./docs/features/multidevices.png)
+
 # Error Validation
 
 - Registration form
@@ -131,9 +183,10 @@ The screens below will highlight how the system works.
 
 ![Landing Page](./docs/features/validreg2.png)
 
-Here is in this screen the user must enter the credentials properly otherwise they won't be able to progress in the system. The second screen is checking for valid email address which allow him to enter and register for the system.
+Here is in this screen the user must enter the credentials properly otherwise they won't be able to progress in the system. The second screen is checking for valid email address which allow him/her to use and register for the system.
 
 - Login Form
+
   ![Landing Page](./docs/features/validlogin.png)
 
 Here the Admin needs to enter the right password and username to be able to login to the system to be able to see more functionalities in the system.
@@ -151,61 +204,68 @@ password = admin
 
 # Features not implemented at this stage
 
-I want to view guide and lecturer profiles so I can trust the expertise behind the content
-I want to receive booking confirmations and reminders so I don’t miss my experience.
+1. I want to view the guide and lecturer profiles so I can trust the expertise behind the content.
+2. I want to receive booking confirmations and reminders so I don’t miss my experience.
 
 # Deployment
 
-Step 1: Initialize a Git Repository in a Frontend Project
-Navigate to your frontend project folder in the terminal and initialize a local Git Repository
+# Step 1: Initialize a Git Repository in a Frontend Project
+
+1. Navigate to your frontend project folder in the terminal and initialize a local Git Repository
 
 git init
 
-This command will create a .git folder where the details of the repository like remote and username and email are stored.
+2. This command will create a .git folder where the details of the repository like remote and username and email are stored.
 
-Step 2: Configure Git username and password
-Set your identity for locally for this specific project.
+# Step 2: Configure Git username and password
 
-git config user.name "Your Name"
-git config user.email "your.email@example.com"
+Set your identity locally for this specific project.
+
+- git config user.name "Your Name"
+- git config user.email "your.email@example.com"
+
 To configure globally for your future repositories:
 
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
+- git config --global user.name "Your Name"
+- git config --global user.email "your.email@example.com"
+
 This step ensures that every commit is linked to your identity.
 
-Step 3: Create a New Repository on Github
+# Step 3: Create a New Repository on Github
 
-![alt text](https://media.geeksforgeeks.org/wp-content/uploads/20250716161225305378/newrepo.PNG)
+![alt text](./docs/features/newrepo1.png)
 
-https://media.geeksforgeeks.org/wp-content/uploads/20250716160149338206/HowtocreateaRepositoryongithub.PNG
+![alt text](./docs/features/newrepo2.png)
 
 Click the "+" icon on the top-right corner. Select "New repository".
-newrepo
-create repository
+
+# create repository
 
 Fill in the repository name (e.g., MyProject), add an optional description, choose Public or Private, and click Create repository.
 
-HowtocreateaRepositoryongithub
+# How to create a Repository on github
+
 New Repository
 
-Note: Once created, GitHub shows you a few lines of code — copy the one with https://github.com/dummyname/MyProject
+Note: Once created, GitHub shows you a few lines of code — copy the one with
+![alt text](https://github.com/dummyname/MyProject)
 
-Step 4: Now Add, Commit and push your Frontend Code
+# Step 4: Now Add, Commit and push your Frontend Code
 
-In your terminal(inside your project folder)
+Back to vscode and in your terminal(inside your project folder) enter the the following comands:
 
-git add .
-git commit -m " added frontend file"
-git remote add origin https://github.com/your-username/your-repo-name
-git branch -M master
-git push -u origin main
-This will push your HTML, CSS, and JavaScript files to the GitHub repository.
+- git add .
+- git commit -m " added frontend file"
+- git remote add origin https://github.com/your-username/your-repo-name
+- git branch -M master
+- git push -u origin main
+  This will push your HTML, CSS, and JavaScript files to the GitHub repository.
 
 - Now that your project has been initialized with Git and pushed to GitHub, let’s host it on GitHub Pages. GitHub Pages is a free service that allows you to publish web projects directly from a GitHub repository.
 
-- GitHub Pages
-  GitHub Pages turns your GitHub repository into a website. It's an easy way to showcase your projects without needing a separate hosting service. You can create static websites directly from your repositories.
+# GitHub Pages
+
+GitHub Pages turns your GitHub repository into a website. It's an easy way to showcase your projects without needing a separate hosting service. You can create static websites directly from your repositories.
 
 - Go to your GitHub repository in a web browser.
 
@@ -239,49 +299,81 @@ https://<username>.github.io/<repository-name>
 
 Any changes to the website done locally on vscode will be updated to the existing project on GITHUB pages
 
-git add .
-git commit -m "Your commit message"
+- git add .
+- git commit -m "Your commit message"
 
-- Push the changes to GitHub:
+# Push the changes to GitHub:
 
-  git push origin main
+git push origin main
 
 # Bugs
 
-# Project Limitations
+# Project Limitations/Challenges
+
+All the data shown for tours and lectures is being pulled from Json files which are
+
+- tours.json
+- lectures.json
+
+In a proper commercial applications the website will be using data directly from a back end database password protected and all the security features on it to protect our data system. But at this precise moment, we are going to be just contented with json files.
+Updating json files is a nightmare and it is very difficult to do so because of lack of online security and less protection on the existing data files.
+At the moment we are only using volatile memory to do data handling when using the system such as Creating new users, Booking new tours and lectures. They are done locally and saved to memory. But as soon as the user refresh the page everything is lost.
 
 # Media
 
 - **Pexels and Unsplash website**
 
 - The photos were taken from from This Open Source site
-  [Pexels Site] ("https://www.pexels.com/search/gym/") and
-  [Unsplash Site] ("https://unsplash.com/s/photos/gym")
+  - [Pexels Site] ("https://www.pexels.com/search/andalucia/)"
+  - [Unsplash Site] ("https://unsplash.com/s/photos/andalucia")
 
-- The photos used in the home, classes and aboutus page.
-- The photos used on the home page .
-- The images used for the gallery page.
+- The photos used in the home page and the links in json files.
 
-# Project Challenges
+# Running the Project
+
+After all the setup has been done locally and on Github or any other cloud based platform.
+In the case of Github Just enter the following link in the browser and the system is up and running. The link in other platform might be different becuse of the nature of the platform being used.
+
+-[Getaway Travels] ("https://moh2700.github.io/getaway_holidays/index.html")
+
+## Credits
+
+### Code
+
+Various online source I used them to build my project.
+
+- [StackOverflow post](https://stackoverflow.com)
+
+- [MDN Web Docs](https://developer.mozilla.org/)
+
+- [W3 Schools](https://www.w3schools.com/)
+
+### Acknowledgements
+
+- Tutor support at Code Institute/East Anglia College for their support.
+
+# Project Challenges / Issues
+
+- [ link ] ("https://github.com/Moh2700/getaway_holidays/issues/1")
+- [ link ] ("https://github.com/Moh2700/getaway_holidays/issues/2")
+- [ link ] ("https://github.com/Moh2700/getaway_holidays/issues/3")
+- [ link ] ("https://github.com/Moh2700/getaway_holidays/issues/4")
+- [ link ] ("https://github.com/Moh2700/getaway_holidays/issues/5")
+- [link] ("https://github.com/Moh2700/getaway_holidays/issues/6")
+- [link] ("https://github.com/Moh2700/getaway_holidays/issues/7")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/8")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/9")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/10")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/11")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/12")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/13")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/14")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/15")
+  ![link] ("https://github.com/Moh2700/getaway_holidays/issues/16")
 
 # Project Technologies Used
 
-# How to Install and Run the Project
-
-# Credits
-
-# Tests
-
-## Validator Testing
-
-**HTML Validation**
-
-## Home page
-
-**Evidence**
-
-**Bootstrap**
-
-- [Bootstrap files] ("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css")
-- [Bootstrap files] ("https://getbootstrap.com/docs/5.3/assets/css/docs.css")
-- [Bootstrap files] ("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js)
+1. [HTML5] ("https://html.spec.whatwg.org/multipage/")
+2. [CSS] ("https://www.w3.org/Style/CSS/Overview.en.html")
+3. [Javascript] ("https://devdocs.io/javascript/")
+4. [Javascript] ("https://developer.mozilla.org/en-US/docs/Web/JavaScript")

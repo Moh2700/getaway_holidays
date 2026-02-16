@@ -121,7 +121,10 @@ body::before {
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-       
+  /*
+  width:206px;
+  height:50px;
+   */    
 }
 
 .book-btn:hover {
@@ -198,6 +201,7 @@ body::before {
   border-radius: 10px;
   border: 1px solid #ccc;
   width: 70%;
+ 
  
  }
 
@@ -493,7 +497,14 @@ body::before {
           
         }
 
-        .div_group  div:hover, p:hover {
+        .div_group  div:hover {
+           background: #064e3b;
+           cursor: pointer;
+           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+           
+         }
+
+         .div_group  p:hover {
            background: #064e3b;
            cursor: pointer;
            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
@@ -522,7 +533,104 @@ body::before {
             border-radius: 5px;
             text-align: center;
           }
+
+/* Search Section for lecture */          
+.search {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
  
+  width: 100%;
+  /*box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);*/
+  justify-content: space-between;
+}
+
+
+.searchitem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*
+  border:2px solid red;
+  flex-direction: column;
+  min-height: 56px;
+  font-size: 14px;
+  text-decoration: none;
+  padding-top:0;
+  border:2px solid red;
+  width:95%; 
+  */
+}
+
+.searchitem button:hover {
+  background: #064e3b;
+}
+
+.searchitem input {
+  width: 100%;
+  padding: 0.5rem;
+ /* background: #064e3b;*/
+  border-radius: 8px;
+  /*border: 1px solid #ccc;*/
+  top:0px;
+ 
+}
+
+.searchitem button {
+  margin-top: 1rem;
+  background: var(--emerald);
+  color: white;
+  border: none;
+  height:30px;
+  margin-bottom:10px;
+  /*font-weight: 600;*/
+  font-size:medium;
+  top:0px;
+  
+  /*padding: 0.6rem 1rem; */
+  
+  border-radius: 8px;
+  cursor: pointer;
+  width:100%;
+}
+
+
+/*Search Section for Tours */
+#searching-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+  gap: 16px; 
+}
+
+#searching-grid input {
+  width: 95%;
+  /*padding: 0.5rem;*/
+  border-radius: 8px;
+  height:30px;
+}
+
+#searching-grid button:hover {
+  background: #064e3b;
+}
+
+#searching-grid button {
+ 
+  margin-top: 1rem;
+  background: var(--emerald);
+  color: white;
+  border: none;
+  height:30px;
+  margin-bottom:10px;
+  /*font-weight: 600;*/
+  font-size:medium;
+  top:0px;
+  
+  /*padding: 0.6rem 1rem; */
+  
+  border-radius: 8px;
+  cursor: pointer;
+  width:100%;
+}
+
 /* Events Section */
 #events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
@@ -539,8 +647,9 @@ body::before {
 /*Tours Section */
 
 #tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
 #lectures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-#search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
 /*
 #reservation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 */
