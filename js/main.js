@@ -12,6 +12,8 @@ let detailRespLec, detailsLec ;
 
 const track = document.getElementById("carouselTrack");
 let currentIndex = 0;
+
+let blFront=false;
  
  
 class Attendee {
@@ -89,6 +91,22 @@ class Attendee {
     return "Unregistered successfully.";
   }
 
+
+  checkUserRegistered(email, name) {
+
+    //alert (attendeeReg.listAttendees().some((user) => user.event_id === this.event_id  ));
+   
+    /*
+    if (attendeeReg.listAttendees().some((user) => user.event_id === this.event_id  ))
+    {
+      alert("You are already registered for this event. Please check your bookings or contact support for assistance.");
+      return false;
+    }
+    */
+    return attendeeReg.listAttendees().some((user) => user.email === email && user.name === name);
+   
+  }
+  
   isRegistered(email) {
     return this.attendees.has(email);
   }
@@ -514,7 +532,6 @@ function ToursSearchCriteria ()  {
    
 }
 
-
 function LecturesSearchCriteria ()  {
   
   const searchgrid = document.getElementById("searching-grid");
@@ -652,7 +669,6 @@ function loadTourEvent() {
 
 
 }
-
 
 function getSiteEvent  (strEventType, displaystate) {
   
@@ -873,7 +889,6 @@ function openBookingTour(eventid) {
       
 }
 
-
 function RenderBookings(eventid)  {
 
   const tourbooking = document.getElementById(eventid);
@@ -1006,7 +1021,6 @@ function highlightItem (item) {
    return item 
 }
 
-
 function renderTourBookingList   ()
 {
 
@@ -1074,7 +1088,6 @@ function renderTourBookingList   ()
   
   return TourList;
 }
-
 
 function renderRegisteredUsersList   ()
 {
@@ -1171,10 +1184,25 @@ function confirmLectureBooking () {
     if(!attendeeReg.isRegistered(attendeeReg.email)) {
         alert("You are not registered in the system  ");
         return;
-    }else {
-    
+    }
 
+        
+    if (!attendeeReg.checkUserRegistered(attendeeReg.email, attendeeReg.name) ) 
+    {
+      alert ("Username and email do not match any registered user in the system. Please enter a valid name that matches the email address in the system");
+      return;
+    }else {
+
+    
     const obj = lecbooked.listLectures();
+
+    // check if the user has already booked this lecture
+    for (const key in obj) {
+      if (obj[key].lectureid.trim() === eventid.trim() && obj[key].email.trim() === attendeeReg.email.trim()) {
+        alert("You have already booked this lecture. Please check your bookings or contact support for assistance.");
+        return;
+      }
+    } 
     const lastkey = Object.keys(obj)[Object.keys(obj).length - 1];
     lecbooked.book({id: lastkey+1, lectureid: eventid, name: name, email: email , dateBooked: dateReg});
  
@@ -1200,8 +1228,8 @@ function confirmLectureBooking () {
     const grid = document.getElementById('bookingModal');
     grid.style.display ='none';
 
-
 }
+  
 
 function confirmTourBooking () {
 
@@ -1283,7 +1311,6 @@ function confirmTourBooking () {
    
 }
 
-
 function removeUser (useremail)
 {
             
@@ -1298,7 +1325,6 @@ function removeUser (useremail)
       
     
 }
-
 
 function UserLectureBookings ()
 {
@@ -1338,8 +1364,6 @@ function UserTourBookings ()
  
 }
 
-
-
 function RegisteredUsers ()   {
   
   const divsection = document.getElementById('users-registration');
@@ -1357,7 +1381,6 @@ function RegisteredUsers ()   {
  
 }
 
-
 function showToursBookinglist ()  {
 
   const divsection = document.getElementById('tours-reservation');
@@ -1370,7 +1393,6 @@ function showToursBookinglist ()  {
   toursgrid.appendChild(lst);
 
 }
-
 
 function searchlectures (country, city, speaker) {
  
@@ -1421,7 +1443,6 @@ function searchlectures (country, city, speaker) {
      return err;
   }
 }
-
 
 function searchtours (strcountry, strcity,  startdate , enddate) {
  
@@ -1508,7 +1529,6 @@ function isValidEmail(strvalue)
   return emailRegex.test(strvalue);
 }
 
-
 function isValidLetter(strvalue) 
 {  
    return /^[A-Za-z ]+$/.test(strvalue);
@@ -1552,9 +1572,9 @@ function highlightMenuItem (item) {
 
    if (checkAdmin(item.id, null) == 'true') {
       item.style.cursor = 'pointer';
-      item.classList.add('active');
+     // item.classList.add('active');
     } else {
-      item.classList.remove('active');
+     // item.classList.remove('active');
       item.style.cursor = 'not-allowed';
       item.style.color = 'black';
     }
@@ -1574,10 +1594,58 @@ function checkAdmin (submnu, section) {
     
     document.getElementById(submnu).disabled= false;
     document.getElementById(submnu).style.cursor = 'pointer';
+    highlightItem (document.getElementById(submnu));
+
 
   }
 
   return isAdmin;
+}
+
+function toggleMenu() {
+          document.getElementById('main-nav').style.display = 'block';
+          document.getElementById('main-nav').style.backgroundColor = '#EEEADF';
+          document.getElementById('main-nav').style.zIndex = '50';
+        
+        // Close nav when a link is clicked (mobile)
+          document.getElementById('main-nav').addEventListener('click', (e) => {
+              
+            if (e.target.tagName === 'A') {
+                document.getElementById('main-nav').style.display = 'none'; 
+              }
+            });
+
+
+}
+
+function getDeviceUsed () {
+  
+  const screenWidth = window.visualViewport.width;
+  
+        
+  switch(true ) {
+
+        case screenWidth <= 576  :
+           toggleMenu();
+        break;
+        
+        case screenWidth <= 768 :
+           toggleMenu();
+        break;
+        
+        case screenWidth <= 992 :
+          toggleMenu();
+        break;
+
+        case screenWidth <= 1200 :
+          toggleMenu();
+        break;
+
+        case screenWidth <= 1440 :
+          toggleMenu();
+        break;
+  }
+
 }
 
 function useroption (choice) {
@@ -1586,13 +1654,8 @@ function useroption (choice) {
   
   var searchgrid, search ;
 
- 
 for (const section of sections) {
  
- // alert ("ID: " + section.id + "  Display: " + section.style.display + "  Choice: " + choice);
-
- //alert ("users-registration clicked" + "  isAdmin: " + isAdmin + "  section: " + section.id + "  display: " + choice);
-
   section.style.display='none'; 
   
   if (section.id.trim() === choice.trim() ){
@@ -1614,7 +1677,8 @@ for (const section of sections) {
           search.style.display = 'block';
 
           section.style.display='block';
-         
+
+         // getDeviceUsed();
           loadTourEvent();
          
         break;
@@ -1628,6 +1692,7 @@ for (const section of sections) {
 
           section.style.display='block';
           
+         // getDeviceUsed();
           loadLectureEvent();
 
           break;
@@ -1676,11 +1741,14 @@ for (const section of sections) {
         break;
         
       } //====end of switch================
+
+    
   
     } //=====end of if===================
    
   } //===== end of for loop============
   
+  getDeviceUsed();
 }//========== end of function========
 
 
@@ -1752,7 +1820,7 @@ const attendeeReg = new Attendee();
 const tourbooked = new userBookingTour();
 tourbooked.book({id:1, tourid: "trs0002", name: "Alice Thomson", email: "alice@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 tourbooked.book({id:2, tourid: "trs0003", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
-tourbooked.book({id:3, tourid: "trs0004", name: "Rob Husky", email: "rob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
+tourbooked.book({id:3, tourid: "trs0004", name: "Bob Husky", email: "bob@mail.com" , dateRegistered: new Date().toLocaleDateString()});
 
 
 const lecbooked = new userBookingLecture();

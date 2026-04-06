@@ -28,14 +28,28 @@
           aria-controls="main-nav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onclick="
+            // document.getElementById('main-nav').classList.toggle('active')
+            getDeviceUsed()
+          "
+          style="
+            display: none;
+            height: 38px;
+            width: 38px;
+            padding: 0;
+            font-size: 24px;
+            line-height: 38px;
+            text-align: center;
+          "
         >
           ☰
         </button>
         <div style="flex: 1"></div>
         <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
           <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-
+            <li>
+              <a href="index.html" class="active">Home</a>
+            </li>
             <li>
               <div class="dropdown">
                 Reservation
@@ -45,8 +59,10 @@
                     id="rsrvdtoursubmnu"
                     onclick="
                       // UserTourBookings();
-
                       useroption('toursreservation')
+                    "
+                    onmouseover="
+                      highlightItem(document.getElementById('rsrvdtoursubmnu'))
                     "
                     style="cursor: pointer"
                     >Reserved Tours
@@ -56,6 +72,9 @@
                   <a
                     id="rsrvdlecsubmnu"
                     onclick="useroption('lecturesreservation')"
+                    onmouseover="
+                      highlightItem(document.getElementById('rsrvdlecsubmnu'))
+                    "
                     style="cursor: pointer"
                     >Reserved Lectures</a
                   >
@@ -69,11 +88,10 @@
                 <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
                 <div id="mnuRegistration" class="dropdown-content">
                   <a
+                    id="regnewsubmnu"
                     onclick="useroption('SiteRegistration')"
                     onmouseover="
-                      highlightMenuItem(
-                        document.getElementById('regusersubmnu'),
-                      )
+                      highlightItem(document.getElementById('regnewsubmnu'))
                     "
                     style="cursor: pointer"
                     >New Registration</a
@@ -83,9 +101,7 @@
                     id="regusersubmnu"
                     onclick="useroption('users-registration')"
                     onmouseover="
-                      highlightMenuItem(
-                        document.getElementById('regusersubmnu'),
-                      )
+                      highlightItem(document.getElementById('regusersubmnu'))
                     "
                     style="cursor: pointer"
                     >Show Users</a
@@ -119,7 +135,7 @@
 
             <li>
               <a style="cursor: pointer" onclick="useroption('logging')"
-                >Login</a
+                >admin</a
               >
             </li>
           </ul>

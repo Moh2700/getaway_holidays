@@ -10,11 +10,21 @@ This is the main Internet booking website for Getaway Travels. It is designed to
 
 # Getaway Holidays overview
 
-This website specializes in booking historical tours and educational lectures focused on Al-Andalus and the Moorish legacy in Iberia. It offers expertly guided experiences that explore the region’s history, culture, architecture, and intellectual heritage.
+This website specializes in booking historical tours and educational lectures focused on Al-Andalus and the Moorish legacy in Iberia. It offers expertly guided experiences that explore the region’s history, culture, architecture and intellectual heritage.
 
-The platform allows users to easily discover and book tours and talks led by knowledgeable historians and cultural experts, making the history of Andalusia engaging, accessible, and meaningful for a global audience.
+The platform allows users to easily discover and book tours and talks led by knowledgeable historians and cultural experts, making the history of Andalusia engaging, accessible and meaningful for a global audience.
 
-Visitors can easily discover, explore, and book guided tours of historic cities, monuments, and archaeological sites, as well as attend in-depth lectures led by historians, researchers, and cultural experts. Each experience is designed to provide historical accuracy, thoughtful storytelling, and meaningful context, connecting past civilizations with the present.
+Visitors can easily discover, explore, and book guided tours of historic cities, monuments, and archaeological sites as well as attend in-depth lectures led by historians, researchers and cultural experts. Each experience is designed to provide historical accuracy, thoughtful storytelling and meaningful context, connecting past civilizations with the present.
+
+# Preloaded data
+
+In order to make the system easy for testing. There is preloaded data for [Registered Users], [Booked Tours] and [Booked Lectures] as shown below
+
+![Landing Page](./docs/features/registeredusers.png)
+
+![Landing Page](./docs/features/lecturesusr.png)
+
+![Landing Page](./docs/features/toursusr.png)
 
 # Getaway Holidays User Story
 
@@ -64,7 +74,12 @@ Visitors can easily discover, explore, and book guided tours of historic cities,
 
 ![Landing Page](./docs/features/mainbackgrnd.png)
 
-- **The Login Hyperlink**
+# **The Admin Hyperlink**
+
+This section is only for admin people where the admin can login to the system to view the users registered for the system. View the the users who are booked on lectures and tours. The admin can also delete users of the system who are registered for tours and lectures. The normal user is not concerned with this option but it is strictly for management use.
+
+username: admin
+password: admin
 
 1.  When making a selection for this option the user is prompted with a logging screen to enter the credentials to use the system.
 2.  This screen is only for admin to view and manage the system. The normal registered user has no access to this option.
