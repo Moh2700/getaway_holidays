@@ -74,6 +74,11 @@ In order to make the system easy for testing. There is preloaded data for [Regis
 
 ![Landing Page](./docs/features/mainbackgrnd.png)
 
+# **⚠️ Limitations of Transient Memory **
+
+The project solely and mainly relies on volatile memory which present significant risks and flaws especially when it comes to data loss, lack of durability and system reliability as against high perfomance data access. At the moment we are not using any backend databases which guarantees reliability, security and data persistence for our data storage.  
+[See Section for more details](#bugs).
+
 # **The Admin Hyperlink**
 
 This section is only for admin people where the admin can login to the system to view the users registered for the system. View the the users who are booked on lectures and tours. The admin can also delete users of the system who are registered for tours and lectures. The normal user is not concerned with this option but it is strictly for management use.
@@ -321,7 +326,7 @@ Any changes to the website done locally on vscode will be updated to the existin
 
 git push origin main
 
-# Bugs
+## Bugs
 
 # Project Limitations/Challenges
 

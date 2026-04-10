@@ -1565,6 +1565,7 @@ function confirmRegistration() {
     
     document.getElementById("regname").value = '';
     document.getElementById("regemail").value = '';
+    getSiteEvent ('SiteRegistration', 'none');
    
 }
 
