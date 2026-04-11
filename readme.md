@@ -2,7 +2,7 @@
 
 [View the live project here.] ("https://moh2700.github.io/getaway_holidays/index.html")
 
-This is the main Internet booking website for Getaway Travels. It is designed to be responsibe and accessible on a range of devices, making it easy to navigate for potential Visitors and researches enthusiast for the lost Jewel of wonderful Moorish Andalusian Convivencia during the reign of Muslims in Spain.
+This is the main Internet booking website for Getaway Travels. It is designed to be responsive and accessible on a range of devices, making it easy to navigate for potential visitors and researches enthusiast for the lost Jewel of wonderful Moorish Andalusian Convivencia during the reign of Muslims in Spain.
 
 <h2 align="center"><img src="./docs/features/mainbackgrnd.png"></h2>
 
@@ -15,6 +15,10 @@ This website specializes in booking historical tours and educational lectures fo
 The platform allows users to easily discover and book tours and talks led by knowledgeable historians and cultural experts, making the history of Andalusia engaging, accessible and meaningful for a global audience.
 
 Visitors can easily discover, explore, and book guided tours of historic cities, monuments, and archaeological sites as well as attend in-depth lectures led by historians, researchers and cultural experts. Each experience is designed to provide historical accuracy, thoughtful storytelling and meaningful context, connecting past civilizations with the present.
+
+# **⚠️ Limitations of Transient Memory **
+
+The system architecture currently depends exclusively on volatile memory, which introduces substantial risks related to data integrity, durability, and overall system reliability, despite enabling high-performance data access. Furthermore, the absence of a backend database eliminates mechanisms for persistent storage, thereby compromising data security, consistency, and fault tolerance. [See Section for more details](#bugs).
 
 # Preloaded data
 
@@ -73,11 +77,6 @@ In order to make the system easy for testing. There is preloaded data for [Regis
   2. This section introduces the user to the history of an eye cathing of the wonders of Andalusian heritage of Muslim Spain.
 
 ![Landing Page](./docs/features/mainbackgrnd.png)
-
-# **⚠️ Limitations of Transient Memory **
-
-The project solely and mainly relies on volatile memory which present significant risks and flaws especially when it comes to data loss, lack of durability and system reliability as against high perfomance data access. At the moment we are not using any backend databases which guarantees reliability, security and data persistence for our data storage.  
-[See Section for more details](#bugs).
 
 # **The Admin Hyperlink**
 
