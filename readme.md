@@ -64,6 +64,47 @@ In order to make the system easy for testing. There is preloaded data for [Regis
 
 2. As an admin, I want to update content and schedules so information stays accurate and current.
 
+- ### Design
+  - #### Colour Scheme
+    - The two main colours used are Getaway Holidays green and beige.
+  - #### Typography
+    - There are number of fonts such as 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial that has been loaded in case other don't pick up. These stack of fonts were chosen because of their decorative style and sharpness giving the reader an eye catching for its attractiveness and comfort and ease for the eye.
+
+    - #### Imagery
+
+    - The careful use of the background image is intentionally selected to depict the Alhambra Palace which refelects one of the major historical in Andalucia and everything that involves this project. Furtheremore the carousel use only superb historical sites to emphasize thr greatness of Andalucian civilization.
+
+* ### Wireframes
+  - Home Page Wireframe - [View](https://github.com/)
+
+  - Mobile Wireframe - [View](https://github.com/)
+
+  - Contact Us Page Wireframe - [View](https://github.com/)
+
+# Testing
+
+## Automatic Testing
+
+- In order to see better software delivery and achieve continous software integration. The automation software is adopted as a way and an approach to help test application software faster and achieve accurate results using tools that favour automation rather than manual testing.
+
+Manual efforts will be prone to errors as against faster executions for repetitive tasks. This will improve accuracy and consistency by minimizing human errors and improves accuracy and consistency.
+
+Example: For a login page, instead of manually entering username and password every time, an automation script can automatically test multiple login combinations and verify expected results in seconds.
+
+Advantages of Automation Testing
+Automation testing provides several benefits that improve efficiency, accuracy, and overall software quality in the testing process.
+
+Faster Execution: Automated tests run much faster than manual testing, especially for repetitive test cases.
+Improved Accuracy: Reduces human errors and ensures consistent test execution every time.
+Higher Test Coverage: Allows execution of a large number of test cases across multiple environments and datasets.
+Supports Reusability: Test scripts can be reused for different builds and versions of the application.
+Efficient for Regression Testing: Quickly verifies that new changes do not break existing functionality.
+Supports CI/CD Integration: Enables continuous testing in DevOps pipelines for faster delivery.
+Reasons to Adopt Automation Testing
+Automation testing uses tools and scripts to execute test cases efficiently, reducing manual effort and improving accuracy. It is especially useful for repetitive, regression, and data-driven testing, and supports faster delivery through CI/CD integration.
+
+## Manual Testing
+
 # Getaway Holidays Features
 
 - **Navigation Bar**
@@ -217,9 +258,12 @@ password = admin
 
 # HTML page Validator
 
-![Landing Page](./docs/features/mainpageindex.png)
+![Landing Page(index.html)](./docs/features/mainpageindex.png)
 
 # Javascript page Validator
+
+The report shows that the # sign for private variable in Javascript class is not recognized by JSLint validator that is why is flagging an error.
+![main Js file(main.Js)](./docs/features/ValidateJsfile.PNG)
 
 # Features not implemented at this stage
 

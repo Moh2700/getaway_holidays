@@ -1,5 +1,5 @@
-var eventtype= "";
- var eventid = "";  
+//var eventtype= "";
+var eventid = "";  
  
 let data_array = [];
  
