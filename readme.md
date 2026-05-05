@@ -75,11 +75,30 @@ In order to make the system easy for testing. There is preloaded data for [Regis
     - The careful use of the background image is intentionally selected to depict the Alhambra Palace which refelects one of the major historical in Andalucia and everything that involves this project. Furtheremore the carousel use only superb historical sites to emphasize thr greatness of Andalucian civilization.
 
 * ### Wireframes
-  - Home Page Wireframe - [View](https://github.com/)
+  - Home Page Sitemap wireframe - ![View Landing Page](./docs/features/sitemap.png)
 
-  - Mobile Wireframe - [View](https://github.com/)
+  - Home page wireframe ![View Landing Page](./docs/features/landingpage.png)
 
-  - Contact Us Page Wireframe - [View](https://github.com/)
+  - Lectures List wireframe
+    ![View List of Lectures](./docs/features/lectureslistmock.png)
+
+  - Lectures Booking Form wireframe
+    ![View Booking Lecture Form](./docs/features/lecturebookingformmock.png)
+
+  - Tours List wireframe
+    ![View List of Tours](./docs/features/tourslistmock.png)
+
+  - Reservation Tours Booking List wireframe
+    ![View List of Booked Tours by Users](./docs/features/toursbookinglistmock.png)
+
+  - Registration form wireframe
+    ![View Registration form](./docs/features/registrationformmock.png)
+
+  - Overall system interaction wireframe
+    ![View system interaction](./docs/features/systeminteractionmock2.png)
+
+  - Logging Form wireframe
+    ![View Logging Form](./docs/features/adminloggingformmock.png)
 
 # Testing
 
@@ -87,7 +106,7 @@ In order to make the system easy for testing. There is preloaded data for [Regis
 
 - In order to see better software delivery and achieve continous software integration. The automation software is adopted as a way and an approach to help test application software faster and achieve accurate results using tools that favour automation rather than manual testing.
 
-Manual efforts will be prone to errors as against faster executions for repetitive tasks. This will improve accuracy and consistency by minimizing human errors and improves accuracy and consistency.
+Manual efforts will be prone to errors as against faster executions for repetitive tasks. This will improve accuracy and consistency by minimizing human errors and improves speed of deployment and faster delivery of projects.
 
 Example: For a login page, instead of manually entering username and password every time, an automation script can automatically test multiple login combinations and verify expected results in seconds.
 
@@ -99,11 +118,37 @@ Improved Accuracy: Reduces human errors and ensures consistent test execution ev
 Higher Test Coverage: Allows execution of a large number of test cases across multiple environments and datasets.
 Supports Reusability: Test scripts can be reused for different builds and versions of the application.
 Efficient for Regression Testing: Quickly verifies that new changes do not break existing functionality.
-Supports CI/CD Integration: Enables continuous testing in DevOps pipelines for faster delivery.
-Reasons to Adopt Automation Testing
-Automation testing uses tools and scripts to execute test cases efficiently, reducing manual effort and improving accuracy. It is especially useful for repetitive, regression, and data-driven testing, and supports faster delivery through CI/CD integration.
 
 ## Manual Testing
+
+- Manual testing in software engineering is the process of humans testing a software application by hand, without using automation tools or scripts. A tester interacts with the system like a real user would—clicking buttons, entering data, navigating pages—to find bugs or unexpected behavior.
+
+✅ Advantages of Manual Testing
+
+1. Strong human intuition
+   Humans notice things automation often misses—like confusing layouts, awkward flows, or subtle visual bugs. That makes manual testing especially valuable for user experience and usability.
+
+2. No programming required
+   You can start testing without writing code. This lowers the barrier to entry and allows non-developers (like product or design teams) to contribute.
+
+3. Ideal for early-stage development
+   When features are still changing rapidly, writing automated tests can be inefficient. Manual testing adapts quickly without needing constant updates.
+
+4. Better for visual and UI validation
+   Checking fonts, colors, alignment, responsiveness, and overall look-and-feel is far more effective manually.
+
+❌ Drawbacks of Manual Testing
+
+1. It is very time consuming taking a lot of thime and effort when running the same tests repeatedly.
+
+2. When applications are growing, manual testing alone becomes impractical. Large systems need faster, repeatable coverage.
+
+3. Manual testing are prone to error because Testers can miss steps, overlook bugs, or get fatigued—especially during repetitive tasks.
+
+4. Limited test coverage
+   You can’t realistically test thousands of scenarios manually, especially edge cases and large datasets.
+
+5. We can not reuse manual testing because they must be performed from scratch each time.
 
 # Getaway Holidays Features
 
