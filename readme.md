@@ -89,7 +89,7 @@ In order to make the system easy for testing. There is preloaded data for [Regis
     ![View List of Tours](./docs/features/tourslistmock.png)
 
   - Reservation Tours Booking List wireframe
-    ![View List of Booked Tours by Users](./docs/features/toursbookinglistmock.png)
+    ![Booked Tours](./docs/features/toursbookingmock.png)
 
   - Registration form wireframe
     ![View Registration form](./docs/features/registrationformmock.png)
