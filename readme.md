@@ -95,7 +95,7 @@ In order to make the system easy for testing. There is preloaded data for [Regis
     ![View Registration form](./docs/features/registrationformmock.png)
 
   - Overall system interaction wireframe
-    ![View system interaction](./docs/features/systeminteractionmock2.png)
+    ![View system interaction](./docs/features/systeminteractionmock3.png)
 
   - Logging Form wireframe
     ![View Logging Form](./docs/features/adminloggingformmock.png)
