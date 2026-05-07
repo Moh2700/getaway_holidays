@@ -1,38 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getaway Holidays</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/headerstyle.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getaway Holidays</title>
 
-    <script src="./js/main.js" defer></script>
-  </head>
-  <body>
-    <div class="container">
-      <header class="site-header">
-        <img
-          src="./assets/images/logo.png"
-          alt="Getaway Travels Logo"
-          class="site-logo"
-        />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/headerstyle.css" />
 
-        <div style="flex: 1"></div>
+  <script src="./js/main.js" defer></script>
+</head>
 
-        <button
-          class="callbtn"
-          id="nav-toggle"
-          class="nav-toggle"
-          aria-controls="main-nav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onclick="
+<body>
+  <div class="container">
+    <header class="site-header">
+      <img src="./assets/images/logo.png" alt="Getaway Travels Logo" class="site-logo" />
+
+      <div style="flex: 1"></div>
+
+      <button class="callbtn" id="nav-toggle" class="nav-toggle" aria-controls="main-nav" aria-expanded="false"
+        aria-label="Toggle navigation" onclick="
             // document.getElementById('main-nav').classList.toggle('active')
             getDeviceUsed()
-          "
-          style="
+          " style="
             display: none;
             height: 38px;
             width: 38px;
@@ -40,364 +31,270 @@
             font-size: 24px;
             line-height: 38px;
             text-align: center;
-          "
-        >
-          ☰
-        </button>
-        <div style="flex: 1"></div>
-        <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
-          <ul>
-            <li>
-              <a href="index.html" class="active">Home</a>
-            </li>
-            <li>
-              <div class="dropdown">
-                Reservation
+          ">
+        ☰
+      </button>
+      <div style="flex: 1"></div>
+      <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+        <ul>
+          <li>
+            <a href="index.html" class="active">Home</a>
+          </li>
 
-                <div id="mnuReservation" class="dropdown-content">
-                  <a
-                    id="rsrvdtoursubmnu"
-                    onclick="
+
+          <li>
+            <div class="dropdown">
+              Reservation
+
+              <div id="mnuReservation" class="dropdown-content">
+                <a id="rsrvdtoursubmnu" onclick="
                       // UserTourBookings();
                       useroption('toursreservation')
-                    "
-                    onmouseover="
+                    " onmouseover="
                       highlightItem(document.getElementById('rsrvdtoursubmnu'))
-                    "
-                    style="cursor: pointer"
-                    >Reserved Tours
-                    <!--span class="tooltip1 tooltiptext"> disabled button </span--></a
-                  >
+                    " style="cursor: pointer">Reserved Tours
+                  <!--span class="tooltip1 tooltiptext"> disabled button </span--></a>
 
-                  <a
-                    id="rsrvdlecsubmnu"
-                    onclick="useroption('lecturesreservation')"
-                    onmouseover="
+                <a id="rsrvdlecsubmnu" onclick="useroption('lecturesreservation')" onmouseover="
                       highlightItem(document.getElementById('rsrvdlecsubmnu'))
-                    "
-                    style="cursor: pointer"
-                    >Reserved Lectures</a
-                  >
-                </div>
+                    " style="cursor: pointer">Reserved Lectures</a>
               </div>
-            </li>
+            </div>
+          </li>
 
-            <li>
-              <div class="dropdown">
-                Registration
-                <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
-                <div id="mnuRegistration" class="dropdown-content">
-                  <a
-                    id="regnewsubmnu"
-                    onclick="useroption('SiteRegistration')"
-                    onmouseover="
+          <li>
+            <div class="dropdown">
+              Registration
+              <!--button onclick="myFunction()" class="dropbtn">Dropdown</button-->
+              <div id="mnuRegistration" class="dropdown-content">
+                <a id="regnewsubmnu" onclick="useroption('SiteRegistration')" onmouseover="
                       highlightItem(document.getElementById('regnewsubmnu'))
-                    "
-                    style="cursor: pointer"
-                    >New Registration</a
-                  >
+                    " style="cursor: pointer">New Registration</a>
 
-                  <a
-                    id="regusersubmnu"
-                    onclick="useroption('users-registration')"
-                    onmouseover="
+                <a id="regusersubmnu" onclick="useroption('users-registration')" onmouseover="
                       highlightItem(document.getElementById('regusersubmnu'))
-                    "
-                    style="cursor: pointer"
-                    >Show Users</a
-                  >
-                </div>
+                    " style="cursor: pointer">Show Users</a>
               </div>
-            </li>
+            </div>
+          </li>
 
-            <li>
-              <a
-                onclick="
+          <li>
+            <a onclick="
                   //loadLectureEvent();
                   useroption('lectures')
-                "
-                style="cursor: pointer"
-              >
-                Lectures</a
-              >
-            </li>
+                " style="cursor: pointer">
+              Lectures</a>
+          </li>
 
-            <li>
-              <a
-                onclick="
+          <li>
+            <a onclick="
                   //loadTourEvent();
                   useroption('tours')
-                "
-                style="cursor: pointer"
-                >Tours</a
-              >
-            </li>
+                " style="cursor: pointer">Tours</a>
+          </li>
 
-            <li>
-              <a style="cursor: pointer" onclick="useroption('logging')"
-                >admin</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </header>
+          <li>
+            <a style="cursor: pointer" onclick="useroption('logging')">admin</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      <main id="mainpage">
-        <br />
+    <main id="mainpage">
+      <br />
 
-        <section
-          id="events-carousel"
-          class="content-section"
-          style="display: block"
-        >
-          <h2>Enjoy the wonders of Al Andalus</h2>
-          <div class="carousel">
-            <div class="carousel-track" id="carouselTrack"></div>
+      <section id="events-carousel" class="content-section" style="display: block">
+        <h2>Enjoy the wonders of Al Andalus</h2>
+        <div class="carousel">
+          <div class="carousel-track" id="carouselTrack"></div>
 
-            <button class="nav-btn prev" onclick="prevSlide()">❮</button>
-            <button class="nav-btn next" onclick="nextSlide()">❯</button>
-          </div>
-        </section>
+          <button class="nav-btn prev" onclick="prevSlide()">❮</button>
+          <button class="nav-btn next" onclick="nextSlide()">❯</button>
+        </div>
+      </section>
 
-        <section id="logging">
-          <div
-            id="loginform"
-            class="login-container center"
-            style="display: none"
-          >
-            <h2>Welcome Back</h2>
-            <p>Please login to your account</p>
+      <section id="logging">
+        <div id="loginform" class="login-container center" style="display: none">
+          <h2>Welcome Back</h2>
+          <p>Please login to your account</p>
 
-            <form>
-              <div class="input-group">
-                <input id="username" type="text" required />
-                <label>Username</label>
-              </div>
+          <form>
+            <div class="input-group">
+              <input id="username" type="text" autocomplete="username" required />
+              <label>Username</label>
+            </div>
 
-              <div class="input-group">
-                <input id="userpass" type="password" required />
-                <label>Password</label>
-              </div>
+            <div class="input-group">
+              <input id="userpass" type="password" autocomplete="current-password" required />
+              <label>Password</label>
+            </div>
 
-              <button
-                type="button"
-                class="book-btn"
-                onclick="
+            <button type="button" class="book-btn" onclick="
                   logAdmin(
                     document.getElementById('username').value.trim(),
                     document.getElementById('userpass').value.trim(),
                   )
-                "
-              >
-                <!--span class="tooltip1 tooltiptext"> disabled button </span-->
-                Login
-              </button>
-              <button
-                type="button"
-                class="book-btn"
-                onclick="
+                ">
+              <!--span class="tooltip1 tooltiptext"> disabled button </span-->
+              Login
+            </button>
+            <button type="button" class="book-btn" onclick="
                   document.getElementById('loginform').style.display = 'none'
-                "
-              >
-                Cancel
-              </button>
-            </form>
-          </div>
-        </section>
+                ">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </section>
 
-        <br />
-        <!-- Section for searching tours and events  -->
-        <section
-          id="searchcriteria"
-          class="content-section"
-          style="display: none"
-        >
-          <h2 id="hdrevent">Searching</h2>
+      <br />
+      <!-- Section for searching tours and events  -->
+      <section id="searchcriteria" class="content-section" style="display: none">
+        <h2 id="hdrevent">Searching</h2>
 
-          <div id="searching-grid" style="display: block"></div>
+        <div id="searching-grid" style="display: block"></div>
 
-          <div id="search-grid"></div>
-        </section>
+        <div id="search-grid"></div>
+      </section>
 
-        <br />
+      <br />
 
-        <section
-          id="toursreservation"
-          class="content-section"
-          style="display: none"
-        >
-          <div id="toursreservation-grid">
-            <h3>✅ Your Tours Bookings</h3>
-            <ul id="ToursReservationList"></ul>
-          </div>
-        </section>
+      <section id="toursreservation" class="content-section" style="display: none">
+        <div id="toursreservation-grid">
+          <h3>✅ Your Tours Bookings</h3>
+          <ul id="ToursReservationList"></ul>
+        </div>
+      </section>
 
-        <section
-          id="lecturesreservation"
-          class="content-section"
-          style="display: none"
-        >
-          <div id="lecturesreservation-grid">
-            <h3>✅ Your Lectures Bookings</h3>
-            <ul id="LecReservationList"></ul>
-          </div>
-        </section>
+      <section id="lecturesreservation" class="content-section" style="display: none">
+        <div id="lecturesreservation-grid">
+          <h3>✅ Your Lectures Bookings</h3>
+          <ul id="LecReservationList"></ul>
+        </div>
+      </section>
 
-        <section
-          id="choicedisplay"
-          class="content-section"
-          style="display: none"
-        >
-          <h2>Booking Tour and Lecture Details</h2>
-          <div id="displayinfo"></div>
-        </section>
+      <section id="choicedisplay" class="content-section" style="display: none">
+        <h2>Booking Tour and Lecture Details</h2>
+        <div id="displayinfo"></div>
+      </section>
 
-        <section id="lectures" class="content-section" style="display: none">
-          <h2>Upcoming Events</h2>
+      <section id="lectures" class="content-section" style="display: none">
+        <h2>Upcoming Events</h2>
 
-          <div id="lectures-grid">
+        <div id="lectures-grid">
+          <!-- Event cards will be loaded here by JavaScript -->
+          <p>Loading events...</p>
+        </div>
+      </section>
+
+      <section id="tours" class="content-section" style="display: none">
+        <div id="banner">
+          Scroll down the screen to see more tours events to be able to book
+          your preferred tour.
+        </div>
+        <h2>Upcoming Tours Events</h2>
+        <div id="tours-grid">
+          <!-- Event cards will be loaded here by JavaScript -->
+          <p>Loading tours events ...</p>
+        </div>
+      </section>
+
+      <br />
+
+      <section id="Bookings" class="content-section overlay center" style="display: none; margin-top: 10px">
+        <h2>Booking Details</h2>
+        <div id="bookingModal" style="display: block"></div>
+      </section>
+
+      <section id="SiteRegistration" class="content-section" style="display: none">
+        <h2>Welcome to Getaway Travels</h2>
+        <div id="siteregistration-grid"></div>
+      </section>
+
+      <section id="users-registration" class="content-section" style="display: none">
+        <div id="users-registration-grid">
+          <p>Loading Users Registration</p>
+
+          <!-- Event cards will be loaded here by JavaScript -->
+          <h3>✅ Your registered users</h3>
+          <ul id="RegisteredUsersList"></ul>
+        </div>
+      </section>
+
+      <section id="tours-reservation" class="content-section" style="display: none">
+        <div id="tours-reservation-grid">
+          <!-- Event cards will be loaded here by JavaScript -->
+
+          <h3>✅ Your Tours Bookings</h3>
+          <div id="registeredusers-grid">
             <!-- Event cards will be loaded here by JavaScript -->
-            <p>Loading events...</p>
           </div>
-        </section>
 
-        <section id="tours" class="content-section" style="display: none">
-          <div id="banner">
-            Scroll down the screen to see more tours events to be able to book
-            your preferred tour.
-          </div>
-          <h2>Upcoming Tours Events</h2>
-          <div id="tours-grid">
-            <!-- Event cards will be loaded here by JavaScript -->
-            <p>Loading tours events ...</p>
-          </div>
-        </section>
+          <ul id="tourbookinglist"></ul>
+        </div>
+      </section>
 
-        <br />
-
-        <section
-          id="Bookings"
-          class="content-section overlay center"
-          style="display: none; margin-top: 10px"
-        >
-          <h2>Booking Details</h2>
-          <div id="bookingModal" style="display: block"></div>
-        </section>
-
-        <section
-          id="SiteRegistration"
-          class="content-section"
-          style="display: none"
-        >
-          <h2>Welcome to Getaway Travels</h2>
-          <div id="siteregistration-grid"></div>
-        </section>
-
-        <section
-          id="users-registration"
-          class="content-section"
-          style="display: none"
-        >
-          <div id="users-registration-grid">
-            <p>Loading Users Registration</p>
-
-            <!-- Event cards will be loaded here by JavaScript -->
-            <h3>✅ Your registered users</h3>
-            <ul id="RegisteredUsersList"></ul>
-          </div>
-        </section>
-
-        <section
-          id="tours-reservation"
-          class="content-section"
-          style="display: none"
-        >
-          <div id="tours-reservation-grid">
-            <!-- Event cards will be loaded here by JavaScript -->
-
-            <h3>✅ Your Tours Bookings</h3>
-            <div id="registeredusers-grid">
-              <!-- Event cards will be loaded here by JavaScript -->
-            </div>
-
-            <ul id="tourbookinglist"></ul>
-          </div>
-        </section>
-
-        <section
-          id="social-media"
-          class="content-section"
-          style="display: block"
-        >
-          <h2>Follow Us on Social Media</h2>
-          <div id="socialmedia-grid" class="div_group" style="display: block">
-            <div>
-              <p
-                onclick="
+      <section id="social-media" class="content-section" style="display: block">
+        <h2>Follow Us on Social Media</h2>
+        <div id="socialmedia-grid" class="div_group" style="display: block">
+          <div>
+            <p onclick="
                   window.open(
                     'https://www.facebook.com/getawaytravels',
                     '_blank',
                   )
-                "
-              >
-                Facebook
-              </p>
-            </div>
-            <div>
-              <p
-                onclick="
+                ">
+              Facebook
+            </p>
+          </div>
+          <div>
+            <p onclick="
                   window.open(
                     'https://www.twitter.com/getawaytravels',
                     '_blank',
                   )
-                "
-              >
-                Twitter
-              </p>
-            </div>
-            <div>
-              <p
-                onclick="
+                ">
+              Twitter
+            </p>
+          </div>
+          <div>
+            <p onclick="
                   window.open(
                     'https://www.instagram.com/getawaytravels',
                     '_blank',
                   )
-                "
-              >
-                Instagram
-              </p>
-            </div>
-            <div>
-              <p
-                onclick="
+                ">
+              Instagram
+            </p>
+          </div>
+          <div>
+            <p onclick="
                   window.open(
                     'https://www.linkedin.com/company/getawaytravels',
                     '_blank',
                   )
-                "
-              >
-                LinkedIn
-              </p>
-            </div>
-            <div>
-              <p
-                onclick="
+                ">
+              LinkedIn
+            </p>
+          </div>
+          <div>
+            <p onclick="
                   window.open(
                     'https://www.youtube.com/getawaytravels',
                     '_blank',
                   )
-                "
-              >
-                YouTube
-              </p>
-            </div>
+                ">
+              YouTube
+            </p>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+    </main>
 
-      <footer>
-        <p>&copy; 2025 Getaway Travels | getawaytravels.co.uk</p>
-      </footer>
-    </div>
-  </body>
+    <footer>
+      <p>&copy; 2025 Getaway Travels | getawaytravels.co.uk</p>
+    </footer>
+  </div>
+</body>
+
 </html>
