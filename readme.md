@@ -118,14 +118,18 @@ Manual efforts will be prone to errors as against faster executions for repetiti
 
 Example: For a login page, instead of manually entering username and password every time, an automation script can automatically test multiple login combinations and verify expected results in seconds.
 
-Advantages of Automation Testing
-Automation testing provides several benefits that improve efficiency, accuracy, and overall software quality in the testing process.
+- Advantages of Automation Testing:
+  Automation testing provides several benefits that improve efficiency, accuracy, and overall software quality in the testing process.
 
-Faster Execution: Automated tests run much faster than manual testing, especially for repetitive test cases.
-Improved Accuracy: Reduces human errors and ensures consistent test execution every time.
-Higher Test Coverage: Allows execution of a large number of test cases across multiple environments and datasets.
-Supports Reusability: Test scripts can be reused for different builds and versions of the application.
-Efficient for Regression Testing: Quickly verifies that new changes do not break existing functionality.
+- Faster Execution:
+  Automated tests run much faster than manual testing, especially for repetitive test cases.
+- Improved Accuracy:
+  Reduces human errors and ensures consistent test execution every time.
+  Higher Test Coverage: Allows execution of a large number of test cases across multiple environments and datasets.
+- Supports Reusability:
+  Test scripts can be reused for different builds and versions of the application.
+- Efficient for Regression Testing:
+  Quickly verifies that new changes do not break existing functionality.
 
 ## Manual Testing
 
